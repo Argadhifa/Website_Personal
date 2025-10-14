@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arga Dhifa Alfathoni - Network Engineer & IoT Technician</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .primary-blue {
+            color: #0A66C2;
+        }
+        
+        .bg-primary-blue {
+            background-color: #0A66C2;
+        }
+        
+        .border-primary-blue {
+            border-color: #0A66C2;
+        }
+        
+        .hover-primary-blue:hover {
+            background-color: #085a9e;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(10, 102, 194, 0.15);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .tech-gradient {
+            background: linear-gradient(135deg, #0A66C2 0%, #1e40af 50%, #3b82f6 100%);
+        }
+        
+        .project-image {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .file-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .file-card:hover {
+            border-color: #0A66C2;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.1);
+        }
+        
+        .skill-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-icon:hover {
+            transform: scale(1.1);
+            color: #0A66C2;
+        }
+        
+        .video-placeholder {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-placeholder:hover {
+            background-color: #f3f4f6;
+        }
+        
+        /* Slideshow Styles */
+        .slideshow-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .slideshow-image.active {
+            opacity: 1;
+        }
+        
+        .slideshow-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+        }
+        
+        .slideshow-placeholder.active {
+            display: flex;
+        }
+        
+        .slideshow-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slideshow-dot.active {
+            background-color: #0A66C2;
+            transform: scale(1.2);
+        }
+        
+        .slideshow-dot:hover {
+            background-color: #6b7280;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold primary-blue">
+                    Arga Dhifa <span class="text-gray-800">Alfathoni</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Beranda</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Tentang</a>
+                    <a href="#experience" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Pengalaman</a>
+                    <a href="#video" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Video</a>
+                    <a href="#games" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Games</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Keahlian</a>
+                </div>
+                <button class="md:hidden text-gray-700 hover:text-blue-600" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-gray-200 mt-4">
+                <a href="#home" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                <a href="#about" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Tentang</a>
+                <a href="#experience" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Pengalaman</a>
+                <a href="#video" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Video</a>
+                <a href="#games" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Games</a>
+                <a href="#skills" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Keahlian</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="tech-gradient text-white pt-20 pb-16 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 text-center lg:text-left slide-in-left">
+                    <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6">
+                        Arga Dhifa <span class="text-yellow-300">Alfathoni</span>
+                    </h1>
+                    <h2 class="hero-subtitle text-2xl md:text-3xl mb-8 text-blue-100 font-medium">
+                        Network Engineer | IoT Technician | IT Enthusiast
+                    </h2>
+                    <p class="text-xl mb-10 leading-relaxed text-blue-50 max-w-2xl">
+                        Network Engineer dan IoT Technician berpengalaman dalam instalasi jaringan, VSAT, CCTV, dan sistem absensi. Berorientasi pada hasil kerja yang efisien dan andal.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                        <a href="https://wa.me/6281142268" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition-colors duration-300 shadow-lg inline-flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-3 text-xl"></i>
+                            Hubungi Saya
+                        </a>
+
+                    </div>
+                </div>
+                <div class="flex-shrink-0 slide-in-right">
+                    <div class="w-80 h-80 rounded-full bg-white/10 border-4 border-white/30 flex items-center justify-center overflow-hidden backdrop-blur-sm">
+                        <img src="images/profile.jpg" alt="Arga Dhifa Alfathoni" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-center p-8" style="display: none;">
+                            <i class="fas fa-user-circle text-8xl text-white/70 mb-4"></i>
+                            <p class="text-white/70 text-lg font-medium">Foto Profil</p>
+                            <p class="text-sm text-white/50 mt-2">Upload: profile.jpg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Tentang <span class="primary-blue">Saya</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="slide-in-left">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-8 primary-blue flex items-center">
+                            <i class="fas fa-user-circle mr-3 text-3xl"></i>
+                            Informasi Pribadi
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-graduation-cap text-blue-600 w-8 text-xl"></i>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Pendidikan</p>
+                                    <p class="text-gray-600">SMK Ksatrian Purwokerto — TKJ</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-envelope text-blue-600 w-8 text-xl"></i>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Email</p>
+                                    <p class="text-gray-600">argadhifa4@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fab fa-whatsapp text-green-600 w-8 text-xl"></i>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">WhatsApp</p>
+                                    <p class="text-gray-600">0811142268</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6 primary-blue flex items-center">
+                            <i class="fas fa-briefcase mr-3 text-3xl"></i>
+                            Pengalaman Profesional
+                        </h3>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                            Saya memiliki pengalaman lapangan di instalasi VSAT (proyek BAKTI AKSI), instalasi dan konfigurasi jaringan dan perangkat absensi di berbagai sekolah dan instansi (proyek SIMPATIKA), serta menjalankan tim freelance Support Technology untuk proyek instalasi CCTV, jaringan, dan perbaikan komputer.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-satellite-dish text-3xl primary-blue mb-2"></i>
+                                <p class="font-semibold text-gray-800">VSAT</p>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-network-wired text-3xl primary-blue mb-2"></i>
+                                <p class="font-semibold text-gray-800">Jaringan</p>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-video text-3xl primary-blue mb-2"></i>
+                                <p class="font-semibold text-gray-800">CCTV</p>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <i class="fas fa-fingerprint text-3xl primary-blue mb-2"></i>
+                                <p class="font-semibold text-gray-800">Absensi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Pengalaman <span class="primary-blue">Kerja</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="space-y-12">
+                <!-- PT. Mahaga -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in border border-gray-100">
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <div class="flex flex-col lg:flex-row justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-3xl font-bold primary-blue mb-2">PT. Mahaga</h3>
+                                    <p class="text-yellow-600 font-semibold text-lg mb-2">2024</p>
+                                    <p class="text-gray-600 text-lg">Teknisi VSAT</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mt-4 lg:mt-0">
+                                    Proyek BAKTI AKSI
+                                </span>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed">
+                                Sebagai bagian tim lapangan PT. Mahaga, saya bekerja pada proyek pemerintah BAKTI AKSI yang bertujuan memperluas akses internet menggunakan teknologi VSAT. Tanggung jawab saya mencakup pemasangan antena, orientasi dish, pemasangan kabel dan grounding, konfigurasi modem VSAT, serta pengujian konektivitas dan stabilitas link sampai layanan siap dipakai. Saya juga melakukan dokumentasi site dan koordinasi dengan tim pusat layanan. (Contoh site: SDN 1 Jembatan Kembar Timur)
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4">
+                            <!-- Main Image - Centered and Larger -->
+                            <div class="w-full max-w-2xl overflow-hidden rounded-xl shadow-lg">
+                                <div id="mahagaSlideshow" class="relative w-full aspect-video bg-gray-200 overflow-hidden">
+                                    <!-- Slideshow images will be inserted here -->
+                                </div>
+                                <!-- Slideshow Dots -->
+                                <div id="mahagaDots" class="flex justify-center space-x-2 mt-4">
+                                    <!-- Dots will be inserted here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Gallery Button -->
+                            <button onclick="openGallery('mahaga')" class="w-full max-w-md bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                <i class="fas fa-images mr-2"></i>
+                                Lihat Galeri Dokumentasi (10 Foto)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV. Mindtech -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in border border-gray-100">
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:order-2">
+                            <div class="flex flex-col lg:flex-row justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-3xl font-bold primary-blue mb-2">CV. Mindtech</h3>
+                                    <p class="text-yellow-600 font-semibold text-lg mb-2">2023 – 2025</p>
+                                    <p class="text-gray-600 text-lg">Teknisi IoT & Jaringan</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mt-4 lg:mt-0">
+                                    Proyek SIMPATIKA
+                                </span>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed">
+                                Selama bekerja di CV. Mindtech, saya bertanggung jawab atas berbagai proyek instalasi dan konfigurasi perangkat jaringan (Mikrotik, router, access point), pemasangan CCTV (analog & IP), serta implementasi sistem absensi (fingerprint & face recognition) untuk sekolah dan instansi. Saya juga terlibat dalam proyek pemerintah SIMPATIKA, di mana tugas saya fokus pada penyediaan infrastruktur jaringan dan perangkat absensi yang memungkinkan sekolah mengelola data PTK secara online dan andal.
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4 lg:order-1">
+                            <!-- Main Image - Centered and Larger -->
+                            <div class="w-full max-w-2xl overflow-hidden rounded-xl shadow-lg">
+                                <div id="mindtechSlideshow" class="relative w-full aspect-video bg-gray-200 overflow-hidden">
+                                    <!-- Slideshow images will be inserted here -->
+                                </div>
+                                <!-- Slideshow Dots -->
+                                <div id="mindtechDots" class="flex justify-center space-x-2 mt-4">
+                                    <!-- Dots will be inserted here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Gallery Button -->
+                            <button onclick="openGallery('mindtech')" class="w-full max-w-md bg-green-50 hover:bg-green-100 text-green-700 font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                <i class="fas fa-images mr-2"></i>
+                                Lihat Galeri Dokumentasi (10 Foto)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Technology -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in border border-gray-100">
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <div class="flex flex-col lg:flex-row justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-3xl font-bold primary-blue mb-2">Support Technology</h3>
+                                    <p class="text-yellow-600 font-semibold text-lg mb-2">2023 – 2025</p>
+                                    <p class="text-gray-600 text-lg">Pemilik & Pemimpin Proyek</p>
+                                </div>
+                                <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mt-4 lg:mt-0">
+                                    Berbagai Klien
+                                </span>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed">
+                                Saya mendirikan dan memimpin Support Technology, sebuah kelompok freelance yang menangani proyek-proyek skala kecil hingga menengah. Dalam peran ini saya bertanggung jawab atas perencanaan proyek, pembagian tugas teknis, koordinasi dengan klien, pengawasan kualitas instalasi, serta pembuatan dokumentasi dan panduan penggunaan pasca-instalasi. Layanan kami meliputi pemasangan CCTV (penempatan kamera, konfigurasi NVR/DVR, remote access), instalasi dan konfigurasi jaringan untuk toko dan kantor kecil, perbaikan dan optimasi komputer, serta pemasangan dan konfigurasi perangkat absensi. Fokus saya adalah memastikan proyek selesai tepat waktu, aman, dan dapat langsung digunakan oleh klien.
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4">
+                            <!-- Main Image - Centered and Larger -->
+                            <div class="w-full max-w-2xl overflow-hidden rounded-xl shadow-lg">
+                                <div id="supportSlideshow" class="relative w-full aspect-video bg-gray-200 overflow-hidden">
+                                    <!-- Slideshow images will be inserted here -->
+                                </div>
+                                <!-- Slideshow Dots -->
+                                <div id="supportDots" class="flex justify-center space-x-2 mt-4">
+                                    <!-- Dots will be inserted here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Gallery Button -->
+                            <button onclick="openGallery('support')" class="w-full max-w-md bg-purple-50 hover:bg-purple-100 text-purple-700 font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                <i class="fas fa-images mr-2"></i>
+                                Lihat Galeri Dokumentasi (8 Foto)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Documentation Section -->
+    <section id="video" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Video <span class="primary-blue">Dokumentasi</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
+                <p class="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">
+                    Dokumentasi video instalasi dan testing VSAT di PT. Mahaga
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Video -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 mb-12 fade-in">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-satellite-dish primary-blue mr-3"></i>
+                            Instalasi VSAT Lengkap - PT. Mahaga
+                        </h3>
+                        <p class="text-gray-600 text-lg">
+                            Video dokumentasi proses instalasi VSAT dari awal hingga testing konektivitas
+                        </p>
+                    </div>
+                    
+                    <div class="aspect-video bg-gray-200 rounded-xl overflow-hidden mb-6">
+                        <iframe class="w-full h-full rounded-xl" 
+                                src="https://www.youtube-nocookie.com/embed/LuwbpHp1nAA?rel=0&modestbranding=1&showinfo=0" 
+                                title="Instalasi VSAT PT. Mahaga - Arga Dhifa Alfathoni"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen
+                                referrerpolicy="strict-origin-when-cross-origin">
+                        </iframe>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <i class="fas fa-tools text-3xl primary-blue mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Instalasi</h4>
+                            <p class="text-gray-600 text-sm">Pemasangan antena, kabel, dan grounding sistem VSAT</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl text-center">
+                            <i class="fas fa-cogs text-3xl text-green-600 mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Testing</h4>
+                            <p class="text-gray-600 text-sm">Pengujian konektivitas dan kalibrasi sinyal satelit</p>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-xl text-center">
+                            <i class="fas fa-check-circle text-3xl text-purple-600 mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Operasional</h4>
+                            <p class="text-gray-600 text-sm">Verifikasi sistem siap digunakan dan handover</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Details -->
+                <div class="bg-gray-50 rounded-2xl p-8 fade-in">
+                    <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-info-circle primary-blue mr-2"></i>
+                        Detail Proyek VSAT
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="font-bold text-gray-800 mb-3">Informasi Proyek:</h5>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><i class="fas fa-building primary-blue mr-2"></i> <strong>Perusahaan:</strong> PT. Mahaga</li>
+                                <li><i class="fas fa-calendar primary-blue mr-2"></i> <strong>Tahun:</strong> 2024</li>
+                                <li><i class="fas fa-map-marker-alt primary-blue mr-2"></i> <strong>Lokasi:</strong> SDN 1 Jembatan Kembar Timur</li>
+                                <li><i class="fas fa-project-diagram primary-blue mr-2"></i> <strong>Program:</strong> BAKTI AKSI</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 mb-3">Scope Pekerjaan:</h5>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><i class="fas fa-satellite-dish primary-blue mr-2"></i> Pemasangan antena VSAT</li>
+                                <li><i class="fas fa-compass primary-blue mr-2"></i> Orientasi dan pointing dish</li>
+                                <li><i class="fas fa-plug primary-blue mr-2"></i> Instalasi kabel dan grounding</li>
+                                <li><i class="fas fa-wifi primary-blue mr-2"></i> Konfigurasi modem dan testing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Games Section -->
+    <section id="games" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Mini <span class="primary-blue">Games</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
+                <p class="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">
+                    Nikmati permainan sederhana sambil mengenal lebih jauh tentang teknologi jaringan
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Network Memory Game -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-brain text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Memory</h3>
+                        <p class="text-gray-600">Cocokkan perangkat jaringan yang sama</p>
+                    </div>
+                    <div id="memoryGame" class="grid grid-cols-4 gap-2 mb-6">
+                        <!-- Memory cards will be generated here -->
+                    </div>
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <span class="text-sm text-gray-600">Skor: </span>
+                            <span id="memoryScore" class="font-bold primary-blue">0</span>
+                            <span class="text-sm text-gray-600 ml-4">Waktu: </span>
+                            <span id="memoryTime" class="font-bold text-green-600">0s</span>
+                        </div>
+                        <button onclick="startMemoryGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Mulai Game
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tech Quiz -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-question-circle text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tech Quiz</h3>
+                        <p class="text-gray-600">Uji pengetahuan teknologi Anda</p>
+                    </div>
+                    <div id="quizContainer" class="mb-6">
+                        <div id="quizQuestion" class="text-lg font-semibold text-gray-800 mb-4 text-center">
+                            Klik "Mulai Quiz" untuk memulai
+                        </div>
+                        <div id="quizOptions" class="space-y-2">
+                            <!-- Quiz options will be generated here -->
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <span class="text-sm text-gray-600">Skor: </span>
+                            <span id="quizScore" class="font-bold primary-blue">0/0</span>
+                        </div>
+                        <button id="quizButton" onclick="startQuiz()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Mulai Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Snake Game -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-gamepad text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Snake</h3>
+                        <p class="text-gray-600">Kumpulkan perangkat jaringan</p>
+                    </div>
+                    <div class="flex justify-center mb-4">
+                        <canvas id="snakeCanvas" width="300" height="300" class="border-2 border-gray-300 rounded-lg bg-gray-100"></canvas>
+                    </div>
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <span class="text-sm text-gray-600">Skor: </span>
+                            <span id="snakeScore" class="font-bold primary-blue">0</span>
+                        </div>
+                        <button id="snakeButton" onclick="startSnakeGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Mulai Game
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">Gunakan tombol panah untuk bergerak</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Keahlian <span class="primary-blue">Teknis</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-satellite-dish skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Instalasi & Konfigurasi VSAT</h3>
+                    <p class="text-gray-600">Pemasangan antena, orientasi dish, konfigurasi modem, dan troubleshooting konektivitas satelit.</p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-network-wired skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Mikrotik, Router, Jaringan LAN/WAN</h3>
+                    <p class="text-gray-600">Konfigurasi router Mikrotik, setup jaringan LAN/WAN, dan optimasi performa jaringan.</p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-video skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">CCTV Analog & IP</h3>
+                    <p class="text-gray-600">Instalasi dan konfigurasi sistem CCTV analog maupun IP untuk keamanan dan monitoring.</p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-fingerprint skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Sistem Absensi Fingerprint & Face Recognition</h3>
+                    <p class="text-gray-600">Pemasangan dan konfigurasi alat absensi biometrik untuk berbagai instansi.</p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-tools skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Troubleshooting Hardware & Software</h3>
+                    <p class="text-gray-600">Diagnosa dan perbaikan masalah perangkat keras dan perangkat lunak komputer.</p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-xl shadow-lg card-hover fade-in">
+                    <i class="fas fa-microchip skill-icon text-5xl primary-blue mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Teknologi IoT</h3>
+                    <p class="text-gray-600">Implementasi solusi Internet of Things untuk otomasi dan monitoring sistem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 id="galleryTitle" class="text-2xl font-bold text-gray-800"></h3>
+                <button onclick="closeGallery()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+                <div id="galleryGrid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <!-- Gallery images will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-400">© 2025 Arga Dhifa Alfathoni | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            animatedElements.forEach(el => observer.observe(el));
+            
+            // Initialize slideshows
+            initializeSlideshow('mahaga', 10);
+            initializeSlideshow('mindtech', 10);
+            initializeSlideshow('support', 8);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Slideshow functionality
+        const slideshows = {};
+
+        function initializeSlideshow(type, count) {
+            const container = document.getElementById(`${type}Slideshow`);
+            const dotsContainer = document.getElementById(`${type}Dots`);
+            
+            if (!container || !dotsContainer) return;
+            
+            slideshows[type] = {
+                currentIndex: 0,
+                count: count,
+                interval: null,
+                images: [],
+                placeholders: []
+            };
+            
+            // Create images and placeholders
+            for (let i = 1; i <= count; i++) {
+                // Create image element
+                const img = document.createElement('img');
+                img.src = `images/${type}${i}.jpg`;
+                img.alt = galleries[type].descriptions[i-1];
+                img.className = `slideshow-image ${i === 1 ? 'active' : ''}`;
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    slideshows[type].placeholders[i-1].classList.add('active');
+                };
+                container.appendChild(img);
+                slideshows[type].images.push(img);
+                
+                // Create placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'slideshow-placeholder';
+                placeholder.innerHTML = `
+                    <div class="text-center text-gray-500">
+                        <i class="fas fa-image text-3xl mb-2"></i>
+                        <p class="font-medium text-sm">${galleries[type].descriptions[i-1]}</p>
+                        <p class="text-xs">Upload: ${type}${i}.jpg</p>
+                    </div>
+                `;
+                container.appendChild(placeholder);
+                slideshows[type].placeholders.push(placeholder);
+                
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `slideshow-dot ${i === 1 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(type, i - 1);
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Start auto-rotation
+            startSlideshow(type);
+        }
+
+        function startSlideshow(type) {
+            if (slideshows[type].interval) {
+                clearInterval(slideshows[type].interval);
+            }
+            
+            slideshows[type].interval = setInterval(() => {
+                nextSlide(type);
+            }, 4000); // Change slide every 4 seconds
+        }
+
+        function nextSlide(type) {
+            const slideshow = slideshows[type];
+            const nextIndex = (slideshow.currentIndex + 1) % slideshow.count;
+            goToSlide(type, nextIndex);
+        }
+
+        function goToSlide(type, index) {
+            const slideshow = slideshows[type];
+            const container = document.getElementById(`${type}Slideshow`);
+            const dotsContainer = document.getElementById(`${type}Dots`);
+            
+            // Remove active class from current slide
+            slideshow.images[slideshow.currentIndex].classList.remove('active');
+            slideshow.placeholders[slideshow.currentIndex].classList.remove('active');
+            dotsContainer.children[slideshow.currentIndex].classList.remove('active');
+            
+            // Add active class to new slide
+            slideshow.currentIndex = index;
+            slideshow.images[index].classList.add('active');
+            dotsContainer.children[index].classList.add('active');
+            
+            // Restart auto-rotation
+            startSlideshow(type);
+        }
+
+        // Mini Games Functionality
+        
+        // Memory Game Variables
+        let memoryCards = [];
+        let flippedCards = [];
+        let memoryScore = 0;
+        let memoryTime = 0;
+        let memoryTimer = null;
+        let memoryGameActive = false;
+        
+        const networkIcons = ['🖥️', '🖨️', '📡', '🔌', '💾', '⌨️', '🖱️', '📱'];
+        
+        function startMemoryGame() {
+            memoryScore = 0;
+            memoryTime = 0;
+            memoryGameActive = true;
+            flippedCards = [];
+            
+            // Create card pairs
+            const icons = [...networkIcons.slice(0, 8)];
+            const cardPairs = [...icons, ...icons];
+            cardPairs.sort(() => Math.random() - 0.5);
+            
+            const gameContainer = document.getElementById('memoryGame');
+            gameContainer.innerHTML = '';
+            memoryCards = [];
+            
+            cardPairs.forEach((icon, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-gray-200 rounded-lg h-16 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors text-2xl';
+                card.dataset.icon = icon;
+                card.dataset.index = index;
+                card.onclick = () => flipCard(index);
+                gameContainer.appendChild(card);
+                memoryCards.push({ element: card, icon, flipped: false, matched: false });
+            });
+            
+            // Start timer
+            memoryTimer = setInterval(() => {
+                memoryTime++;
+                document.getElementById('memoryTime').textContent = memoryTime + 's';
+            }, 1000);
+            
+            updateMemoryScore();
+        }
+        
+        function flipCard(index) {
+            if (!memoryGameActive || memoryCards[index].flipped || memoryCards[index].matched || flippedCards.length >= 2) return;
+            
+            memoryCards[index].flipped = true;
+            memoryCards[index].element.textContent = memoryCards[index].icon;
+            memoryCards[index].element.classList.add('bg-blue-100');
+            flippedCards.push(index);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 800);
+            }
+        }
+        
+        function checkMatch() {
+            const [first, second] = flippedCards;
+            
+            if (memoryCards[first].icon === memoryCards[second].icon) {
+                // Match found
+                memoryCards[first].matched = true;
+                memoryCards[second].matched = true;
+                memoryCards[first].element.classList.add('bg-green-200');
+                memoryCards[second].element.classList.add('bg-green-200');
+                memoryScore += 10;
+                
+                // Check if game is complete
+                if (memoryCards.every(card => card.matched)) {
+                    clearInterval(memoryTimer);
+                    memoryGameActive = false;
+                    showNotification(`Selamat! Game selesai dalam ${memoryTime} detik dengan skor ${memoryScore}!`, 'success');
+                }
+            } else {
+                // No match
+                memoryCards[first].flipped = false;
+                memoryCards[second].flipped = false;
+                memoryCards[first].element.textContent = '';
+                memoryCards[second].element.textContent = '';
+                memoryCards[first].element.classList.remove('bg-blue-100');
+                memoryCards[second].element.classList.remove('bg-blue-100');
+            }
+            
+            flippedCards = [];
+            updateMemoryScore();
+        }
+        
+        function updateMemoryScore() {
+            document.getElementById('memoryScore').textContent = memoryScore;
+        }
+        
+        // Quiz Game Variables
+        let quizQuestions = [
+            {
+                question: "Apa kepanjangan dari VSAT?",
+                options: ["Very Small Aperture Terminal", "Virtual Satellite Access Terminal", "Video Streaming Access Terminal", "Voice Signal Access Terminal"],
+                correct: 0
+            },
+            {
+                question: "Port default untuk SSH adalah?",
+                options: ["21", "22", "23", "80"],
+                correct: 1
+            },
+            {
+                question: "Perangkat yang berfungsi menghubungkan dua jaringan berbeda adalah?",
+                options: ["Switch", "Hub", "Router", "Bridge"],
+                correct: 2
+            },
+            {
+                question: "Protokol yang digunakan untuk transfer file adalah?",
+                options: ["HTTP", "FTP", "SMTP", "DNS"],
+                correct: 1
+            },
+            {
+                question: "IP Address 192.168.1.1 termasuk kelas?",
+                options: ["Kelas A", "Kelas B", "Kelas C", "Kelas D"],
+                correct: 2
+            }
+        ];
+        
+        let currentQuiz = 0;
+        let quizScore = 0;
+        let quizActive = false;
+        
+        function startQuiz() {
+            currentQuiz = 0;
+            quizScore = 0;
+            quizActive = true;
+            document.getElementById('quizButton').textContent = 'Jawab';
+            showQuizQuestion();
+        }
+        
+        function showQuizQuestion() {
+            if (currentQuiz >= quizQuestions.length) {
+                endQuiz();
+                return;
+            }
+            
+            const question = quizQuestions[currentQuiz];
+            document.getElementById('quizQuestion').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'w-full p-3 text-left bg-gray-100 hover:bg-blue-100 rounded-lg transition-colors';
+                button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+                button.onclick = () => selectQuizAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+            
+            updateQuizScore();
+        }
+        
+        function selectQuizAnswer(selectedIndex) {
+            if (!quizActive) return;
+            
+            const question = quizQuestions[currentQuiz];
+            const options = document.getElementById('quizOptions').children;
+            
+            // Show correct/incorrect
+            Array.from(options).forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('bg-green-200');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('bg-red-200');
+                }
+                option.onclick = null;
+            });
+            
+            if (selectedIndex === question.correct) {
+                quizScore++;
+            }
+            
+            currentQuiz++;
+            setTimeout(() => {
+                if (currentQuiz < quizQuestions.length) {
+                    showQuizQuestion();
+                } else {
+                    endQuiz();
+                }
+            }, 1500);
+        }
+        
+        function endQuiz() {
+            quizActive = false;
+            document.getElementById('quizQuestion').textContent = `Quiz selesai! Skor akhir: ${quizScore}/${quizQuestions.length}`;
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('quizButton').textContent = 'Mulai Quiz';
+            document.getElementById('quizButton').onclick = startQuiz;
+            
+            const percentage = (quizScore / quizQuestions.length) * 100;
+            let message = '';
+            if (percentage >= 80) message = 'Excellent! Anda sangat paham teknologi jaringan!';
+            else if (percentage >= 60) message = 'Good job! Pengetahuan Anda cukup baik!';
+            else message = 'Keep learning! Masih ada ruang untuk berkembang!';
+            
+            showNotification(message, 'success');
+        }
+        
+        function updateQuizScore() {
+            document.getElementById('quizScore').textContent = `${quizScore}/${quizQuestions.length}`;
+        }
+        
+        // Snake Game Variables
+        let snakeCanvas, snakeCtx;
+        let snake = [{x: 150, y: 150}];
+        let food = {x: 0, y: 0};
+        let dx = 0, dy = 0;
+        let snakeScore = 0;
+        let snakeGameActive = false;
+        let snakeGameLoop = null;
+        
+        function startSnakeGame() {
+            snakeCanvas = document.getElementById('snakeCanvas');
+            snakeCtx = snakeCanvas.getContext('2d');
+            
+            // Stop any existing game first
+            if (snakeGameLoop) {
+                clearInterval(snakeGameLoop);
+            }
+            document.removeEventListener('keydown', handleSnakeKeyPress);
+            
+            // Reset game
+            snake = [{x: 150, y: 150}];
+            dx = 0;
+            dy = 0;
+            snakeScore = 0;
+            snakeGameActive = true;
+            
+            generateFood();
+            updateSnakeScore();
+            drawSnake(); // Initial draw
+            
+            document.getElementById('snakeButton').textContent = 'Stop Game';
+            document.getElementById('snakeButton').onclick = stopSnakeGame;
+            
+            // Game loop
+            snakeGameLoop = setInterval(() => {
+                if (snakeGameActive) {
+                    updateSnake();
+                    drawSnake();
+                }
+            }, 150);
+            
+            // Add keyboard controls
+            document.addEventListener('keydown', handleSnakeKeyPress);
+        }
+        
+        function stopSnakeGame() {
+            snakeGameActive = false;
+            clearInterval(snakeGameLoop);
+            document.getElementById('snakeButton').textContent = 'Mulai Game';
+            document.getElementById('snakeButton').onclick = startSnakeGame;
+            document.removeEventListener('keydown', handleSnakeKeyPress);
+        }
+        
+        function handleSnakeKeyPress(e) {
+            if (!snakeGameActive) return;
+            
+            const key = e.key;
+            e.preventDefault(); // Prevent page scrolling
+            
+            if (key === 'ArrowUp' && dy === 0) { dx = 0; dy = -15; }
+            else if (key === 'ArrowDown' && dy === 0) { dx = 0; dy = 15; }
+            else if (key === 'ArrowLeft' && dx === 0) { dx = -15; dy = 0; }
+            else if (key === 'ArrowRight' && dx === 0) { dx = 15; dy = 0; }
+        }
+        
+        function updateSnake() {
+            // Don't move if no direction is set
+            if (dx === 0 && dy === 0) return;
+            
+            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            
+            // Check wall collision
+            if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 300) {
+                gameOver();
+                return;
+            }
+            
+            // Check self collision
+            if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver();
+                return;
+            }
+            
+            snake.unshift(head);
+            
+            // Check food collision
+            if (head.x === food.x && head.y === food.y) {
+                snakeScore += 10;
+                updateSnakeScore();
+                generateFood();
+            } else {
+                snake.pop();
+            }
+        }
+        
+        function drawSnake() {
+            // Clear canvas
+            snakeCtx.fillStyle = '#f3f4f6';
+            snakeCtx.fillRect(0, 0, 300, 300);
+            
+            // Draw snake
+            snakeCtx.fillStyle = '#0A66C2';
+            snake.forEach(segment => {
+                snakeCtx.fillRect(segment.x, segment.y, 15, 15);
+            });
+            
+            // Draw food
+            snakeCtx.fillStyle = '#ef4444';
+            snakeCtx.fillRect(food.x, food.y, 15, 15);
+        }
+        
+        function generateFood() {
+            food.x = Math.floor(Math.random() * 20) * 15;
+            food.y = Math.floor(Math.random() * 20) * 15;
+            
+            // Make sure food doesn't spawn on snake
+            while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
+                food.x = Math.floor(Math.random() * 20) * 15;
+                food.y = Math.floor(Math.random() * 20) * 15;
+            }
+        }
+        
+        function gameOver() {
+            snakeGameActive = false;
+            clearInterval(snakeGameLoop);
+            document.getElementById('snakeButton').textContent = 'Mulai Game';
+            document.getElementById('snakeButton').onclick = startSnakeGame;
+            document.removeEventListener('keydown', handleSnakeKeyPress);
+            showNotification(`Game Over! Skor akhir: ${snakeScore}`, 'info');
+        }
+        
+        function updateSnakeScore() {
+            document.getElementById('snakeScore').textContent = snakeScore;
+        }
+
+        // Show video upload info
+        function showVideoInfo(type) {
+            const videoTypes = {
+                'vsat-complete': 'Video Hasil Instalasi & Testing VSAT - PT. Mahaga'
+            };
+            
+            showNotification(`Untuk menampilkan ${videoTypes[type]}: Upload video ke YouTube, lalu ganti placeholder dengan embed code YouTube`, 'info');
+        }
+
+        // Gallery functionality
+        const galleries = {
+            mahaga: {
+                title: 'Dokumentasi PT. Mahaga - Instalasi VSAT',
+                count: 10,
+                prefix: 'mahaga',
+                descriptions: [
+                    'Persiapan peralatan VSAT',
+                    'Pemasangan antena satelit',
+                    'Konfigurasi dish pointing',
+                    'Instalasi kabel dan grounding',
+                    'Setup modem VSAT',
+                    'Testing konektivitas',
+                    'Kalibrasi sinyal satelit',
+                    'Dokumentasi instalasi',
+                    'Verifikasi sistem',
+                    'Handover ke client'
+                ]
+            },
+            mindtech: {
+                title: 'Dokumentasi CV. Mindtech - Jaringan & IoT',
+                count: 10,
+                prefix: 'mindtech',
+                descriptions: [
+                    'Instalasi router Mikrotik',
+                    'Konfigurasi jaringan LAN',
+                    'Setup access point WiFi',
+                    'Instalasi sistem absensi',
+                    'Konfigurasi fingerprint',
+                    'Setup face recognition',
+                    'Testing konektivitas jaringan',
+                    'Dokumentasi konfigurasi',
+                    'Training pengguna',
+                    'Maintenance sistem'
+                ]
+            },
+            support: {
+                title: 'Dokumentasi Support Technology - CCTV & IT',
+                count: 8,
+                prefix: 'support',
+                descriptions: [
+                    'Instalasi kamera CCTV',
+                    'Setup DVR/NVR system',
+                    'Konfigurasi remote access',
+                    'Instalasi jaringan kantor',
+                    'Perbaikan komputer',
+                    'Setup sistem monitoring',
+                    'Testing semua perangkat',
+                    'Dokumentasi proyek'
+                ]
+            }
+        };
+
+        function openGallery(type) {
+            const gallery = galleries[type];
+            if (!gallery) return;
+
+            document.getElementById('galleryTitle').textContent = gallery.title;
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            for (let i = 1; i <= gallery.count; i++) {
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 break-inside-avoid mb-6';
+                
+                imageContainer.innerHTML = `
+                    <div class="overflow-hidden">
+                        <img src="images/${gallery.prefix}${i}.jpg" 
+                             alt="${gallery.descriptions[i-1]}" 
+                             class="w-full h-auto hover:scale-105 transition-transform duration-300 cursor-pointer"
+                             onclick="viewFullImage('images/${gallery.prefix}${i}.jpg', '${gallery.descriptions[i-1]}')"
+                             onerror="this.parentElement.innerHTML='<div class=\\'w-full aspect-video bg-gray-200 flex items-center justify-center\\'>
+                                <div class=\\'text-center text-gray-500\\'>
+                                    <i class=\\'fas fa-image text-3xl mb-2\\'></i>
+                                    <p class=\\'font-medium\\'>${gallery.descriptions[i-1]}</p>
+                                    <p class=\\'text-sm\\'>Upload: ${gallery.prefix}${i}.jpg</p>
+                                </div>
+                             </div>'">
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">${gallery.descriptions[i-1]}</h4>
+                        <p class="text-sm text-gray-600">Foto ${i} dari ${gallery.count}</p>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(imageContainer);
+            }
+
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function viewFullImage(src, alt) {
+            const fullImageModal = document.createElement('div');
+            fullImageModal.className = 'fixed inset-0 bg-black bg-opacity-90 z-60 flex items-center justify-center p-4';
+            fullImageModal.onclick = () => {
+                document.body.removeChild(fullImageModal);
+                document.body.style.overflow = 'hidden'; // Keep gallery scroll locked
+            };
+            
+            fullImageModal.innerHTML = `
+                <div class="max-w-4xl max-h-full">
+                    <img src="${src}" alt="${alt}" class="max-w-full max-h-full object-contain rounded-lg">
+                    <p class="text-white text-center mt-4 text-lg font-medium">${alt}</p>
+                    <p class="text-white/70 text-center mt-2 text-sm">Klik di mana saja untuk menutup</p>
+                </div>
+            `;
+            
+            document.body.appendChild(fullImageModal);
+        }
+
+        // Close gallery when clicking outside
+        document.getElementById('galleryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGallery();
+            }
+        });
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : type === 'info' ? 'bg-blue-500' : 'bg-red-500';
+            const icon = type === 'success' ? 'fa-check-circle' : type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle';
+            
+            notification.className = `fixed top-4 right-4 p-6 rounded-xl text-white z-50 shadow-2xl transition-all duration-300 ${bgColor} max-w-md`;
+            notification.innerHTML = `
+                <div class="flex items-start">
+                    <i class="fas ${icon} mr-3 text-xl mt-1 flex-shrink-0"></i>
+                    <span class="font-medium">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            }, 100);
+            
+            // Remove after 6 seconds for info messages, 4 for others
+            const duration = type === 'info' ? 6000 : 4000;
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, duration);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e6f890f184fd2a',t:'MTc2MDQ0Mzc5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
