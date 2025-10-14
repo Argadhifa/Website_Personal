@@ -582,11 +582,26 @@
                                 <button onclick="toggleTowerEducation()" class="text-gray-400 hover:text-white">✕</button>
                             </div>
                             <div id="towerEducationContent">
-                                <p class="text-blue-300 mb-2">Klik tower atau enemy untuk mempelajari cara kerjanya!</p>
-                                <div class="text-xs text-gray-300">
-                                    <p><strong>🔥 Firewall:</strong> Memblokir akses tidak sah</p>
-                                    <p><strong>🛡️ Antivirus:</strong> Mendeteksi malware</p>
-                                    <p><strong>👁️ IDS:</strong> Monitor aktivitas mencurigakan</p>
+                                <div class="text-xs text-gray-300 space-y-2">
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>🔥 Firewall:</strong> Sistem keamanan yang memfilter lalu lintas jaringan berdasarkan aturan keamanan yang telah ditentukan</p>
+                                        <p class="text-blue-300 mt-1">Melindungi jaringan dari akses tidak sah dengan memblokir port dan protokol tertentu</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>🛡️ Antivirus:</strong> Software yang mendeteksi, mencegah, dan menghapus malware dari sistem komputer</p>
+                                        <p class="text-green-300 mt-1">Bekerja dengan mengenali signature virus dan behavior analysis untuk melindungi sistem</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>👁️ IDS:</strong> Sistem yang memantau aktivitas jaringan untuk mendeteksi aktivitas mencurigakan atau serangan</p>
+                                        <p class="text-purple-300 mt-1">Menganalisis pola lalu lintas jaringan dan memberikan alert ketika mendeteksi anomali</p>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-gray-600">
+                                        <p class="text-yellow-300"><strong>💡 Tips Keamanan:</strong></p>
+                                        <p>• Kombinasikan berbagai defense untuk keamanan optimal</p>
+                                        <p>• Tempatkan firewall di pintu masuk jaringan</p>
+                                        <p>• Update antivirus secara berkala</p>
+                                        <p>• Monitor log IDS untuk deteksi dini</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -616,9 +631,13 @@
                             </div>
                         </div>
                         <div id="puzzleInstructions" class="absolute bottom-2 left-2 right-2 bg-black/70 text-white p-3 rounded-lg text-sm">
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center mb-2">
                                 <p id="puzzleTask" class="text-center flex-1">Hubungkan semua komputer ke router utama</p>
-                                <button onclick="togglePuzzleEducation()" class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-xs ml-2">📚 Info</button>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <button onclick="validateCurrentTopology()" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-xs">✓ Validasi</button>
+                                <button onclick="resetPuzzleLevel()" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-xs">🔄 Reset</button>
+                                <button onclick="togglePuzzleEducation()" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-xs">📚 Info</button>
                             </div>
                         </div>
                         <div id="puzzleEducation" class="absolute top-2 right-2 bg-black/90 text-white p-4 rounded-lg text-sm max-w-sm hidden">
@@ -627,12 +646,33 @@
                                 <button onclick="togglePuzzleEducation()" class="text-gray-400 hover:text-white">✕</button>
                             </div>
                             <div id="puzzleEducationContent">
-                                <p class="text-blue-300 mb-2">Klik perangkat untuk mempelajari fungsinya!</p>
-                                <div class="text-xs text-gray-300 space-y-1">
-                                    <p><strong>📡 Router:</strong> Menghubungkan jaringan berbeda</p>
-                                    <p><strong>💻 Computer:</strong> Perangkat endpoint user</p>
-                                    <p><strong>🖥️ Server:</strong> Menyediakan layanan jaringan</p>
-                                    <p><strong>🔄 Switch:</strong> Menghubungkan perangkat LAN</p>
+                                <div class="text-xs text-gray-300 space-y-2">
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>📡 Router:</strong> Perangkat yang menghubungkan berbagai jaringan dan menentukan jalur terbaik untuk data</p>
+                                        <p class="text-blue-300 mt-1">Melakukan routing, NAT, DHCP, dan firewall untuk konektivitas jaringan</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>🔄 Switch:</strong> Perangkat yang menghubungkan perangkat dalam satu jaringan lokal (LAN)</p>
+                                        <p class="text-green-300 mt-1">Menggunakan MAC address learning dan frame forwarding untuk komunikasi efisien</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>💻 Computer:</strong> Perangkat endpoint yang menggunakan layanan jaringan</p>
+                                        <p class="text-purple-300 mt-1">Menjalankan aplikasi client dan terhubung ke jaringan untuk akses resources</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>🖥️ Server:</strong> Komputer yang menyediakan layanan dan sumber daya untuk perangkat lain</p>
+                                        <p class="text-yellow-300 mt-1">Menjalankan web server, file server, database server untuk melayani client</p>
+                                    </div>
+                                    <div class="border-b border-gray-600 pb-2">
+                                        <p><strong>📶 Access Point:</strong> Perangkat yang menyediakan akses wireless ke jaringan kabel</p>
+                                        <p class="text-orange-300 mt-1">Menyediakan WiFi broadcasting dan wireless security untuk koneksi nirkabel</p>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-gray-600">
+                                        <p class="text-cyan-300"><strong>💡 Topologi Jaringan:</strong></p>
+                                        <p><strong>Star:</strong> Semua perangkat terhubung ke titik pusat</p>
+                                        <p><strong>Bus:</strong> Perangkat terhubung ke satu kabel utama</p>
+                                        <p><strong>Ring:</strong> Perangkat terhubung membentuk lingkaran</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -697,9 +737,68 @@
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Tech Challenge</h3>
                         <p class="text-gray-600">Uji pengetahuan teknologi jaringan melalui kuis interaktif</p>
                     </div>
-                    <div id="quizContainer" class="mb-6 min-h-[200px]">
+                    
+                    <!-- Level Selection -->
+                    <div id="quizLevelSelection" class="mb-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4 text-center">Pilih Level Kesulitan:</h4>
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="selectQuizLevel(1)" class="quiz-level-btn bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 p-4 rounded-lg text-left transition-all duration-300 border-2 border-transparent hover:border-green-400">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="font-bold text-green-700">Level 1 - Basic</span>
+                                        <p class="text-sm text-green-600">Konsep dasar jaringan, protokol umum</p>
+                                    </div>
+                                    <span class="text-green-500 font-bold">10 Soal</span>
+                                </div>
+                            </button>
+                            <button onclick="selectQuizLevel(2)" class="quiz-level-btn bg-gradient-to-r from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300 p-4 rounded-lg text-left transition-all duration-300 border-2 border-transparent hover:border-blue-400">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="font-bold text-blue-700">Level 2 - Intermediate</span>
+                                        <p class="text-sm text-blue-600">Subnetting, routing, switching</p>
+                                    </div>
+                                    <span class="text-blue-500 font-bold">10 Soal</span>
+                                </div>
+                            </button>
+                            <button onclick="selectQuizLevel(3)" class="quiz-level-btn bg-gradient-to-r from-purple-100 to-purple-200 hover:from-purple-200 hover:to-purple-300 p-4 rounded-lg text-left transition-all duration-300 border-2 border-transparent hover:border-purple-400">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="font-bold text-purple-700">Level 3 - Advanced</span>
+                                        <p class="text-sm text-purple-600">VLAN, QoS, protokol routing</p>
+                                    </div>
+                                    <span class="text-purple-500 font-bold">10 Soal</span>
+                                </div>
+                            </button>
+                            <button onclick="selectQuizLevel(4)" class="quiz-level-btn bg-gradient-to-r from-orange-100 to-orange-200 hover:from-orange-200 hover:to-orange-300 p-4 rounded-lg text-left transition-all duration-300 border-2 border-transparent hover:border-orange-400">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="font-bold text-orange-700">Level 4 - Expert</span>
+                                        <p class="text-sm text-orange-600">MPLS, BGP, network automation</p>
+                                    </div>
+                                    <span class="text-orange-500 font-bold">10 Soal</span>
+                                </div>
+                            </button>
+                            <button onclick="selectQuizLevel(5)" class="quiz-level-btn bg-gradient-to-r from-red-100 to-red-200 hover:from-red-200 hover:to-red-300 p-4 rounded-lg text-left transition-all duration-300 border-2 border-transparent hover:border-red-400">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="font-bold text-red-700">Level 5 - Master</span>
+                                        <p class="text-sm text-red-600">SDN, cloud networking, cutting-edge tech</p>
+                                    </div>
+                                    <span class="text-red-500 font-bold">10 Soal</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="quizContainer" class="mb-6 min-h-[200px] hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-sm text-gray-600">
+                                <span>Soal <span id="quizCurrentQuestion">1</span> dari <span id="quizTotalQuestions">10</span></span>
+                            </div>
+                            <div class="text-sm font-semibold" id="quizSelectedLevel">Level 1</div>
+                        </div>
                         <div id="quizQuestion" class="text-lg font-semibold text-gray-800 mb-4 text-center min-h-[60px] flex items-center justify-center">
-                            Klik "Mulai Challenge" untuk memulai
+                            Pilih level untuk memulai
                         </div>
                         <div id="quizOptions" class="space-y-2">
                             <!-- Quiz options will be generated here -->
@@ -711,16 +810,16 @@
                     <div class="text-center">
                         <div class="mb-4 space-y-2">
                             <div class="flex justify-center space-x-4 text-sm">
-                                <span>Level: <span id="quizLevel" class="font-bold primary-blue">1</span></span>
                                 <span>Skor: <span id="quizScore" class="font-bold text-green-600">0</span></span>
+                                <span>Benar: <span id="quizCorrect" class="font-bold text-blue-600">0</span></span>
                             </div>
                             <div class="flex justify-center space-x-4 text-sm">
                                 <span>Streak: <span id="quizStreak" class="font-bold text-purple-600">0</span></span>
                                 <span>Bonus: <span id="quizBonus" class="font-bold text-yellow-600">x1</span></span>
                             </div>
                         </div>
-                        <button id="quizButton" onclick="startQuiz()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
-                            Mulai Challenge
+                        <button id="quizButton" onclick="showQuizLevelSelection()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Pilih Level
                         </button>
                     </div>
                 </div>
@@ -763,12 +862,30 @@
                             <button onclick="toggleSnakeEducation()" class="text-gray-500 hover:text-gray-700">✕</button>
                         </div>
                         <div id="snakeEducationContent">
-                            <p class="text-gray-600 mb-2">Game ini mensimulasikan alur data dalam jaringan!</p>
-                            <div class="text-xs text-gray-600 space-y-1">
-                                <p><strong>🟢 Data Packet:</strong> Informasi yang mengalir dalam jaringan</p>
-                                <p><strong>🔴 Malware:</strong> Ancaman yang harus dihindari</p>
-                                <p><strong>🟡 Enhancement:</strong> Upgrade performa jaringan</p>
-                                <p><strong>🐍 Snake:</strong> Jalur data yang semakin kompleks</p>
+                            <div class="text-xs text-gray-600 space-y-2">
+                                <div class="border-b border-gray-300 pb-2">
+                                    <p><strong>🟢 Data Packet:</strong> Unit informasi yang dikirim melalui jaringan dari source ke destination</p>
+                                    <p class="text-green-600 mt-1">Terdiri dari header (alamat, kontrol) dan payload (data aktual)</p>
+                                </div>
+                                <div class="border-b border-gray-300 pb-2">
+                                    <p><strong>🔴 Malware/Virus:</strong> Program berbahaya yang dapat merusak sistem atau mencuri data</p>
+                                    <p class="text-red-600 mt-1">Self-replicating code yang menginfeksi file dan menyebar melalui jaringan</p>
+                                </div>
+                                <div class="border-b border-gray-300 pb-2">
+                                    <p><strong>🟡 Network Enhancement:</strong> Upgrade jaringan yang meningkatkan performa dan kemampuan</p>
+                                    <p class="text-yellow-600 mt-1">Bandwidth upgrade, QoS implementation, atau security enhancement</p>
+                                </div>
+                                <div class="border-b border-gray-300 pb-2">
+                                    <p><strong>🐍 Data Path:</strong> Jalur yang dilalui data dalam jaringan, semakin kompleks seiring pertumbuhan</p>
+                                    <p class="text-purple-600 mt-1">Seperti routing table yang berkembang seiring kompleksitas jaringan</p>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-gray-300">
+                                    <p class="text-blue-600"><strong>💡 Konsep Jaringan:</strong></p>
+                                    <p><strong>Bandwidth:</strong> Kapasitas maksimal transfer data</p>
+                                    <p><strong>Throughput:</strong> Kecepatan aktual transfer data</p>
+                                    <p><strong>Routing:</strong> Proses menentukan jalur terbaik</p>
+                                    <p><strong>Security:</strong> Perlindungan dari ancaman jaringan</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1089,7 +1206,6 @@
         function buyTower(type) {
             if (towerGame.money >= towerTypes[type].cost) {
                 towerGame.selectedTowerType = type;
-                showTowerEducation(type);
                 showNotification(`${towerTypes[type].name} dipilih! Klik di canvas untuk menempatkan.`, 'info');
             } else {
                 showNotification('Credits tidak cukup!', 'error');
@@ -1102,26 +1218,7 @@
             towerGame.showEducation = !panel.classList.contains('hidden');
         }
         
-        function showTowerEducation(type) {
-            const tower = towerTypes[type];
-            const content = document.getElementById('towerEducationContent');
-            content.innerHTML = `
-                <div class="mb-3">
-                    <h5 class="font-bold text-yellow-400 mb-1">${tower.name}</h5>
-                    <p class="text-blue-300 text-xs mb-2">${tower.description}</p>
-                    <p class="text-green-300 text-xs mb-2"><strong>Cara Kerja:</strong> ${tower.realWorld}</p>
-                    <div class="text-xs text-gray-300">
-                        <p><strong>Cost:</strong> ${tower.cost} credits</p>
-                        <p><strong>Damage:</strong> ${tower.damage}</p>
-                        <p><strong>Range:</strong> ${tower.range}px</p>
-                    </div>
-                </div>
-                <div class="text-xs text-gray-400 border-t border-gray-600 pt-2">
-                    <p><strong>💡 Tips:</strong> ${getSecurityTip(type)}</p>
-                </div>
-            `;
-            document.getElementById('towerEducation').classList.remove('hidden');
-        }
+
         
         function getSecurityTip(type) {
             const tips = {
@@ -1360,11 +1457,15 @@
             connections: 0,
             requiredConnections: 5,
             devices: [],
-            connections: [],
+            connectionLines: [],
             dragging: null,
             gameLoop: null,
             timer: null,
-            showEducation: false
+            showEducation: false,
+            validationErrors: [],
+            isValidTopology: false,
+            attempts: 0,
+            maxAttempts: 3
         };
         
         const deviceEducation = {
@@ -1372,31 +1473,64 @@
                 name: 'Router',
                 description: 'Perangkat yang menghubungkan berbagai jaringan dan menentukan jalur terbaik untuk data',
                 function: 'Routing, NAT, DHCP, Firewall',
-                realWorld: 'Router di rumah menghubungkan perangkat lokal ke internet melalui ISP'
+                realWorld: 'Router di rumah menghubungkan perangkat lokal ke internet melalui ISP',
+                rules: 'Harus menjadi gateway utama, maksimal 1 router per jaringan'
             },
             switch: {
                 name: 'Switch',
                 description: 'Perangkat yang menghubungkan perangkat dalam satu jaringan lokal (LAN)',
                 function: 'MAC Address Learning, Frame Forwarding, VLAN',
-                realWorld: 'Switch di kantor menghubungkan semua komputer dalam satu gedung'
+                realWorld: 'Switch di kantor menghubungkan semua komputer dalam satu gedung',
+                rules: 'Harus terhubung ke router, dapat menghubungkan multiple devices'
             },
             computer: {
                 name: 'Computer/PC',
                 description: 'Perangkat endpoint yang menggunakan layanan jaringan',
                 function: 'Client applications, IP configuration, Network protocols',
-                realWorld: 'Komputer kerja yang terhubung ke jaringan kantor untuk akses internet dan file sharing'
+                realWorld: 'Komputer kerja yang terhubung ke jaringan kantor untuk akses internet dan file sharing',
+                rules: 'Endpoint device, harus terhubung ke switch atau router'
             },
             server: {
                 name: 'Server',
                 description: 'Komputer yang menyediakan layanan dan sumber daya untuk perangkat lain',
                 function: 'Web server, File server, Database server, Email server',
-                realWorld: 'Server perusahaan yang menyimpan data dan aplikasi untuk diakses karyawan'
+                realWorld: 'Server perusahaan yang menyimpan data dan aplikasi untuk diakses karyawan',
+                rules: 'Critical device, harus terhubung langsung ke switch atau router'
             },
             accesspoint: {
                 name: 'Access Point',
                 description: 'Perangkat yang menyediakan akses wireless ke jaringan kabel',
                 function: 'WiFi broadcasting, Wireless security, Bridge mode',
-                realWorld: 'WiFi router di rumah atau hotspot di kafe untuk akses internet nirkabel'
+                realWorld: 'WiFi router di rumah atau hotspot di kafe untuk akses internet nirkabel',
+                rules: 'Harus terhubung ke switch atau router untuk uplink'
+            }
+        };
+        
+        const topologyRules = {
+            router: {
+                maxConnections: 8,
+                canConnectTo: ['switch', 'computer', 'server', 'accesspoint'],
+                mustBeGateway: true
+            },
+            switch: {
+                maxConnections: 24,
+                canConnectTo: ['router', 'computer', 'server', 'accesspoint', 'switch'],
+                needsUplink: true
+            },
+            computer: {
+                maxConnections: 1,
+                canConnectTo: ['switch', 'router'],
+                isEndpoint: true
+            },
+            server: {
+                maxConnections: 2,
+                canConnectTo: ['switch', 'router'],
+                needsRedundancy: true
+            },
+            accesspoint: {
+                maxConnections: 1,
+                canConnectTo: ['switch', 'router'],
+                needsUplink: true
             }
         };
         
@@ -1479,49 +1613,57 @@
                 // Level 1: Basic Star Topology
                 {
                     devices: [
-                        { x: 250, y: 200, type: 'router', connected: false, id: 0 },
-                        { x: 150, y: 100, type: 'computer', connected: false, id: 1 },
-                        { x: 350, y: 100, type: 'computer', connected: false, id: 2 },
-                        { x: 150, y: 300, type: 'computer', connected: false, id: 3 },
-                        { x: 350, y: 300, type: 'server', connected: false, id: 4 }
+                        { x: 250, y: 200, type: 'router', connected: false, id: 0, connections: [] },
+                        { x: 150, y: 100, type: 'computer', connected: false, id: 1, connections: [] },
+                        { x: 350, y: 100, type: 'computer', connected: false, id: 2, connections: [] },
+                        { x: 150, y: 300, type: 'computer', connected: false, id: 3, connections: [] },
+                        { x: 350, y: 300, type: 'server', connected: false, id: 4, connections: [] }
                     ],
                     task: 'Buat topologi STAR: Hubungkan semua perangkat ke router pusat',
                     required: 4,
-                    education: 'Topologi Star adalah yang paling umum digunakan karena mudah dikelola dan troubleshoot'
+                    education: 'Topologi Star adalah yang paling umum digunakan karena mudah dikelola dan troubleshoot',
+                    validation: 'star'
                 },
                 // Level 2: Router + Switch
                 {
                     devices: [
-                        { x: 100, y: 200, type: 'router', connected: false, id: 0 },
-                        { x: 250, y: 200, type: 'switch', connected: false, id: 1 },
-                        { x: 400, y: 150, type: 'computer', connected: false, id: 2 },
-                        { x: 400, y: 200, type: 'computer', connected: false, id: 3 },
-                        { x: 400, y: 250, type: 'server', connected: false, id: 4 }
+                        { x: 100, y: 200, type: 'router', connected: false, id: 0, connections: [] },
+                        { x: 250, y: 200, type: 'switch', connected: false, id: 1, connections: [] },
+                        { x: 400, y: 150, type: 'computer', connected: false, id: 2, connections: [] },
+                        { x: 400, y: 200, type: 'computer', connected: false, id: 3, connections: [] },
+                        { x: 400, y: 250, type: 'server', connected: false, id: 4, connections: [] }
                     ],
                     task: 'Hubungkan router ke switch, lalu switch ke semua perangkat',
                     required: 4,
-                    education: 'Switch menghubungkan perangkat dalam LAN, Router menghubungkan ke jaringan lain'
+                    education: 'Switch menghubungkan perangkat dalam LAN, Router menghubungkan ke jaringan lain',
+                    validation: 'hierarchical'
                 },
                 // Level 3: Complex Network
                 {
                     devices: [
-                        { x: 50, y: 200, type: 'router', connected: false, id: 0 },
-                        { x: 200, y: 100, type: 'switch', connected: false, id: 1 },
-                        { x: 200, y: 300, type: 'accesspoint', connected: false, id: 2 },
-                        { x: 350, y: 80, type: 'computer', connected: false, id: 3 },
-                        { x: 350, y: 120, type: 'computer', connected: false, id: 4 },
-                        { x: 350, y: 280, type: 'computer', connected: false, id: 5 },
-                        { x: 350, y: 320, type: 'server', connected: false, id: 6 }
+                        { x: 50, y: 200, type: 'router', connected: false, id: 0, connections: [] },
+                        { x: 200, y: 100, type: 'switch', connected: false, id: 1, connections: [] },
+                        { x: 200, y: 300, type: 'accesspoint', connected: false, id: 2, connections: [] },
+                        { x: 350, y: 80, type: 'computer', connected: false, id: 3, connections: [] },
+                        { x: 350, y: 120, type: 'computer', connected: false, id: 4, connections: [] },
+                        { x: 350, y: 280, type: 'computer', connected: false, id: 5, connections: [] },
+                        { x: 350, y: 320, type: 'server', connected: false, id: 6, connections: [] }
                     ],
                     task: 'Buat jaringan hybrid: Router→Switch/AP→Perangkat',
                     required: 6,
-                    education: 'Jaringan modern menggunakan kombinasi kabel dan wireless untuk fleksibilitas maksimal'
+                    education: 'Jaringan modern menggunakan kombinasi kabel dan wireless untuk fleksibilitas maksimal',
+                    validation: 'hybrid'
                 }
             ];
             
             const config = levelConfigs[(puzzleGame.level - 1) % levelConfigs.length];
-            puzzleGame.devices = config.devices;
+            puzzleGame.devices = config.devices.map(device => ({...device, connections: []}));
             puzzleGame.requiredConnections = config.required;
+            puzzleGame.currentValidation = config.validation;
+            puzzleGame.connectionLines = [];
+            puzzleGame.connections = 0;
+            puzzleGame.validationErrors = [];
+            puzzleGame.attempts = 0;
             
             document.getElementById('puzzleTask').textContent = config.task;
             
@@ -1532,30 +1674,188 @@
             updatePuzzleUI();
         }
         
+        function validateTopology() {
+            puzzleGame.validationErrors = [];
+            let isValid = true;
+            
+            // Check basic connectivity rules
+            puzzleGame.devices.forEach(device => {
+                const rules = topologyRules[device.type];
+                const connectionCount = device.connections.length;
+                
+                // Check maximum connections
+                if (connectionCount > rules.maxConnections) {
+                    puzzleGame.validationErrors.push(`${device.type.toUpperCase()} ID:${device.id} memiliki terlalu banyak koneksi (${connectionCount}/${rules.maxConnections})`);
+                    isValid = false;
+                }
+                
+                // Check connection types
+                device.connections.forEach(connectedId => {
+                    const connectedDevice = puzzleGame.devices.find(d => d.id === connectedId);
+                    if (connectedDevice && !rules.canConnectTo.includes(connectedDevice.type)) {
+                        puzzleGame.validationErrors.push(`${device.type.toUpperCase()} tidak dapat terhubung langsung ke ${connectedDevice.type.toUpperCase()}`);
+                        isValid = false;
+                    }
+                });
+                
+                // Check endpoint rules
+                if (rules.isEndpoint && connectionCount !== 1) {
+                    puzzleGame.validationErrors.push(`${device.type.toUpperCase()} harus memiliki tepat 1 koneksi (endpoint device)`);
+                    isValid = false;
+                }
+                
+                // Check uplink requirements
+                if (rules.needsUplink && connectionCount === 0) {
+                    puzzleGame.validationErrors.push(`${device.type.toUpperCase()} membutuhkan uplink connection`);
+                    isValid = false;
+                }
+            });
+            
+            // Topology-specific validation
+            switch (puzzleGame.currentValidation) {
+                case 'star':
+                    isValid = validateStarTopology() && isValid;
+                    break;
+                case 'hierarchical':
+                    isValid = validateHierarchicalTopology() && isValid;
+                    break;
+                case 'hybrid':
+                    isValid = validateHybridTopology() && isValid;
+                    break;
+            }
+            
+            // Check network connectivity (all devices reachable)
+            if (isValid && !checkNetworkConnectivity()) {
+                puzzleGame.validationErrors.push('Tidak semua perangkat dapat saling berkomunikasi - periksa konektivitas jaringan');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function validateStarTopology() {
+            const routers = puzzleGame.devices.filter(d => d.type === 'router');
+            if (routers.length !== 1) {
+                puzzleGame.validationErrors.push('Topologi Star membutuhkan tepat 1 router sebagai pusat');
+                return false;
+            }
+            
+            const router = routers[0];
+            const otherDevices = puzzleGame.devices.filter(d => d.type !== 'router');
+            
+            // All devices must connect to router
+            for (let device of otherDevices) {
+                if (!device.connections.includes(router.id)) {
+                    puzzleGame.validationErrors.push(`${device.type.toUpperCase()} ID:${device.id} harus terhubung ke router pusat`);
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        function validateHierarchicalTopology() {
+            const routers = puzzleGame.devices.filter(d => d.type === 'router');
+            const switches = puzzleGame.devices.filter(d => d.type === 'switch');
+            
+            if (routers.length !== 1) {
+                puzzleGame.validationErrors.push('Jaringan hierarkis membutuhkan tepat 1 router sebagai gateway');
+                return false;
+            }
+            
+            if (switches.length === 0) {
+                puzzleGame.validationErrors.push('Jaringan hierarkis membutuhkan minimal 1 switch');
+                return false;
+            }
+            
+            const router = routers[0];
+            
+            // All switches must connect to router
+            for (let switchDevice of switches) {
+                if (!switchDevice.connections.includes(router.id)) {
+                    puzzleGame.validationErrors.push('Switch harus terhubung ke router untuk uplink');
+                    return false;
+                }
+            }
+            
+            // Endpoint devices should connect to switches, not directly to router
+            const endpoints = puzzleGame.devices.filter(d => ['computer', 'server'].includes(d.type));
+            for (let endpoint of endpoints) {
+                const connectedToRouter = endpoint.connections.includes(router.id);
+                const connectedToSwitch = endpoint.connections.some(id => {
+                    const device = puzzleGame.devices.find(d => d.id === id);
+                    return device && device.type === 'switch';
+                });
+                
+                if (connectedToRouter && !connectedToSwitch) {
+                    puzzleGame.validationErrors.push(`${endpoint.type.toUpperCase()} sebaiknya terhubung ke switch, bukan langsung ke router`);
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        function validateHybridTopology() {
+            const routers = puzzleGame.devices.filter(d => d.type === 'router');
+            const switches = puzzleGame.devices.filter(d => d.type === 'switch');
+            const accessPoints = puzzleGame.devices.filter(d => d.type === 'accesspoint');
+            
+            if (routers.length !== 1) {
+                puzzleGame.validationErrors.push('Jaringan hybrid membutuhkan tepat 1 router sebagai gateway');
+                return false;
+            }
+            
+            if (accessPoints.length === 0) {
+                puzzleGame.validationErrors.push('Jaringan hybrid membutuhkan minimal 1 access point untuk wireless');
+                return false;
+            }
+            
+            // Access points must have uplink
+            for (let ap of accessPoints) {
+                const hasUplink = ap.connections.some(id => {
+                    const device = puzzleGame.devices.find(d => d.id === id);
+                    return device && ['router', 'switch'].includes(device.type);
+                });
+                
+                if (!hasUplink) {
+                    puzzleGame.validationErrors.push('Access Point harus terhubung ke router atau switch untuk uplink');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        function checkNetworkConnectivity() {
+            if (puzzleGame.devices.length === 0) return true;
+            
+            const visited = new Set();
+            const queue = [puzzleGame.devices[0].id];
+            visited.add(puzzleGame.devices[0].id);
+            
+            while (queue.length > 0) {
+                const currentId = queue.shift();
+                const currentDevice = puzzleGame.devices.find(d => d.id === currentId);
+                
+                currentDevice.connections.forEach(connectedId => {
+                    if (!visited.has(connectedId)) {
+                        visited.add(connectedId);
+                        queue.push(connectedId);
+                    }
+                });
+            }
+            
+            return visited.size === puzzleGame.devices.length;
+        }
+        
         function togglePuzzleEducation() {
             const panel = document.getElementById('puzzleEducation');
             panel.classList.toggle('hidden');
             puzzleGame.showEducation = !panel.classList.contains('hidden');
         }
         
-        function showDeviceEducation(device) {
-            const info = deviceEducation[device.type];
-            if (!info) return;
-            
-            const content = document.getElementById('puzzleEducationContent');
-            content.innerHTML = `
-                <div class="mb-3">
-                    <h5 class="font-bold text-yellow-400 mb-1">${info.name}</h5>
-                    <p class="text-blue-300 text-xs mb-2">${info.description}</p>
-                    <p class="text-green-300 text-xs mb-2"><strong>Fungsi:</strong> ${info.function}</p>
-                    <p class="text-purple-300 text-xs">${info.realWorld}</p>
-                </div>
-                <div class="text-xs text-gray-400 border-t border-gray-600 pt-2">
-                    <p><strong>💡 Tips:</strong> ${getNetworkTip(device.type)}</p>
-                </div>
-            `;
-            document.getElementById('puzzleEducation').classList.remove('hidden');
-        }
+
         
         function showPuzzleLevelEducation(education) {
             const content = document.getElementById('puzzleEducationContent');
@@ -1595,8 +1895,6 @@
             );
             
             if (device) {
-                // Show education on click (before drag)
-                showDeviceEducation(device);
                 puzzleGame.dragging = { device, startX: x, startY: y };
             }
         }
@@ -1625,25 +1923,37 @@
             );
             
             if (targetDevice) {
-                // Create connection
-                const connection = {
-                    from: puzzleGame.dragging.device.id,
-                    to: targetDevice.id
-                };
-                
                 // Check if connection already exists
                 const exists = puzzleGame.connectionLines.some(c => 
-                    (c.from === connection.from && c.to === connection.to) ||
-                    (c.from === connection.to && c.to === connection.from)
+                    (c.from === puzzleGame.dragging.device.id && c.to === targetDevice.id) ||
+                    (c.from === targetDevice.id && c.to === puzzleGame.dragging.device.id)
                 );
                 
                 if (!exists) {
-                    puzzleGame.connectionLines.push(connection);
+                    // Add connection to both devices
+                    puzzleGame.dragging.device.connections.push(targetDevice.id);
+                    targetDevice.connections.push(puzzleGame.dragging.device.id);
+                    
+                    // Add visual connection
+                    puzzleGame.connectionLines.push({
+                        from: puzzleGame.dragging.device.id,
+                        to: targetDevice.id
+                    });
+                    
                     puzzleGame.connections++;
                     
+                    // Validate topology after each connection
+                    const isValid = validateTopology();
+                    
                     if (puzzleGame.connections >= puzzleGame.requiredConnections) {
-                        levelCompletePuzzle();
+                        if (isValid) {
+                            levelCompletePuzzle();
+                        } else {
+                            showTopologyErrors();
+                        }
                     }
+                } else {
+                    showNotification('Koneksi sudah ada!', 'error');
                 }
             }
             
@@ -1651,29 +1961,119 @@
             updatePuzzleUI();
         }
         
+        function showTopologyErrors() {
+            puzzleGame.attempts++;
+            
+            let errorMessage = `❌ Topologi tidak valid! (Percobaan ${puzzleGame.attempts}/${puzzleGame.maxAttempts})\n\n`;
+            errorMessage += puzzleGame.validationErrors.slice(0, 3).join('\n');
+            
+            if (puzzleGame.validationErrors.length > 3) {
+                errorMessage += `\n... dan ${puzzleGame.validationErrors.length - 3} error lainnya`;
+            }
+            
+            showNotification(errorMessage, 'error');
+            
+            if (puzzleGame.attempts >= puzzleGame.maxAttempts) {
+                resetPuzzleLevel();
+                showNotification('Terlalu banyak kesalahan! Level direset. Pelajari aturan topologi dengan baik.', 'info');
+            }
+        }
+        
+        function resetPuzzleLevel() {
+            // Clear all connections
+            puzzleGame.devices.forEach(device => {
+                device.connections = [];
+            });
+            puzzleGame.connectionLines = [];
+            puzzleGame.connections = 0;
+            puzzleGame.attempts = 0;
+            puzzleGame.validationErrors = [];
+            updatePuzzleUI();
+        }
+        
+        function removeConnection(fromId, toId) {
+            // Remove from devices
+            const fromDevice = puzzleGame.devices.find(d => d.id === fromId);
+            const toDevice = puzzleGame.devices.find(d => d.id === toId);
+            
+            if (fromDevice) {
+                fromDevice.connections = fromDevice.connections.filter(id => id !== toId);
+            }
+            if (toDevice) {
+                toDevice.connections = toDevice.connections.filter(id => id !== fromId);
+            }
+            
+            // Remove visual connection
+            puzzleGame.connectionLines = puzzleGame.connectionLines.filter(c => 
+                !((c.from === fromId && c.to === toId) || (c.from === toId && c.to === fromId))
+            );
+            
+            puzzleGame.connections--;
+        }
+        
         function drawPuzzleGame() {
-            // Clear canvas
-            puzzleCtx.fillStyle = '#f9fafb';
+            // Clear canvas with gradient background
+            const gradient = puzzleCtx.createLinearGradient(0, 0, puzzleCanvas.width, puzzleCanvas.height);
+            gradient.addColorStop(0, '#f8fafc');
+            gradient.addColorStop(1, '#e2e8f0');
+            puzzleCtx.fillStyle = gradient;
             puzzleCtx.fillRect(0, 0, puzzleCanvas.width, puzzleCanvas.height);
             
-            // Draw connections
+            // Draw grid
+            puzzleCtx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+            puzzleCtx.lineWidth = 1;
+            for (let i = 0; i <= puzzleCanvas.width; i += 25) {
+                puzzleCtx.beginPath();
+                puzzleCtx.moveTo(i, 0);
+                puzzleCtx.lineTo(i, puzzleCanvas.height);
+                puzzleCtx.stroke();
+            }
+            for (let i = 0; i <= puzzleCanvas.height; i += 25) {
+                puzzleCtx.beginPath();
+                puzzleCtx.moveTo(0, i);
+                puzzleCtx.lineTo(puzzleCanvas.width, i);
+                puzzleCtx.stroke();
+            }
+            
+            // Draw connections with different styles
             puzzleGame.connectionLines.forEach(conn => {
                 const fromDevice = puzzleGame.devices.find(d => d.id === conn.from);
                 const toDevice = puzzleGame.devices.find(d => d.id === conn.to);
                 
-                puzzleCtx.strokeStyle = '#0A66C2';
-                puzzleCtx.lineWidth = 3;
+                // Connection validation color
+                const isValidConnection = isConnectionValid(fromDevice, toDevice);
+                puzzleCtx.strokeStyle = isValidConnection ? '#10b981' : '#ef4444';
+                puzzleCtx.lineWidth = 4;
+                puzzleCtx.lineCap = 'round';
+                
+                // Add glow effect
+                puzzleCtx.shadowColor = isValidConnection ? '#10b981' : '#ef4444';
+                puzzleCtx.shadowBlur = 8;
+                
                 puzzleCtx.beginPath();
                 puzzleCtx.moveTo(fromDevice.x, fromDevice.y);
                 puzzleCtx.lineTo(toDevice.x, toDevice.y);
                 puzzleCtx.stroke();
+                
+                puzzleCtx.shadowBlur = 0;
+                
+                // Draw connection type indicator
+                const midX = (fromDevice.x + toDevice.x) / 2;
+                const midY = (fromDevice.y + toDevice.y) / 2;
+                
+                puzzleCtx.fillStyle = isValidConnection ? '#10b981' : '#ef4444';
+                puzzleCtx.beginPath();
+                puzzleCtx.arc(midX, midY, 3, 0, Math.PI * 2);
+                puzzleCtx.fill();
             });
             
             // Draw drag line
             if (puzzleGame.dragging && puzzleGame.dragging.currentX) {
-                puzzleCtx.strokeStyle = '#94a3b8';
-                puzzleCtx.lineWidth = 2;
-                puzzleCtx.setLineDash([5, 5]);
+                puzzleCtx.strokeStyle = '#6366f1';
+                puzzleCtx.lineWidth = 3;
+                puzzleCtx.setLineDash([8, 4]);
+                puzzleCtx.lineCap = 'round';
+                
                 puzzleCtx.beginPath();
                 puzzleCtx.moveTo(puzzleGame.dragging.device.x, puzzleGame.dragging.device.y);
                 puzzleCtx.lineTo(puzzleGame.dragging.currentX, puzzleGame.dragging.currentY);
@@ -1681,26 +2081,123 @@
                 puzzleCtx.setLineDash([]);
             }
             
-            // Draw devices
+            // Draw devices with realistic styling
             puzzleGame.devices.forEach(device => {
-                const colors = {
-                    router: '#ef4444',
-                    computer: '#3b82f6',
-                    server: '#22c55e'
-                };
+                const deviceConfig = getDeviceVisualConfig(device.type);
                 
-                puzzleCtx.fillStyle = colors[device.type];
+                // Device shadow
+                puzzleCtx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+                puzzleCtx.shadowBlur = 8;
+                puzzleCtx.shadowOffsetX = 2;
+                puzzleCtx.shadowOffsetY = 2;
+                
+                // Device body
+                puzzleCtx.fillStyle = deviceConfig.color;
                 puzzleCtx.beginPath();
-                puzzleCtx.arc(device.x, device.y, 20, 0, Math.PI * 2);
-                puzzleCtx.fill();
+                if (device.type === 'switch') {
+                    // Rectangle for switch
+                    puzzleCtx.fillRect(device.x - 22, device.y - 15, 44, 30);
+                } else {
+                    // Circle for other devices
+                    puzzleCtx.arc(device.x, device.y, 22, 0, Math.PI * 2);
+                    puzzleCtx.fill();
+                }
                 
-                // Device icon
-                puzzleCtx.fillStyle = '#ffffff';
-                puzzleCtx.font = '16px Arial';
+                puzzleCtx.shadowBlur = 0;
+                puzzleCtx.shadowOffsetX = 0;
+                puzzleCtx.shadowOffsetY = 0;
+                
+                // Device border
+                puzzleCtx.strokeStyle = deviceConfig.borderColor;
+                puzzleCtx.lineWidth = 3;
+                puzzleCtx.beginPath();
+                if (device.type === 'switch') {
+                    puzzleCtx.strokeRect(device.x - 22, device.y - 15, 44, 30);
+                } else {
+                    puzzleCtx.arc(device.x, device.y, 22, 0, Math.PI * 2);
+                    puzzleCtx.stroke();
+                }
+                
+                // Device icon with better visibility
+                puzzleCtx.fillStyle = deviceConfig.iconColor;
+                puzzleCtx.font = 'bold 18px Arial';
                 puzzleCtx.textAlign = 'center';
-                const icons = { router: '📡', computer: '💻', server: '🖥️' };
-                puzzleCtx.fillText(icons[device.type], device.x, device.y + 5);
+                puzzleCtx.textBaseline = 'middle';
+                puzzleCtx.fillText(deviceConfig.icon, device.x, device.y);
+                
+                // Connection count indicator
+                const connectionCount = device.connections.length;
+                const maxConnections = topologyRules[device.type].maxConnections;
+                
+                if (connectionCount > 0) {
+                    puzzleCtx.fillStyle = connectionCount > maxConnections ? '#ef4444' : '#10b981';
+                    puzzleCtx.font = 'bold 10px Arial';
+                    puzzleCtx.fillText(`${connectionCount}/${maxConnections}`, device.x + 20, device.y - 20);
+                }
+                
+                // Device label
+                puzzleCtx.fillStyle = '#374151';
+                puzzleCtx.font = 'bold 10px Arial';
+                puzzleCtx.fillText(device.type.toUpperCase(), device.x, device.y + 35);
+                
+                // Highlight if dragging
+                if (puzzleGame.dragging && puzzleGame.dragging.device === device) {
+                    puzzleCtx.strokeStyle = '#fbbf24';
+                    puzzleCtx.lineWidth = 4;
+                    puzzleCtx.beginPath();
+                    if (device.type === 'switch') {
+                        puzzleCtx.strokeRect(device.x - 25, device.y - 18, 50, 36);
+                    } else {
+                        puzzleCtx.arc(device.x, device.y, 25, 0, Math.PI * 2);
+                        puzzleCtx.stroke();
+                    }
+                }
             });
+        }
+        
+        function getDeviceVisualConfig(deviceType) {
+            const configs = {
+                router: {
+                    color: '#dc2626',
+                    borderColor: '#991b1b',
+                    iconColor: '#ffffff',
+                    icon: '📡'
+                },
+                switch: {
+                    color: '#1f2937',
+                    borderColor: '#111827',
+                    iconColor: '#fbbf24',
+                    icon: '⚡'
+                },
+                computer: {
+                    color: '#2563eb',
+                    borderColor: '#1d4ed8',
+                    iconColor: '#ffffff',
+                    icon: '💻'
+                },
+                server: {
+                    color: '#059669',
+                    borderColor: '#047857',
+                    iconColor: '#ffffff',
+                    icon: '🖥️'
+                },
+                accesspoint: {
+                    color: '#7c3aed',
+                    borderColor: '#6d28d9',
+                    iconColor: '#ffffff',
+                    icon: '📶'
+                }
+            };
+            
+            return configs[deviceType] || configs.computer;
+        }
+        
+        function isConnectionValid(device1, device2) {
+            const rules1 = topologyRules[device1.type];
+            const rules2 = topologyRules[device2.type];
+            
+            return rules1.canConnectTo.includes(device2.type) && 
+                   rules2.canConnectTo.includes(device1.type);
         }
         
         function updatePuzzleUI() {
@@ -1709,18 +2206,33 @@
             document.getElementById('puzzleConnections').textContent = `${puzzleGame.connections}/${puzzleGame.requiredConnections}`;
         }
         
+        function validateCurrentTopology() {
+            const isValid = validateTopology();
+            
+            if (isValid && puzzleGame.connections >= puzzleGame.requiredConnections) {
+                showNotification('🎉 Topologi valid! Semua aturan jaringan terpenuhi!', 'success');
+                setTimeout(() => {
+                    levelCompletePuzzle();
+                }, 1500);
+            } else if (puzzleGame.connections < puzzleGame.requiredConnections) {
+                showNotification(`Belum cukup koneksi! Butuh ${puzzleGame.requiredConnections} koneksi, saat ini ${puzzleGame.connections}`, 'error');
+            } else {
+                showTopologyErrors();
+            }
+        }
+        
         function levelCompletePuzzle() {
             puzzleGame.level++;
             puzzleGame.time += 30;
             puzzleGame.connections = 0;
             puzzleGame.connectionLines = [];
             generatePuzzleLevel();
-            showNotification(`Level ${puzzleGame.level} selesai! Lanjut ke level berikutnya!`, 'success');
+            showNotification(`🎯 Level ${puzzleGame.level - 1} selesai! Lanjut ke topologi yang lebih kompleks!`, 'success');
         }
         
         function gameOverPuzzle() {
             stopPuzzleGame();
-            showNotification(`Waktu habis! Level terakhir: ${puzzleGame.level}`, 'error');
+            showNotification(`⏰ Waktu habis! Level terakhir: ${puzzleGame.level}`, 'error');
         }
         
         // Advanced Memory Game Variables
@@ -1889,8 +2401,6 @@
                 memoryScore += points;
                 memoryCombo++;
                 
-                // Show device education
-                showMemoryDeviceEducation(memoryCards[first].icon);
                 showNotification(`+${points} points! Combo x${memoryCombo}`, 'success');
                 
                 // Check if level is complete
@@ -1971,474 +2481,397 @@
         }
         
         // Advanced Quiz Game Variables - Comprehensive Networking Questions
-        let quizQuestions = [
-            // LEVEL 1 - BASIC NETWORKING (Difficulty 1)
-            {
-                question: "Apa kepanjangan dari LAN?",
-                options: ["Local Area Network", "Large Area Network", "Limited Access Network", "Linear Access Network"],
-                correct: 0,
-                difficulty: 1
-            },
-            {
-                question: "Perangkat yang menghubungkan komputer dalam satu jaringan lokal adalah?",
-                options: ["Router", "Switch", "Modem", "Gateway"],
-                correct: 1,
-                difficulty: 1
-            },
-            {
-                question: "Apa fungsi utama dari router?",
-                options: ["Menghubungkan perangkat dalam LAN", "Menghubungkan jaringan yang berbeda", "Menyimpan data", "Mengamankan jaringan"],
-                correct: 1,
-                difficulty: 1
-            },
-            {
-                question: "Protokol yang digunakan untuk browsing web adalah?",
-                options: ["FTP", "SMTP", "HTTP", "SNMP"],
-                correct: 2,
-                difficulty: 1
-            },
-            {
-                question: "Port default untuk HTTP adalah?",
-                options: ["21", "25", "80", "443"],
-                correct: 2,
-                difficulty: 1
-            },
-            {
-                question: "Apa kepanjangan dari WiFi?",
-                options: ["Wireless Fidelity", "Wide Frequency", "Wireless Frequency", "Web Fidelity"],
-                correct: 0,
-                difficulty: 1
-            },
-            {
-                question: "Perangkat yang mengubah sinyal digital ke analog adalah?",
-                options: ["Switch", "Hub", "Modem", "Bridge"],
-                correct: 2,
-                difficulty: 1
-            },
-            {
-                question: "Apa kepanjangan dari ISP?",
-                options: ["Internet Service Provider", "Internal Service Protocol", "Internet Security Protocol", "Internal System Provider"],
-                correct: 0,
-                difficulty: 1
-            },
-            {
-                question: "Kabel yang paling umum digunakan untuk jaringan Ethernet adalah?",
-                options: ["Coaxial", "Fiber Optic", "UTP", "STP"],
-                correct: 2,
-                difficulty: 1
-            },
-            {
-                question: "Berapa jumlah layer dalam model OSI?",
-                options: ["5", "6", "7", "8"],
-                correct: 2,
-                difficulty: 1
-            },
-
-            // LEVEL 2 - INTERMEDIATE BASICS (Difficulty 2)
-            {
-                question: "Apa kepanjangan dari VSAT?",
-                options: ["Very Small Aperture Terminal", "Virtual Satellite Access Terminal", "Video Streaming Access Terminal", "Voice Signal Access Terminal"],
-                correct: 0,
-                difficulty: 2
-            },
-            {
-                question: "Port default untuk SSH adalah?",
-                options: ["21", "22", "23", "80"],
-                correct: 1,
-                difficulty: 2
-            },
-            {
-                question: "Protokol yang digunakan untuk transfer file adalah?",
-                options: ["HTTP", "FTP", "SMTP", "DNS"],
-                correct: 1,
-                difficulty: 2
-            },
-            {
-                question: "IP Address 192.168.1.1 termasuk kelas?",
-                options: ["Kelas A", "Kelas B", "Kelas C", "Kelas D"],
-                correct: 2,
-                difficulty: 2
-            },
-            {
-                question: "Subnet mask untuk jaringan kelas C adalah?",
-                options: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"],
-                correct: 2,
-                difficulty: 2
-            },
-            {
-                question: "Protokol yang digunakan untuk email adalah?",
-                options: ["HTTP", "FTP", "SMTP", "SNMP"],
-                correct: 2,
-                difficulty: 2
-            },
-            {
-                question: "Apa fungsi dari DNS?",
-                options: ["Mengamankan jaringan", "Menerjemahkan domain ke IP", "Mengatur bandwidth", "Menyimpan data"],
-                correct: 1,
-                difficulty: 2
-            },
-            {
-                question: "Port default untuk HTTPS adalah?",
-                options: ["80", "443", "8080", "8443"],
-                correct: 1,
-                difficulty: 2
-            },
-            {
-                question: "Topologi jaringan yang berbentuk lingkaran adalah?",
-                options: ["Star", "Bus", "Ring", "Mesh"],
-                correct: 2,
-                difficulty: 2
-            },
-            {
-                question: "Protokol yang digunakan untuk mendapatkan IP otomatis adalah?",
-                options: ["DNS", "DHCP", "ARP", "ICMP"],
-                correct: 1,
-                difficulty: 2
-            },
-
-            // LEVEL 3 - INTERMEDIATE ADVANCED (Difficulty 3)
-            {
-                question: "Berapa maksimal host dalam subnet /24?",
-                options: ["254", "255", "256", "253"],
-                correct: 0,
-                difficulty: 3
-            },
-            {
-                question: "Protokol yang digunakan untuk sinkronisasi waktu adalah?",
-                options: ["SNMP", "NTP", "DHCP", "DNS"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "Dalam OSI Layer, TCP berada di layer?",
-                options: ["Layer 3", "Layer 4", "Layer 5", "Layer 6"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "VLAN berfungsi untuk?",
-                options: ["Membagi jaringan secara fisik", "Membagi jaringan secara logis", "Mengamankan jaringan", "Mempercepat jaringan"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "Protokol routing yang menggunakan hop count adalah?",
-                options: ["OSPF", "RIP", "BGP", "EIGRP"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "Berapa range port untuk Well Known Ports?",
-                options: ["0-1023", "1024-49151", "49152-65535", "0-65535"],
-                correct: 0,
-                difficulty: 3
-            },
-            {
-                question: "NAT berfungsi untuk?",
-                options: ["Mengamankan jaringan", "Menerjemahkan IP private ke public", "Mempercepat koneksi", "Membagi bandwidth"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "Protokol yang digunakan untuk monitoring jaringan adalah?",
-                options: ["SMTP", "SNMP", "HTTP", "FTP"],
-                correct: 1,
-                difficulty: 3
-            },
-            {
-                question: "STP (Spanning Tree Protocol) berfungsi untuk?",
-                options: ["Mencegah loop pada switch", "Mengamankan jaringan", "Mempercepat transfer data", "Membagi VLAN"],
-                correct: 0,
-                difficulty: 3
-            },
-            {
-                question: "Berapa maksimal panjang kabel UTP Cat5e?",
-                options: ["90 meter", "100 meter", "150 meter", "200 meter"],
-                correct: 1,
-                difficulty: 3
-            },
-
-            // LEVEL 4 - ADVANCED (Difficulty 4)
-            {
-                question: "Teknologi yang digunakan untuk VPN adalah?",
-                options: ["IPSec", "SSL/TLS", "PPTP", "Semua benar"],
-                correct: 3,
-                difficulty: 4
-            },
-            {
-                question: "Algoritma routing yang digunakan OSPF adalah?",
-                options: ["Distance Vector", "Link State", "Path Vector", "Hybrid"],
-                correct: 1,
-                difficulty: 4
-            },
-            {
-                question: "Berapa jumlah host maksimal dalam subnet /22?",
-                options: ["1022", "1024", "510", "512"],
-                correct: 0,
-                difficulty: 4
-            },
-            {
-                question: "MPLS bekerja pada layer berapa dalam OSI?",
-                options: ["Layer 2", "Layer 2.5", "Layer 3", "Layer 4"],
-                correct: 1,
-                difficulty: 4
-            },
-            {
-                question: "Protokol yang digunakan untuk QoS adalah?",
-                options: ["DSCP", "CoS", "RSVP", "Semua benar"],
-                correct: 3,
-                difficulty: 4
-            },
-            {
-                question: "Dalam BGP, apa yang dimaksud dengan AS?",
-                options: ["Access Server", "Autonomous System", "Application Server", "Authentication System"],
-                correct: 1,
-                difficulty: 4
-            },
-            {
-                question: "HSRP (Hot Standby Router Protocol) dikembangkan oleh?",
-                options: ["Cisco", "Juniper", "HP", "Standard IEEE"],
-                correct: 0,
-                difficulty: 4
-            },
-            {
-                question: "Berapa TTL default untuk ping di Windows?",
-                options: ["64", "128", "255", "32"],
-                correct: 1,
-                difficulty: 4
-            },
-            {
-                question: "Protokol yang digunakan untuk load balancing adalah?",
-                options: ["VRRP", "GLBP", "HSRP", "Semua benar"],
-                correct: 3,
-                difficulty: 4
-            },
-            {
-                question: "Dalam OSPF, apa fungsi dari LSA Type 1?",
-                options: ["Router LSA", "Network LSA", "Summary LSA", "External LSA"],
-                correct: 0,
-                difficulty: 4
-            },
-
-            // LEVEL 5 - EXPERT (Difficulty 5)
-            {
-                question: "Dalam MPLS, apa yang dimaksud dengan PHP?",
-                options: ["Penultimate Hop Popping", "Primary Header Protocol", "Packet Header Processing", "Path Header Protocol"],
-                correct: 0,
-                difficulty: 5
-            },
-            {
-                question: "Berapa maksimal VLAN ID dalam 802.1Q?",
-                options: ["1024", "2048", "4094", "4096"],
-                correct: 2,
-                difficulty: 5
-            },
-            {
-                question: "Dalam BGP, apa yang dimaksud dengan MED?",
-                options: ["Multi-Exit Discriminator", "Maximum Entry Distance", "Multiple Entry Data", "Metric Entry Descriptor"],
-                correct: 0,
-                difficulty: 5
-            },
-            {
-                question: "Protokol yang digunakan untuk MPLS signaling adalah?",
-                options: ["LDP", "RSVP-TE", "BGP", "Semua benar"],
-                correct: 3,
-                difficulty: 5
-            },
-            {
-                question: "Dalam IPv6, berapa panjang address?",
-                options: ["64 bit", "96 bit", "128 bit", "256 bit"],
-                correct: 2,
-                difficulty: 5
-            },
-            {
-                question: "Apa yang dimaksud dengan ECMP?",
-                options: ["Equal Cost Multi Path", "Enhanced Cost Management Protocol", "Extended Configuration Management", "Ethernet Cost Multi Protocol"],
-                correct: 0,
-                difficulty: 5
-            },
-            {
-                question: "Dalam OSPF, berapa default hello interval?",
-                options: ["5 detik", "10 detik", "15 detik", "30 detik"],
-                correct: 1,
-                difficulty: 5
-            },
-            {
-                question: "Protokol yang digunakan untuk network automation adalah?",
-                options: ["NETCONF", "RESTCONF", "gNMI", "Semua benar"],
-                correct: 3,
-                difficulty: 5
-            },
-            {
-                question: "Dalam SDN, apa yang dimaksud dengan southbound API?",
-                options: ["Controller ke aplikasi", "Controller ke switch", "Switch ke host", "Aplikasi ke controller"],
-                correct: 1,
-                difficulty: 5
-            },
-            {
-                question: "Berapa maksimal MTU untuk Ethernet frame?",
-                options: ["1500 bytes", "1518 bytes", "9000 bytes", "Tergantung konfigurasi"],
-                correct: 3,
-                difficulty: 5
-            },
-
-            // SECURITY & WIRELESS (Mixed Difficulties)
-            {
-                question: "Enkripsi yang paling aman untuk WiFi adalah?",
-                options: ["WEP", "WPA", "WPA2", "WPA3"],
-                correct: 3,
-                difficulty: 3
-            },
-            {
-                question: "Port default untuk SNMP adalah?",
-                options: ["161", "162", "163", "160"],
-                correct: 0,
-                difficulty: 2
-            },
-            {
-                question: "Apa yang dimaksud dengan DoS attack?",
-                options: ["Denial of Service", "Distribution of Service", "Duplication of Service", "Detection of Service"],
-                correct: 0,
-                difficulty: 2
-            },
-            {
-                question: "Firewall bekerja pada layer berapa?",
-                options: ["Layer 2", "Layer 3", "Layer 4", "Layer 3 dan 4"],
-                correct: 3,
-                difficulty: 3
-            },
-            {
-                question: "Frekuensi WiFi 2.4 GHz memiliki berapa channel?",
-                options: ["11", "13", "14", "Tergantung negara"],
-                correct: 3,
-                difficulty: 3
-            },
-
-            // CABLING & PHYSICAL (Mixed Difficulties)
-            {
-                question: "Standar kabel UTP untuk Gigabit Ethernet adalah?",
-                options: ["Cat5", "Cat5e", "Cat6", "Cat5e atau Cat6"],
-                correct: 3,
-                difficulty: 2
-            },
-            {
-                question: "Berapa maksimal jarak fiber optic single mode?",
-                options: ["2 km", "10 km", "40 km", "Lebih dari 40 km"],
-                correct: 3,
-                difficulty: 4
-            },
-            {
-                question: "Konektor yang digunakan untuk fiber optic adalah?",
-                options: ["RJ45", "SC", "LC", "SC dan LC"],
-                correct: 3,
-                difficulty: 2
-            },
-            {
-                question: "PoE (Power over Ethernet) dapat memberikan daya maksimal?",
-                options: ["15.4W", "25.5W", "60W", "Tergantung standar"],
-                correct: 3,
-                difficulty: 3
-            },
-
-            // TROUBLESHOOTING & TOOLS (Mixed Difficulties)
-            {
-                question: "Command untuk melihat routing table di Windows adalah?",
-                options: ["ipconfig", "route print", "netstat", "tracert"],
-                correct: 1,
-                difficulty: 2
-            },
-            {
-                question: "Tool untuk menganalisa paket jaringan adalah?",
-                options: ["Ping", "Traceroute", "Wireshark", "Netstat"],
-                correct: 2,
-                difficulty: 2
-            },
-            {
-                question: "Apa yang ditunjukkan oleh ping dengan TTL expired?",
-                options: ["Destination unreachable", "Network loop", "Packet loss", "Routing loop"],
-                correct: 3,
-                difficulty: 3
-            },
-            {
-                question: "Command untuk flush DNS cache di Windows adalah?",
-                options: ["ipconfig /flushdns", "netsh flush dns", "dns /flush", "clear dns"],
-                correct: 0,
-                difficulty: 2
-            },
-
-            // MODERN NETWORKING (High Difficulty)
-            {
-                question: "Dalam cloud networking, apa yang dimaksud dengan VPC?",
-                options: ["Virtual Private Cloud", "Virtual Protocol Configuration", "Virtual Port Channel", "Virtual Processing Center"],
-                correct: 0,
-                difficulty: 4
-            },
-            {
-                question: "Container networking menggunakan teknologi?",
-                options: ["Bridge", "Overlay", "Host", "Semua benar"],
-                correct: 3,
-                difficulty: 5
-            },
-            {
-                question: "Dalam Kubernetes, apa fungsi dari CNI?",
-                options: ["Container Network Interface", "Cluster Network Integration", "Container Node Interface", "Cluster Node Integration"],
-                correct: 0,
-                difficulty: 5
-            },
-            {
-                question: "Edge computing mempengaruhi jaringan dengan cara?",
-                options: ["Mengurangi latency", "Mendekatkan processing ke user", "Mengurangi bandwidth usage", "Semua benar"],
-                correct: 3,
-                difficulty: 4
-            }
-        ];
+        let quizQuestionsByLevel = {
+            1: [ // LEVEL 1 - BASIC NETWORKING
+                {
+                    question: "Apa kepanjangan dari LAN?",
+                    options: ["Local Area Network", "Large Area Network", "Limited Access Network", "Linear Access Network"],
+                    correct: 0,
+                    points: 10
+                },
+                {
+                    question: "Perangkat yang menghubungkan komputer dalam satu jaringan lokal adalah?",
+                    options: ["Router", "Switch", "Modem", "Gateway"],
+                    correct: 1,
+                    points: 10
+                },
+                {
+                    question: "Apa fungsi utama dari router?",
+                    options: ["Menghubungkan perangkat dalam LAN", "Menghubungkan jaringan yang berbeda", "Menyimpan data", "Mengamankan jaringan"],
+                    correct: 1,
+                    points: 10
+                },
+                {
+                    question: "Protokol yang digunakan untuk browsing web adalah?",
+                    options: ["FTP", "SMTP", "HTTP", "SNMP"],
+                    correct: 2,
+                    points: 10
+                },
+                {
+                    question: "Port default untuk HTTP adalah?",
+                    options: ["21", "25", "80", "443"],
+                    correct: 2,
+                    points: 10
+                },
+                {
+                    question: "Apa kepanjangan dari WiFi?",
+                    options: ["Wireless Fidelity", "Wide Frequency", "Wireless Frequency", "Web Fidelity"],
+                    correct: 0,
+                    points: 10
+                },
+                {
+                    question: "Perangkat yang mengubah sinyal digital ke analog adalah?",
+                    options: ["Switch", "Hub", "Modem", "Bridge"],
+                    correct: 2,
+                    points: 10
+                },
+                {
+                    question: "Apa kepanjangan dari ISP?",
+                    options: ["Internet Service Provider", "Internal Service Protocol", "Internet Security Protocol", "Internal System Provider"],
+                    correct: 0,
+                    points: 10
+                },
+                {
+                    question: "Kabel yang paling umum digunakan untuk jaringan Ethernet adalah?",
+                    options: ["Coaxial", "Fiber Optic", "UTP", "STP"],
+                    correct: 2,
+                    points: 10
+                },
+                {
+                    question: "Berapa jumlah layer dalam model OSI?",
+                    options: ["5", "6", "7", "8"],
+                    correct: 2,
+                    points: 10
+                }
+            ],
+            2: [ // LEVEL 2 - INTERMEDIATE
+                {
+                    question: "Apa kepanjangan dari VSAT?",
+                    options: ["Very Small Aperture Terminal", "Virtual Satellite Access Terminal", "Video Streaming Access Terminal", "Voice Signal Access Terminal"],
+                    correct: 0,
+                    points: 20
+                },
+                {
+                    question: "Port default untuk SSH adalah?",
+                    options: ["21", "22", "23", "80"],
+                    correct: 1,
+                    points: 20
+                },
+                {
+                    question: "IP Address 192.168.1.1 termasuk kelas?",
+                    options: ["Kelas A", "Kelas B", "Kelas C", "Kelas D"],
+                    correct: 2,
+                    points: 20
+                },
+                {
+                    question: "Subnet mask untuk jaringan kelas C adalah?",
+                    options: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"],
+                    correct: 2,
+                    points: 20
+                },
+                {
+                    question: "Protokol yang digunakan untuk email adalah?",
+                    options: ["HTTP", "FTP", "SMTP", "SNMP"],
+                    correct: 2,
+                    points: 20
+                },
+                {
+                    question: "Apa fungsi dari DNS?",
+                    options: ["Mengamankan jaringan", "Menerjemahkan domain ke IP", "Mengatur bandwidth", "Menyimpan data"],
+                    correct: 1,
+                    points: 20
+                },
+                {
+                    question: "Port default untuk HTTPS adalah?",
+                    options: ["80", "443", "8080", "8443"],
+                    correct: 1,
+                    points: 20
+                },
+                {
+                    question: "Topologi jaringan yang berbentuk lingkaran adalah?",
+                    options: ["Star", "Bus", "Ring", "Mesh"],
+                    correct: 2,
+                    points: 20
+                },
+                {
+                    question: "Protokol yang digunakan untuk mendapatkan IP otomatis adalah?",
+                    options: ["DNS", "DHCP", "ARP", "ICMP"],
+                    correct: 1,
+                    points: 20
+                },
+                {
+                    question: "Berapa maksimal panjang kabel UTP Cat5e?",
+                    options: ["90 meter", "100 meter", "150 meter", "200 meter"],
+                    correct: 1,
+                    points: 20
+                }
+            ],
+            3: [ // LEVEL 3 - ADVANCED
+                {
+                    question: "Berapa maksimal host dalam subnet /24?",
+                    options: ["254", "255", "256", "253"],
+                    correct: 0,
+                    points: 30
+                },
+                {
+                    question: "Protokol yang digunakan untuk sinkronisasi waktu adalah?",
+                    options: ["SNMP", "NTP", "DHCP", "DNS"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "Dalam OSI Layer, TCP berada di layer?",
+                    options: ["Layer 3", "Layer 4", "Layer 5", "Layer 6"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "VLAN berfungsi untuk?",
+                    options: ["Membagi jaringan secara fisik", "Membagi jaringan secara logis", "Mengamankan jaringan", "Mempercepat jaringan"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "Protokol routing yang menggunakan hop count adalah?",
+                    options: ["OSPF", "RIP", "BGP", "EIGRP"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "Berapa range port untuk Well Known Ports?",
+                    options: ["0-1023", "1024-49151", "49152-65535", "0-65535"],
+                    correct: 0,
+                    points: 30
+                },
+                {
+                    question: "NAT berfungsi untuk?",
+                    options: ["Mengamankan jaringan", "Menerjemahkan IP private ke public", "Mempercepat koneksi", "Membagi bandwidth"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "Protokol yang digunakan untuk monitoring jaringan adalah?",
+                    options: ["SMTP", "SNMP", "HTTP", "FTP"],
+                    correct: 1,
+                    points: 30
+                },
+                {
+                    question: "STP (Spanning Tree Protocol) berfungsi untuk?",
+                    options: ["Mencegah loop pada switch", "Mengamankan jaringan", "Mempercepat transfer data", "Membagi VLAN"],
+                    correct: 0,
+                    points: 30
+                },
+                {
+                    question: "Enkripsi yang paling aman untuk WiFi adalah?",
+                    options: ["WEP", "WPA", "WPA2", "WPA3"],
+                    correct: 3,
+                    points: 30
+                }
+            ],
+            4: [ // LEVEL 4 - EXPERT
+                {
+                    question: "Teknologi yang digunakan untuk VPN adalah?",
+                    options: ["IPSec", "SSL/TLS", "PPTP", "Semua benar"],
+                    correct: 3,
+                    points: 40
+                },
+                {
+                    question: "Algoritma routing yang digunakan OSPF adalah?",
+                    options: ["Distance Vector", "Link State", "Path Vector", "Hybrid"],
+                    correct: 1,
+                    points: 40
+                },
+                {
+                    question: "Berapa jumlah host maksimal dalam subnet /22?",
+                    options: ["1022", "1024", "510", "512"],
+                    correct: 0,
+                    points: 40
+                },
+                {
+                    question: "MPLS bekerja pada layer berapa dalam OSI?",
+                    options: ["Layer 2", "Layer 2.5", "Layer 3", "Layer 4"],
+                    correct: 1,
+                    points: 40
+                },
+                {
+                    question: "Protokol yang digunakan untuk QoS adalah?",
+                    options: ["DSCP", "CoS", "RSVP", "Semua benar"],
+                    correct: 3,
+                    points: 40
+                },
+                {
+                    question: "Dalam BGP, apa yang dimaksud dengan AS?",
+                    options: ["Access Server", "Autonomous System", "Application Server", "Authentication System"],
+                    correct: 1,
+                    points: 40
+                },
+                {
+                    question: "HSRP (Hot Standby Router Protocol) dikembangkan oleh?",
+                    options: ["Cisco", "Juniper", "HP", "Standard IEEE"],
+                    correct: 0,
+                    points: 40
+                },
+                {
+                    question: "Berapa TTL default untuk ping di Windows?",
+                    options: ["64", "128", "255", "32"],
+                    correct: 1,
+                    points: 40
+                },
+                {
+                    question: "Protokol yang digunakan untuk load balancing adalah?",
+                    options: ["VRRP", "GLBP", "HSRP", "Semua benar"],
+                    correct: 3,
+                    points: 40
+                },
+                {
+                    question: "Dalam OSPF, apa fungsi dari LSA Type 1?",
+                    options: ["Router LSA", "Network LSA", "Summary LSA", "External LSA"],
+                    correct: 0,
+                    points: 40
+                }
+            ],
+            5: [ // LEVEL 5 - MASTER
+                {
+                    question: "Dalam MPLS, apa yang dimaksud dengan PHP?",
+                    options: ["Penultimate Hop Popping", "Primary Header Protocol", "Packet Header Processing", "Path Header Protocol"],
+                    correct: 0,
+                    points: 50
+                },
+                {
+                    question: "Berapa maksimal VLAN ID dalam 802.1Q?",
+                    options: ["1024", "2048", "4094", "4096"],
+                    correct: 2,
+                    points: 50
+                },
+                {
+                    question: "Dalam BGP, apa yang dimaksud dengan MED?",
+                    options: ["Multi-Exit Discriminator", "Maximum Entry Distance", "Multiple Entry Data", "Metric Entry Descriptor"],
+                    correct: 0,
+                    points: 50
+                },
+                {
+                    question: "Protokol yang digunakan untuk MPLS signaling adalah?",
+                    options: ["LDP", "RSVP-TE", "BGP", "Semua benar"],
+                    correct: 3,
+                    points: 50
+                },
+                {
+                    question: "Dalam IPv6, berapa panjang address?",
+                    options: ["64 bit", "96 bit", "128 bit", "256 bit"],
+                    correct: 2,
+                    points: 50
+                },
+                {
+                    question: "Apa yang dimaksud dengan ECMP?",
+                    options: ["Equal Cost Multi Path", "Enhanced Cost Management Protocol", "Extended Configuration Management", "Ethernet Cost Multi Protocol"],
+                    correct: 0,
+                    points: 50
+                },
+                {
+                    question: "Dalam OSPF, berapa default hello interval?",
+                    options: ["5 detik", "10 detik", "15 detik", "30 detik"],
+                    correct: 1,
+                    points: 50
+                },
+                {
+                    question: "Protokol yang digunakan untuk network automation adalah?",
+                    options: ["NETCONF", "RESTCONF", "gNMI", "Semua benar"],
+                    correct: 3,
+                    points: 50
+                },
+                {
+                    question: "Dalam SDN, apa yang dimaksud dengan southbound API?",
+                    options: ["Controller ke aplikasi", "Controller ke switch", "Switch ke host", "Aplikasi ke controller"],
+                    correct: 1,
+                    points: 50
+                },
+                {
+                    question: "Berapa maksimal MTU untuk Ethernet frame?",
+                    options: ["1500 bytes", "1518 bytes", "9000 bytes", "Tergantung konfigurasi"],
+                    correct: 3,
+                    points: 50
+                }
+            ]
+        };
         
         let currentQuiz = 0;
         let quizScore = 0;
-        let quizLevel = 1;
+        let quizSelectedLevel = 1;
+        let quizCorrectAnswers = 0;
         let quizStreak = 0;
         let quizBonus = 1;
         let quizActive = false;
         let quizTimeLeft = 15;
         let quizTimer = null;
+        let currentQuizQuestions = [];
         
-        function startQuiz() {
+        function showQuizLevelSelection() {
+            document.getElementById('quizLevelSelection').classList.remove('hidden');
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('quizButton').textContent = 'Pilih Level';
+            document.getElementById('quizButton').onclick = showQuizLevelSelection;
+            
+            // Reset game state
+            quizActive = false;
+            clearInterval(quizTimer);
             currentQuiz = 0;
             quizScore = 0;
-            quizLevel = 1;
+            quizCorrectAnswers = 0;
+            quizStreak = 0;
+            quizBonus = 1;
+            updateQuizUI();
+        }
+        
+        function selectQuizLevel(level) {
+            quizSelectedLevel = level;
+            currentQuizQuestions = [...quizQuestionsByLevel[level]]; // Copy questions
+            
+            // Shuffle questions for variety
+            for (let i = currentQuizQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentQuizQuestions[i], currentQuizQuestions[j]] = [currentQuizQuestions[j], currentQuizQuestions[i]];
+            }
+            
+            // Hide level selection, show quiz
+            document.getElementById('quizLevelSelection').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            
+            // Update level display
+            const levelNames = {
+                1: 'Level 1 - Basic',
+                2: 'Level 2 - Intermediate', 
+                3: 'Level 3 - Advanced',
+                4: 'Level 4 - Expert',
+                5: 'Level 5 - Master'
+            };
+            document.getElementById('quizSelectedLevel').textContent = levelNames[level];
+            document.getElementById('quizTotalQuestions').textContent = currentQuizQuestions.length;
+            
+            // Reset and start quiz
+            currentQuiz = 0;
+            quizScore = 0;
+            quizCorrectAnswers = 0;
             quizStreak = 0;
             quizBonus = 1;
             quizActive = true;
             
-            document.getElementById('quizButton').textContent = 'Stop Challenge';
-            document.getElementById('quizButton').onclick = stopQuiz;
+            document.getElementById('quizButton').textContent = 'Kembali ke Level';
+            document.getElementById('quizButton').onclick = showQuizLevelSelection;
             
             showQuizQuestion();
-        }
-        
-        function stopQuiz() {
-            quizActive = false;
-            clearInterval(quizTimer);
-            document.getElementById('quizTimer').classList.add('hidden');
-            document.getElementById('quizQuestion').textContent = 'Klik "Mulai Challenge" untuk memulai';
-            document.getElementById('quizOptions').innerHTML = '';
-            document.getElementById('quizButton').textContent = 'Mulai Challenge';
-            document.getElementById('quizButton').onclick = startQuiz;
+            showNotification(`Memulai ${levelNames[level]}! 10 soal menanti Anda!`, 'info');
         }
         
         function showQuizQuestion() {
-            if (!quizActive) return;
-            
-            if (currentQuiz >= quizQuestions.length) {
-                // Level up
-                quizLevel++;
-                currentQuiz = 0;
-                quizBonus = Math.min(quizBonus + 0.5, 3);
-                showNotification(`Level ${quizLevel}! Bonus multiplier: x${quizBonus}`, 'success');
+            if (!quizActive || currentQuiz >= currentQuizQuestions.length) {
+                // Quiz completed
+                completeQuiz();
+                return;
             }
             
-            const question = quizQuestions[currentQuiz];
+            const question = currentQuizQuestions[currentQuiz];
             document.getElementById('quizQuestion').textContent = question.question;
+            document.getElementById('quizCurrentQuestion').textContent = currentQuiz + 1;
             
             const optionsContainer = document.getElementById('quizOptions');
             optionsContainer.innerHTML = '';
@@ -2451,8 +2884,11 @@
                 optionsContainer.appendChild(button);
             });
             
-            // Start timer
-            quizTimeLeft = Math.max(10 - quizLevel, 5);
+            // Start timer - harder levels get less time
+            const baseTime = 20;
+            const timeReduction = (quizSelectedLevel - 1) * 3;
+            quizTimeLeft = Math.max(baseTime - timeReduction, 8);
+            
             document.getElementById('quizTimer').classList.remove('hidden');
             updateQuizTimer();
             
@@ -2466,6 +2902,43 @@
             }, 1000);
             
             updateQuizUI();
+        }
+        
+        function completeQuiz() {
+            quizActive = false;
+            clearInterval(quizTimer);
+            document.getElementById('quizTimer').classList.add('hidden');
+            
+            const accuracy = Math.round((quizCorrectAnswers / currentQuizQuestions.length) * 100);
+            const levelNames = {
+                1: 'Basic', 2: 'Intermediate', 3: 'Advanced', 4: 'Expert', 5: 'Master'
+            };
+            
+            let performance = '';
+            if (accuracy >= 90) performance = '🏆 Excellent!';
+            else if (accuracy >= 80) performance = '🥇 Great!';
+            else if (accuracy >= 70) performance = '🥈 Good!';
+            else if (accuracy >= 60) performance = '🥉 Fair';
+            else performance = '📚 Keep Learning!';
+            
+            const finalMessage = `
+                🎯 Quiz ${levelNames[quizSelectedLevel]} Selesai!
+                
+                📊 Hasil Anda:
+                • Benar: ${quizCorrectAnswers}/10 (${accuracy}%)
+                • Skor Total: ${quizScore} points
+                • Streak Terbaik: ${quizStreak}
+                • Performance: ${performance}
+                
+                ${accuracy >= 80 ? 'Luar biasa! Anda menguasai materi dengan baik!' : 'Terus belajar untuk meningkatkan pemahaman!'}
+            `;
+            
+            showNotification(finalMessage, accuracy >= 70 ? 'success' : 'info');
+            
+            // Show level selection again
+            setTimeout(() => {
+                showQuizLevelSelection();
+            }, 3000);
         }
         
         function updateQuizTimer() {
@@ -2489,7 +2962,7 @@
             clearInterval(quizTimer);
             document.getElementById('quizTimer').classList.add('hidden');
             
-            const question = quizQuestions[currentQuiz];
+            const question = currentQuizQuestions[currentQuiz];
             const options = document.getElementById('quizOptions').children;
             
             // Show correct/incorrect
@@ -2506,20 +2979,24 @@
             showQuizExplanation(question, selectedIndex);
             
             if (selectedIndex === question.correct) {
-                const points = (question.difficulty * 10 * quizBonus * (1 + quizStreak * 0.1)).toFixed(0);
-                quizScore += parseInt(points);
+                const basePoints = question.points;
+                const bonusMultiplier = 1 + (quizStreak * 0.1);
+                const timeBonus = quizTimeLeft > 5 ? 1.2 : 1.0;
+                const points = Math.round(basePoints * bonusMultiplier * timeBonus);
+                
+                quizScore += points;
+                quizCorrectAnswers++;
                 quizStreak++;
-                showNotification(`+${points} points! Streak: ${quizStreak}`, 'success');
+                quizBonus = Math.min(quizBonus + 0.1, 2);
+                
+                showNotification(`+${points} points! Streak: ${quizStreak} 🔥`, 'success');
             } else {
                 quizStreak = 0;
-                quizBonus = Math.max(quizBonus - 0.2, 1);
-                showNotification(selectedIndex === -1 ? 'Waktu habis!' : 'Jawaban salah!', 'error');
+                quizBonus = Math.max(quizBonus - 0.1, 1);
+                showNotification(selectedIndex === -1 ? '⏰ Waktu habis!' : '❌ Jawaban salah!', 'error');
             }
             
-            currentQuiz++;
-            setTimeout(() => {
-                showQuizQuestion();
-            }, 3000); // Longer delay to read explanation
+            // Don't auto advance - wait for user to click Next button
         }
         
         function showQuizExplanation(question, selectedIndex) {
@@ -2536,9 +3013,14 @@
                         <p class="font-semibold text-gray-800 mb-2">
                             ${isCorrect ? 'Benar!' : 'Jawaban yang benar: ' + correctAnswer}
                         </p>
-                        <p class="text-gray-700 mb-2">${getQuizExplanation(question, currentQuiz)}</p>
-                        <div class="text-xs text-gray-600 bg-white p-2 rounded border">
-                            <strong>💡 Penjelasan Teknis:</strong> ${getQuizTechnicalExplanation(question, currentQuiz)}
+                        <p class="text-gray-700 mb-2">${getQuizExplanation(question)}</p>
+                        <div class="text-xs text-gray-600 bg-white p-2 rounded border mb-3">
+                            <strong>💡 Penjelasan Teknis:</strong> ${getQuizTechnicalExplanation(question)}
+                        </div>
+                        <div class="text-center">
+                            <button onclick="nextQuizQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-300">
+                                Lanjut ke Soal Berikutnya →
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2547,191 +3029,232 @@
             document.getElementById('quizOptions').appendChild(explanationDiv);
         }
         
-        function getQuizExplanation(question, questionIndex) {
-            const explanations = [
-                // Basic Level Explanations
-                'LAN (Local Area Network) adalah jaringan komputer dalam area terbatas seperti rumah, kantor, atau gedung.',
-                'Switch menghubungkan perangkat dalam satu jaringan lokal dan menggunakan MAC address untuk forwarding frame.',
-                'Router berfungsi menghubungkan jaringan yang berbeda dan menentukan jalur terbaik untuk pengiriman data.',
-                'HTTP (HyperText Transfer Protocol) adalah protokol untuk transfer halaman web dari server ke browser.',
-                'Port 80 adalah port default untuk HTTP, sedangkan port 443 untuk HTTPS (HTTP Secure).',
-                'WiFi adalah teknologi jaringan nirkabel yang memungkinkan perangkat terhubung tanpa kabel.',
-                'Modem (Modulator-Demodulator) mengubah sinyal digital menjadi analog dan sebaliknya untuk transmisi data.',
-                'ISP (Internet Service Provider) adalah perusahaan yang menyediakan akses internet kepada pelanggan.',
-                'UTP (Unshielded Twisted Pair) adalah jenis kabel yang paling umum digunakan untuk jaringan Ethernet.',
-                'Model OSI memiliki 7 layer: Physical, Data Link, Network, Transport, Session, Presentation, Application.',
-                
-                // Intermediate Basic Explanations
-                'VSAT (Very Small Aperture Terminal) adalah teknologi komunikasi satelit untuk area remote.',
-                'SSH (Secure Shell) menggunakan port 22 untuk remote access yang aman ke server.',
-                'FTP (File Transfer Protocol) digunakan untuk transfer file antara client dan server.',
-                'IP Address 192.168.x.x termasuk kelas C yang digunakan untuk jaringan private kecil.',
-                'Subnet mask 255.255.255.0 (/24) memberikan 254 host address dalam satu subnet.',
-                'SMTP (Simple Mail Transfer Protocol) digunakan untuk mengirim email antar server.',
-                'DNS (Domain Name System) menerjemahkan nama domain menjadi IP address.',
-                'HTTPS menggunakan port 443 dan mengenkripsi komunikasi dengan SSL/TLS.',
-                'Topologi Ring menghubungkan perangkat dalam bentuk lingkaran tertutup.',
-                'DHCP (Dynamic Host Configuration Protocol) memberikan IP address secara otomatis.',
-                
-                // Intermediate Advanced Explanations
-                'Subnet /24 memiliki 24 bit untuk network dan 8 bit untuk host, memberikan 254 host address.',
-                'NTP (Network Time Protocol) menyinkronkan waktu antar perangkat dalam jaringan.',
-                'TCP berada di Transport Layer (Layer 4) dan menyediakan reliable connection.',
-                'VLAN (Virtual LAN) membagi jaringan secara logis tanpa perubahan fisik.',
-                'RIP (Routing Information Protocol) menggunakan hop count sebagai metric routing.',
-                'Well Known Ports (0-1023) adalah port yang reserved untuk service standar.',
-                'NAT (Network Address Translation) mengubah IP private menjadi public untuk akses internet.',
-                'SNMP (Simple Network Management Protocol) digunakan untuk monitoring perangkat jaringan.',
-                'STP (Spanning Tree Protocol) mencegah loop pada jaringan yang memiliki redundant path.',
-                'Kabel UTP Cat5e maksimal 100 meter untuk menjaga kualitas sinyal.',
-                
-                // Advanced Explanations
-                'VPN menggunakan berbagai teknologi seperti IPSec, SSL/TLS, dan PPTP untuk koneksi aman.',
-                'OSPF menggunakan algoritma Link State yang lebih efisien daripada Distance Vector.',
-                'Subnet /22 memiliki 22 bit network, menyisakan 10 bit untuk host (1022 host).',
-                'MPLS bekerja di Layer 2.5, antara Data Link dan Network Layer.',
-                'QoS menggunakan DSCP, CoS, dan RSVP untuk mengatur prioritas traffic.',
-                'AS (Autonomous System) adalah kumpulan jaringan dengan kebijakan routing yang sama.',
-                'HSRP adalah protokol Cisco untuk redundansi gateway dengan virtual IP.',
-                'Windows menggunakan TTL 128 untuk ping, berbeda dengan Linux yang menggunakan 64.',
-                'VRRP, GLBP, dan HSRP adalah protokol untuk load balancing dan redundansi.',
-                'LSA Type 1 (Router LSA) berisi informasi tentang router dan link-nya dalam area.',
-                
-                // Expert Level Explanations
-                'PHP (Penultimate Hop Popping) menghapus MPLS label di router sebelum destination.',
-                'VLAN ID dalam 802.1Q menggunakan 12 bit, memberikan range 1-4094 (0 dan 4095 reserved).',
-                'MED (Multi-Exit Discriminator) adalah atribut BGP untuk mempengaruhi inbound traffic.',
-                'MPLS menggunakan LDP untuk label distribution dan RSVP-TE untuk traffic engineering.',
-                'IPv6 menggunakan 128 bit address, memberikan ruang address yang sangat besar.',
-                'ECMP (Equal Cost Multi Path) memungkinkan load balancing pada multiple path dengan cost sama.',
-                'OSPF hello interval default adalah 10 detik pada broadcast network.',
-                'NETCONF, RESTCONF, dan gNMI adalah protokol modern untuk network automation.',
-                'Southbound API menghubungkan SDN controller dengan network device (switch).',
-                'MTU Ethernet standar 1500 bytes, tapi bisa lebih besar dengan jumbo frame.',
-                
-                // Security & Wireless
-                'WPA3 adalah standar keamanan WiFi terbaru dengan enkripsi yang lebih kuat.',
-                'SNMP menggunakan port 161 untuk query dan port 162 untuk trap.',
-                'DoS (Denial of Service) attack membuat layanan tidak tersedia untuk user normal.',
-                'Firewall dapat bekerja di Layer 3 (Network) dan Layer 4 (Transport).',
-                'WiFi 2.4 GHz memiliki 11-14 channel tergantung regulasi negara.',
-                
-                // Cabling & Physical
-                'Cat5e dan Cat6 mendukung Gigabit Ethernet dengan performa yang baik.',
-                'Fiber optic single mode dapat mencapai jarak puluhan kilometer.',
-                'SC dan LC adalah konektor fiber optic yang umum digunakan.',
-                'PoE+ (25.5W), PoE++ (60W), dan UPoE (90W) memberikan daya berbeda.',
-                
-                // Troubleshooting & Tools
-                '"route print" menampilkan routing table di Windows command prompt.',
-                'Wireshark adalah network protocol analyzer untuk capture dan analisis paket.',
-                'TTL expired menunjukkan kemungkinan routing loop dalam jaringan.',
-                '"ipconfig /flushdns" menghapus DNS cache di Windows.',
-                
-                // Modern Networking
-                'VPC (Virtual Private Cloud) adalah jaringan virtual terisolasi di cloud.',
-                'Container networking menggunakan bridge, overlay, dan host networking.',
-                'CNI (Container Network Interface) adalah standar untuk container networking.',
-                'Edge computing mendekatkan processing ke user untuk mengurangi latency.'
-            ];
+        function getQuizExplanation(question) {
+            // Create explanation based on the actual question content
+            const questionText = question.question.toLowerCase();
             
-            return explanations[questionIndex] || 'Konsep penting dalam teknologi jaringan modern.';
+            if (questionText.includes('lan')) {
+                return 'LAN (Local Area Network) adalah jaringan komputer dalam area terbatas seperti rumah, kantor, atau gedung.';
+            } else if (questionText.includes('switch')) {
+                return 'Switch menghubungkan perangkat dalam satu jaringan lokal dan menggunakan MAC address untuk forwarding frame.';
+            } else if (questionText.includes('router')) {
+                return 'Router berfungsi menghubungkan jaringan yang berbeda dan menentukan jalur terbaik untuk pengiriman data.';
+            } else if (questionText.includes('http') && !questionText.includes('https')) {
+                return 'HTTP (HyperText Transfer Protocol) adalah protokol untuk transfer halaman web dari server ke browser.';
+            } else if (questionText.includes('port') && questionText.includes('http')) {
+                return 'Port 80 adalah port default untuk HTTP, sedangkan port 443 untuk HTTPS (HTTP Secure).';
+            } else if (questionText.includes('wifi')) {
+                return 'WiFi adalah teknologi jaringan nirkabel yang memungkinkan perangkat terhubung tanpa kabel.';
+            } else if (questionText.includes('modem')) {
+                return 'Modem (Modulator-Demodulator) mengubah sinyal digital menjadi analog dan sebaliknya untuk transmisi data.';
+            } else if (questionText.includes('isp')) {
+                return 'ISP (Internet Service Provider) adalah perusahaan yang menyediakan akses internet kepada pelanggan.';
+            } else if (questionText.includes('utp') || questionText.includes('ethernet')) {
+                return 'UTP (Unshielded Twisted Pair) adalah jenis kabel yang paling umum digunakan untuk jaringan Ethernet.';
+            } else if (questionText.includes('osi')) {
+                return 'Model OSI memiliki 7 layer: Physical, Data Link, Network, Transport, Session, Presentation, Application.';
+            } else if (questionText.includes('vsat')) {
+                return 'VSAT (Very Small Aperture Terminal) adalah teknologi komunikasi satelit untuk area remote.';
+            } else if (questionText.includes('ssh')) {
+                return 'SSH (Secure Shell) menggunakan port 22 untuk remote access yang aman ke server.';
+            } else if (questionText.includes('192.168')) {
+                return 'IP Address 192.168.x.x termasuk kelas C yang digunakan untuk jaringan private kecil.';
+            } else if (questionText.includes('subnet mask')) {
+                return 'Subnet mask 255.255.255.0 (/24) memberikan 254 host address dalam satu subnet.';
+            } else if (questionText.includes('smtp')) {
+                return 'SMTP (Simple Mail Transfer Protocol) digunakan untuk mengirim email antar server.';
+            } else if (questionText.includes('dns')) {
+                return 'DNS (Domain Name System) menerjemahkan nama domain menjadi IP address.';
+            } else if (questionText.includes('https')) {
+                return 'HTTPS menggunakan port 443 dan mengenkripsi komunikasi dengan SSL/TLS.';
+            } else if (questionText.includes('ring')) {
+                return 'Topologi Ring menghubungkan perangkat dalam bentuk lingkaran tertutup.';
+            } else if (questionText.includes('dhcp')) {
+                return 'DHCP (Dynamic Host Configuration Protocol) memberikan IP address secara otomatis.';
+            } else if (questionText.includes('/24')) {
+                return 'Subnet /24 memiliki 24 bit untuk network dan 8 bit untuk host, memberikan 254 host address.';
+            } else if (questionText.includes('ntp')) {
+                return 'NTP (Network Time Protocol) menyinkronkan waktu antar perangkat dalam jaringan.';
+            } else if (questionText.includes('tcp')) {
+                return 'TCP berada di Transport Layer (Layer 4) dan menyediakan reliable connection.';
+            } else if (questionText.includes('vlan')) {
+                return 'VLAN (Virtual LAN) membagi jaringan secara logis tanpa perubahan fisik.';
+            } else if (questionText.includes('rip')) {
+                return 'RIP (Routing Information Protocol) menggunakan hop count sebagai metric routing.';
+            } else if (questionText.includes('well known')) {
+                return 'Well Known Ports (0-1023) adalah port yang reserved untuk service standar.';
+            } else if (questionText.includes('nat')) {
+                return 'NAT (Network Address Translation) mengubah IP private menjadi public untuk akses internet.';
+            } else if (questionText.includes('snmp')) {
+                return 'SNMP (Simple Network Management Protocol) digunakan untuk monitoring perangkat jaringan.';
+            } else if (questionText.includes('stp')) {
+                return 'STP (Spanning Tree Protocol) mencegah loop pada jaringan yang memiliki redundant path.';
+            } else if (questionText.includes('100 meter')) {
+                return 'Kabel UTP Cat5e maksimal 100 meter untuk menjaga kualitas sinyal.';
+            } else if (questionText.includes('vpn')) {
+                return 'VPN menggunakan berbagai teknologi seperti IPSec, SSL/TLS, dan PPTP untuk koneksi aman.';
+            } else if (questionText.includes('ospf')) {
+                return 'OSPF menggunakan algoritma Link State yang lebih efisien daripada Distance Vector.';
+            } else if (questionText.includes('/22')) {
+                return 'Subnet /22 memiliki 22 bit network, menyisakan 10 bit untuk host (1022 host).';
+            } else if (questionText.includes('mpls')) {
+                return 'MPLS bekerja di Layer 2.5, antara Data Link dan Network Layer.';
+            } else if (questionText.includes('qos')) {
+                return 'QoS menggunakan DSCP, CoS, dan RSVP untuk mengatur prioritas traffic.';
+            } else if (questionText.includes('bgp') && questionText.includes('as')) {
+                return 'AS (Autonomous System) adalah kumpulan jaringan dengan kebijakan routing yang sama.';
+            } else if (questionText.includes('hsrp')) {
+                return 'HSRP adalah protokol Cisco untuk redundansi gateway dengan virtual IP.';
+            } else if (questionText.includes('ttl')) {
+                return 'Windows menggunakan TTL 128 untuk ping, berbeda dengan Linux yang menggunakan 64.';
+            } else if (questionText.includes('load balancing')) {
+                return 'VRRP, GLBP, dan HSRP adalah protokol untuk load balancing dan redundansi.';
+            } else if (questionText.includes('lsa type 1')) {
+                return 'LSA Type 1 (Router LSA) berisi informasi tentang router dan link-nya dalam area.';
+            } else if (questionText.includes('php')) {
+                return 'PHP (Penultimate Hop Popping) menghapus MPLS label di router sebelum destination.';
+            } else if (questionText.includes('4094')) {
+                return 'VLAN ID dalam 802.1Q menggunakan 12 bit, memberikan range 1-4094 (0 dan 4095 reserved).';
+            } else if (questionText.includes('med')) {
+                return 'MED (Multi-Exit Discriminator) adalah atribut BGP untuk mempengaruhi inbound traffic.';
+            } else if (questionText.includes('ldp')) {
+                return 'MPLS menggunakan LDP untuk label distribution dan RSVP-TE untuk traffic engineering.';
+            } else if (questionText.includes('ipv6')) {
+                return 'IPv6 menggunakan 128 bit address, memberikan ruang address yang sangat besar.';
+            } else if (questionText.includes('ecmp')) {
+                return 'ECMP (Equal Cost Multi Path) memungkinkan load balancing pada multiple path dengan cost sama.';
+            } else if (questionText.includes('hello interval')) {
+                return 'OSPF hello interval default adalah 10 detik pada broadcast network.';
+            } else if (questionText.includes('automation')) {
+                return 'NETCONF, RESTCONF, dan gNMI adalah protokol modern untuk network automation.';
+            } else if (questionText.includes('southbound')) {
+                return 'Southbound API menghubungkan SDN controller dengan network device (switch).';
+            } else if (questionText.includes('mtu')) {
+                return 'MTU Ethernet standar 1500 bytes, tapi bisa lebih besar dengan jumbo frame.';
+            } else if (questionText.includes('wpa3')) {
+                return 'WPA3 adalah standar keamanan WiFi terbaru dengan enkripsi yang lebih kuat.';
+            } else {
+                return 'Konsep penting dalam teknologi jaringan yang perlu dipahami untuk implementasi yang efektif.';
+            }
         }
         
-        function getQuizTechnicalExplanation(question, questionIndex) {
-            const technicalExplanations = [
-                // Basic Level Technical
-                'LAN menggunakan teknologi Ethernet dengan switch sebagai central device untuk komunikasi antar host.',
-                'Switch mempelajari MAC address dan membuat CAM table untuk efficient frame forwarding.',
-                'Router menggunakan routing table dan algoritma routing untuk menentukan next hop terbaik.',
-                'HTTP bekerja di Application Layer dengan request-response model menggunakan TCP port 80.',
-                'Port number mengidentifikasi aplikasi/service yang berjalan di suatu host dalam komunikasi network.',
-                'WiFi menggunakan frekuensi radio 2.4GHz dan 5GHz dengan protokol 802.11 untuk wireless communication.',
-                'Modem melakukan modulasi digital-to-analog untuk transmisi melalui medium analog seperti telephone line.',
-                'ISP menyediakan konektivitas internet melalui berbagai teknologi seperti DSL, cable, fiber, atau wireless.',
-                'UTP menggunakan twisted pair untuk mengurangi electromagnetic interference dalam transmisi data.',
-                'OSI Model adalah framework teoritis untuk memahami komunikasi network dalam 7 layer terpisah.',
-                
-                // Intermediate Basic Technical
-                'VSAT menggunakan satelit geostasioner untuk komunikasi two-way dengan terminal kecil di ground.',
-                'SSH menggunakan public key cryptography dan symmetric encryption untuk secure remote access.',
-                'FTP menggunakan dua koneksi: control connection (port 21) dan data connection (port 20).',
-                'Class C network menggunakan 24 bit untuk network portion dan 8 bit untuk host portion.',
-                'Subnet mask menggunakan binary AND operation dengan IP address untuk menentukan network portion.',
-                'SMTP menggunakan store-and-forward mechanism untuk reliable email delivery antar mail server.',
-                'DNS menggunakan hierarchical distributed database dengan caching untuk efficient name resolution.',
-                'HTTPS menggunakan TLS/SSL encryption untuk melindungi data dalam transit dari eavesdropping.',
-                'Ring topology menggunakan token passing atau similar mechanism untuk media access control.',
-                'DHCP menggunakan DORA process (Discover, Offer, Request, Acknowledge) untuk IP assignment.',
-                
-                // Intermediate Advanced Technical
-                'Subnetting menggunakan CIDR notation untuk efficient IP address allocation dan routing.',
-                'NTP menggunakan hierarchical stratum system dengan atomic clock sebagai primary time source.',
-                'TCP menyediakan reliable, ordered, error-checked delivery menggunakan sequence number dan acknowledgment.',
-                'VLAN menggunakan 802.1Q tagging untuk logical segmentation dalam single physical network.',
-                'RIP menggunakan Bellman-Ford algorithm dengan maximum hop count 15 untuk loop prevention.',
-                'IANA mengatur port allocation: 0-1023 (system), 1024-49151 (user), 49152-65535 (dynamic).',
-                'NAT menggunakan translation table untuk mapping private IP ke public IP dengan port multiplexing.',
-                'SNMP menggunakan MIB (Management Information Base) untuk standardized network device monitoring.',
-                'STP menggunakan BPDU (Bridge Protocol Data Unit) untuk detecting dan blocking redundant path.',
-                'Ethernet standard membatasi cable length untuk menjaga signal integrity dan collision detection.',
-                
-                // Advanced Technical
-                'VPN menggunakan tunneling protocol untuk encapsulate private data dalam public network packet.',
-                'OSPF menggunakan Dijkstra algorithm untuk calculating shortest path tree dalam link state database.',
-                'CIDR notation /22 berarti 22 bit pertama untuk network, sisanya (10 bit) untuk host addressing.',
-                'MPLS menggunakan label switching untuk faster packet forwarding tanpa IP lookup di setiap hop.',
-                'QoS menggunakan traffic classification, marking, queuing, dan shaping untuk service differentiation.',
-                'BGP menggunakan path vector algorithm dengan AS_PATH attribute untuk inter-domain routing.',
-                'HSRP menggunakan virtual MAC address dan preemption mechanism untuk gateway redundancy.',
-                'TTL (Time To Live) decremented di setiap hop untuk preventing infinite loop dalam routing.',
-                'Load balancing protocol menggunakan health check dan algorithm (round-robin, least-connection) untuk traffic distribution.',
-                'OSPF LSA Type 1 berisi router ID, attached network, dan cost information untuk SPF calculation.',
-                
-                // Expert Technical
-                'MPLS PHP menghapus label di penultimate router untuk mengurangi processing overhead di egress router.',
-                '802.1Q menggunakan 4-byte VLAN tag dengan 12-bit VLAN ID field dalam Ethernet frame header.',
-                'BGP MED attribute mempengaruhi inbound traffic path selection dengan lower value preferred.',
-                'MPLS control plane menggunakan LDP untuk label binding dan RSVP-TE untuk explicit path setup.',
-                'IPv6 menggunakan 128-bit addressing dengan hierarchical structure untuk global uniqueness dan aggregation.',
-                'ECMP menggunakan hash algorithm pada packet header field untuk consistent load distribution.',
-                'OSPF hello/dead timer memastikan neighbor relationship dan fast convergence saat topology change.',
-                'Network automation menggunakan API dan data model (YANG) untuk programmable network management.',
-                'SDN southbound API (OpenFlow) memungkinkan centralized control plane untuk distributed forwarding plane.',
-                'Jumbo frame mengurangi packet processing overhead dengan larger payload per frame transmission.',
-                
-                // Security & Wireless Technical
-                'WPA3 menggunakan SAE (Simultaneous Authentication of Equals) untuk stronger password-based authentication.',
-                'SNMP v3 menambahkan authentication dan encryption untuk secure network management communication.',
-                'DDoS attack menggunakan botnet untuk generating massive traffic volume yang overwhelm target resource.',
-                'Stateful firewall melakukan connection tracking untuk allowing return traffic dari established connection.',
-                'WiFi channel planning menghindari interference dengan non-overlapping channel (1, 6, 11 pada 2.4GHz).',
-                
-                // Cabling & Physical Technical
-                'Gigabit Ethernet menggunakan 4-pair transmission dengan advanced encoding untuk higher data rate.',
-                'Single-mode fiber menggunakan laser light source dengan narrow core untuk long-distance transmission.',
-                'Fiber connector menggunakan precision alignment untuk minimal insertion loss dan back reflection.',
-                'PoE menggunakan unused pair atau phantom power untuk delivering DC power over Ethernet cable.',
-                
-                // Troubleshooting Technical
-                'Routing table berisi destination network, next hop, interface, dan metric untuk forwarding decision.',
-                'Packet capture menggunakan promiscuous mode untuk intercepting all network traffic pada interface.',
-                'Routing loop terjadi ketika packet circulate indefinitely karena inconsistent routing information.',
-                'DNS cache menyimpan resolved query untuk mengurangi lookup time dan network traffic.',
-                
-                // Modern Networking Technical
-                'Cloud VPC menggunakan software-defined networking untuk isolated virtual network dalam shared infrastructure.',
-                'Container networking menggunakan namespace isolation dan virtual interface untuk network segmentation.',
-                'Kubernetes CNI menggunakan plugin architecture untuk flexible container network implementation.',
-                'Edge computing menggunakan distributed architecture untuk reducing latency dan bandwidth consumption.'
-            ];
+        function getQuizTechnicalExplanation(question) {
+            // Create technical explanation based on the actual question content
+            const questionText = question.question.toLowerCase();
             
-            return technicalExplanations[questionIndex] || 'Implementasi teknis yang penting untuk dipahami dalam networking.';
+            if (questionText.includes('lan')) {
+                return 'LAN menggunakan teknologi Ethernet dengan switch sebagai central device untuk komunikasi antar host.';
+            } else if (questionText.includes('switch')) {
+                return 'Switch mempelajari MAC address dan membuat CAM table untuk efficient frame forwarding.';
+            } else if (questionText.includes('router')) {
+                return 'Router menggunakan routing table dan algoritma routing untuk menentukan next hop terbaik.';
+            } else if (questionText.includes('http') && !questionText.includes('https')) {
+                return 'HTTP bekerja di Application Layer dengan request-response model menggunakan TCP port 80.';
+            } else if (questionText.includes('port') && questionText.includes('http')) {
+                return 'Port number mengidentifikasi aplikasi/service yang berjalan di suatu host dalam komunikasi network.';
+            } else if (questionText.includes('wifi')) {
+                return 'WiFi menggunakan frekuensi radio 2.4GHz dan 5GHz dengan protokol 802.11 untuk wireless communication.';
+            } else if (questionText.includes('modem')) {
+                return 'Modem melakukan modulasi digital-to-analog untuk transmisi melalui medium analog seperti telephone line.';
+            } else if (questionText.includes('isp')) {
+                return 'ISP menyediakan konektivitas internet melalui berbagai teknologi seperti DSL, cable, fiber, atau wireless.';
+            } else if (questionText.includes('utp') || questionText.includes('ethernet')) {
+                return 'UTP menggunakan twisted pair untuk mengurangi electromagnetic interference dalam transmisi data.';
+            } else if (questionText.includes('osi')) {
+                return 'OSI Model adalah framework teoritis untuk memahami komunikasi network dalam 7 layer terpisah.';
+            } else if (questionText.includes('vsat')) {
+                return 'VSAT menggunakan satelit geostasioner untuk komunikasi two-way dengan terminal kecil di ground.';
+            } else if (questionText.includes('ssh')) {
+                return 'SSH menggunakan public key cryptography dan symmetric encryption untuk secure remote access.';
+            } else if (questionText.includes('192.168')) {
+                return 'Class C network menggunakan 24 bit untuk network portion dan 8 bit untuk host portion.';
+            } else if (questionText.includes('subnet mask')) {
+                return 'Subnet mask menggunakan binary AND operation dengan IP address untuk menentukan network portion.';
+            } else if (questionText.includes('smtp')) {
+                return 'SMTP menggunakan store-and-forward mechanism untuk reliable email delivery antar mail server.';
+            } else if (questionText.includes('dns')) {
+                return 'DNS menggunakan hierarchical distributed database dengan caching untuk efficient name resolution.';
+            } else if (questionText.includes('https')) {
+                return 'HTTPS menggunakan TLS/SSL encryption untuk melindungi data dalam transit dari eavesdropping.';
+            } else if (questionText.includes('ring')) {
+                return 'Ring topology menggunakan token passing atau similar mechanism untuk media access control.';
+            } else if (questionText.includes('dhcp')) {
+                return 'DHCP menggunakan DORA process (Discover, Offer, Request, Acknowledge) untuk IP assignment.';
+            } else if (questionText.includes('/24')) {
+                return 'Subnetting menggunakan CIDR notation untuk efficient IP address allocation dan routing.';
+            } else if (questionText.includes('ntp')) {
+                return 'NTP menggunakan hierarchical stratum system dengan atomic clock sebagai primary time source.';
+            } else if (questionText.includes('tcp')) {
+                return 'TCP menyediakan reliable, ordered, error-checked delivery menggunakan sequence number dan acknowledgment.';
+            } else if (questionText.includes('vlan')) {
+                return 'VLAN menggunakan 802.1Q tagging untuk logical segmentation dalam single physical network.';
+            } else if (questionText.includes('rip')) {
+                return 'RIP menggunakan Bellman-Ford algorithm dengan maximum hop count 15 untuk loop prevention.';
+            } else if (questionText.includes('well known')) {
+                return 'IANA mengatur port allocation: 0-1023 (system), 1024-49151 (user), 49152-65535 (dynamic).';
+            } else if (questionText.includes('nat')) {
+                return 'NAT menggunakan translation table untuk mapping private IP ke public IP dengan port multiplexing.';
+            } else if (questionText.includes('snmp')) {
+                return 'SNMP menggunakan MIB (Management Information Base) untuk standardized network device monitoring.';
+            } else if (questionText.includes('stp')) {
+                return 'STP menggunakan BPDU (Bridge Protocol Data Unit) untuk detecting dan blocking redundant path.';
+            } else if (questionText.includes('100 meter')) {
+                return 'Ethernet standard membatasi cable length untuk menjaga signal integrity dan collision detection.';
+            } else if (questionText.includes('vpn')) {
+                return 'VPN menggunakan tunneling protocol untuk encapsulate private data dalam public network packet.';
+            } else if (questionText.includes('ospf')) {
+                return 'OSPF menggunakan Dijkstra algorithm untuk calculating shortest path tree dalam link state database.';
+            } else if (questionText.includes('/22')) {
+                return 'CIDR notation /22 berarti 22 bit pertama untuk network, sisanya (10 bit) untuk host addressing.';
+            } else if (questionText.includes('mpls')) {
+                return 'MPLS menggunakan label switching untuk faster packet forwarding tanpa IP lookup di setiap hop.';
+            } else if (questionText.includes('qos')) {
+                return 'QoS menggunakan traffic classification, marking, queuing, dan shaping untuk service differentiation.';
+            } else if (questionText.includes('bgp') && questionText.includes('as')) {
+                return 'BGP menggunakan path vector algorithm dengan AS_PATH attribute untuk inter-domain routing.';
+            } else if (questionText.includes('hsrp')) {
+                return 'HSRP menggunakan virtual MAC address dan preemption mechanism untuk gateway redundancy.';
+            } else if (questionText.includes('ttl')) {
+                return 'TTL (Time To Live) decremented di setiap hop untuk preventing infinite loop dalam routing.';
+            } else if (questionText.includes('load balancing')) {
+                return 'Load balancing protocol menggunakan health check dan algorithm (round-robin, least-connection) untuk traffic distribution.';
+            } else if (questionText.includes('lsa type 1')) {
+                return 'OSPF LSA Type 1 berisi router ID, attached network, dan cost information untuk SPF calculation.';
+            } else if (questionText.includes('php')) {
+                return 'MPLS PHP menghapus label di penultimate router untuk mengurangi processing overhead di egress router.';
+            } else if (questionText.includes('4094')) {
+                return '802.1Q menggunakan 4-byte VLAN tag dengan 12-bit VLAN ID field dalam Ethernet frame header.';
+            } else if (questionText.includes('med')) {
+                return 'BGP MED attribute mempengaruhi inbound traffic path selection dengan lower value preferred.';
+            } else if (questionText.includes('ldp')) {
+                return 'MPLS control plane menggunakan LDP untuk label binding dan RSVP-TE untuk explicit path setup.';
+            } else if (questionText.includes('ipv6')) {
+                return 'IPv6 menggunakan 128-bit addressing dengan hierarchical structure untuk global uniqueness dan aggregation.';
+            } else if (questionText.includes('ecmp')) {
+                return 'ECMP menggunakan hash algorithm pada packet header field untuk consistent load distribution.';
+            } else if (questionText.includes('hello interval')) {
+                return 'OSPF hello/dead timer memastikan neighbor relationship dan fast convergence saat topology change.';
+            } else if (questionText.includes('automation')) {
+                return 'Network automation menggunakan API dan data model (YANG) untuk programmable network management.';
+            } else if (questionText.includes('southbound')) {
+                return 'SDN southbound API (OpenFlow) memungkinkan centralized control plane untuk distributed forwarding plane.';
+            } else if (questionText.includes('mtu')) {
+                return 'Jumbo frame mengurangi packet processing overhead dengan larger payload per frame transmission.';
+            } else if (questionText.includes('wpa3')) {
+                return 'WPA3 menggunakan SAE (Simultaneous Authentication of Equals) untuk stronger password-based authentication.';
+            } else {
+                return 'Implementasi teknis yang menggunakan protokol dan algoritma standar industri untuk optimasi performa jaringan.';
+            }
+        }
+        
+        function nextQuizQuestion() {
+            currentQuiz++;
+            showQuizQuestion();
         }
         
         function updateQuizUI() {
-            document.getElementById('quizLevel').textContent = quizLevel;
             document.getElementById('quizScore').textContent = quizScore;
+            document.getElementById('quizCorrect').textContent = quizCorrectAnswers;
             document.getElementById('quizStreak').textContent = quizStreak;
             document.getElementById('quizBonus').textContent = 'x' + quizBonus.toFixed(1);
         }
@@ -2892,7 +3415,6 @@
                 const points = 10 * snakeLevel;
                 snakeScore += points;
                 createParticles(food.x, food.y, '#22c55e');
-                showSnakeItemEducation('data');
                 showNotification(`+${points} Data Packet berhasil diterima!`, 'success');
                 
                 // Level up every 100 points
@@ -2970,7 +3492,6 @@
         function hitVirus() {
             snakeLives--;
             createParticles(snake[0].x, snake[0].y, '#ef4444');
-            showSnakeItemEducation('virus');
             
             if (snakeLives <= 0) {
                 gameOverSnake();
@@ -3029,17 +3550,14 @@
                             drawSnake();
                         }
                     }, snakeSpeed);
-                    showSnakeEducation('speed');
                     showNotification('Bandwidth Upgrade! Kecepatan meningkat!', 'success');
                     break;
                 case 'points':
                     snakeScore += 50;
-                    showSnakeEducation('routing');
                     showNotification('+50 Efficient Routing Bonus!', 'success');
                     break;
                 case 'life':
                     snakeLives = Math.min(snakeLives + 1, 5);
-                    showSnakeEducation('security');
                     showNotification('Security Enhancement! Extra Protection!', 'success');
                     break;
             }
@@ -3417,5 +3935,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e7587d73ab409b',t:'MTc2MDQ0NzcyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e7a1f8a7c93e0e',t:'MTc2MDQ1MDczOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
