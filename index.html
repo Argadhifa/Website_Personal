@@ -537,88 +537,240 @@
         </div>
     </section>
 
-    <!-- Mini Games Section -->
+    <!-- Advanced Games Section -->
     <section id="games" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    Mini <span class="primary-blue">Games</span>
+                    Advanced <span class="primary-blue">Games</span>
                 </h2>
                 <div class="w-24 h-1 bg-primary-blue mx-auto rounded-full"></div>
                 <p class="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">
-                    Nikmati permainan sederhana sambil mengenal lebih jauh tentang teknologi jaringan
+                    Mari mengenal teknologi jaringan melalui permainan interaktif yang edukatif dan menyenangkan
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Network Memory Game -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <!-- Network Defense Tower Game -->
                 <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
                     <div class="text-center mb-6">
-                        <i class="fas fa-brain text-5xl primary-blue mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Memory</h3>
-                        <p class="text-gray-600">Cocokkan perangkat jaringan yang sama</p>
+                        <i class="fas fa-shield-alt text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Defense</h3>
+                        <p class="text-gray-600">Pelajari cara kerja keamanan jaringan dengan melindungi server dari ancaman cyber</p>
                     </div>
-                    <div id="memoryGame" class="grid grid-cols-4 gap-2 mb-6">
-                        <!-- Memory cards will be generated here -->
+                    <div class="relative mb-6">
+                        <canvas id="towerCanvas" width="500" height="400" class="border-2 border-gray-300 rounded-lg bg-gradient-to-b from-blue-100 to-green-100 w-full"></canvas>
+                        <div id="towerGameUI" class="absolute top-2 left-2 bg-black/70 text-white p-3 rounded-lg text-sm">
+                            <div class="flex space-x-4">
+                                <span>❤️ HP: <span id="towerHP" class="font-bold text-red-400">100</span></span>
+                                <span>💰 Credits: <span id="towerMoney" class="font-bold text-yellow-400">500</span></span>
+                                <span>🌊 Wave: <span id="towerWave" class="font-bold text-blue-400">1</span></span>
+                                <span>🎯 Score: <span id="towerScore" class="font-bold text-green-400">0</span></span>
+                            </div>
+                        </div>
+                        <div id="towerShop" class="absolute bottom-2 left-2 bg-black/70 text-white p-3 rounded-lg text-sm">
+                            <div class="flex space-x-2 mb-2">
+                                <button onclick="buyTower('firewall')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-xs">🔥 Firewall (100)</button>
+                                <button onclick="buyTower('antivirus')" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-xs">🛡️ Antivirus (150)</button>
+                                <button onclick="buyTower('ids')" class="bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded text-xs">👁️ IDS (200)</button>
+                            </div>
+                            <button onclick="toggleTowerEducation()" class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-xs">📚 Info Keamanan</button>
+                        </div>
+                        <div id="towerEducation" class="absolute top-2 right-2 bg-black/90 text-white p-4 rounded-lg text-sm max-w-xs hidden">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-bold text-yellow-400">🎓 Pelajaran Keamanan</h4>
+                                <button onclick="toggleTowerEducation()" class="text-gray-400 hover:text-white">✕</button>
+                            </div>
+                            <div id="towerEducationContent">
+                                <p class="text-blue-300 mb-2">Klik tower atau enemy untuk mempelajari cara kerjanya!</p>
+                                <div class="text-xs text-gray-300">
+                                    <p><strong>🔥 Firewall:</strong> Memblokir akses tidak sah</p>
+                                    <p><strong>🛡️ Antivirus:</strong> Mendeteksi malware</p>
+                                    <p><strong>👁️ IDS:</strong> Monitor aktivitas mencurigakan</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
-                        <div class="mb-4">
-                            <span class="text-sm text-gray-600">Skor: </span>
-                            <span id="memoryScore" class="font-bold primary-blue">0</span>
-                            <span class="text-sm text-gray-600 ml-4">Waktu: </span>
-                            <span id="memoryTime" class="font-bold text-green-600">0s</span>
-                        </div>
-                        <button onclick="startMemoryGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
-                            Mulai Game
+                        <button id="towerButton" onclick="startTowerGame()" class="bg-primary-blue text-white px-8 py-3 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Mulai Defense
                         </button>
+                        <p class="text-xs text-gray-500 mt-2">Klik untuk menempatkan tower, lindungi server di kanan!</p>
                     </div>
                 </div>
 
-                <!-- Tech Quiz -->
+                <!-- Network Puzzle Game -->
                 <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
                     <div class="text-center mb-6">
-                        <i class="fas fa-question-circle text-5xl primary-blue mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tech Quiz</h3>
-                        <p class="text-gray-600">Uji pengetahuan teknologi Anda</p>
+                        <i class="fas fa-puzzle-piece text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Builder</h3>
+                        <p class="text-gray-600">Pahami konsep topologi jaringan dengan membangun koneksi antar perangkat</p>
                     </div>
-                    <div id="quizContainer" class="mb-6">
-                        <div id="quizQuestion" class="text-lg font-semibold text-gray-800 mb-4 text-center">
-                            Klik "Mulai Quiz" untuk memulai
+                    <div class="relative mb-6">
+                        <canvas id="puzzleCanvas" width="500" height="400" class="border-2 border-gray-300 rounded-lg bg-gray-50 w-full"></canvas>
+                        <div id="puzzleGameUI" class="absolute top-2 left-2 bg-black/70 text-white p-3 rounded-lg text-sm">
+                            <div class="flex space-x-4">
+                                <span>🎯 Level: <span id="puzzleLevel" class="font-bold text-blue-400">1</span></span>
+                                <span>⏱️ Time: <span id="puzzleTime" class="font-bold text-yellow-400">60</span>s</span>
+                                <span>🔗 Connections: <span id="puzzleConnections" class="font-bold text-green-400">0/5</span></span>
+                            </div>
+                        </div>
+                        <div id="puzzleInstructions" class="absolute bottom-2 left-2 right-2 bg-black/70 text-white p-3 rounded-lg text-sm">
+                            <div class="flex justify-between items-center">
+                                <p id="puzzleTask" class="text-center flex-1">Hubungkan semua komputer ke router utama</p>
+                                <button onclick="togglePuzzleEducation()" class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-xs ml-2">📚 Info</button>
+                            </div>
+                        </div>
+                        <div id="puzzleEducation" class="absolute top-2 right-2 bg-black/90 text-white p-4 rounded-lg text-sm max-w-sm hidden">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-bold text-yellow-400">🎓 Pelajaran Jaringan</h4>
+                                <button onclick="togglePuzzleEducation()" class="text-gray-400 hover:text-white">✕</button>
+                            </div>
+                            <div id="puzzleEducationContent">
+                                <p class="text-blue-300 mb-2">Klik perangkat untuk mempelajari fungsinya!</p>
+                                <div class="text-xs text-gray-300 space-y-1">
+                                    <p><strong>📡 Router:</strong> Menghubungkan jaringan berbeda</p>
+                                    <p><strong>💻 Computer:</strong> Perangkat endpoint user</p>
+                                    <p><strong>🖥️ Server:</strong> Menyediakan layanan jaringan</p>
+                                    <p><strong>🔄 Switch:</strong> Menghubungkan perangkat LAN</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button id="puzzleButton" onclick="startPuzzleGame()" class="bg-primary-blue text-white px-8 py-3 rounded-full font-semibold hover-primary-blue transition-colors">
+                            Mulai Building
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">Drag untuk menghubungkan perangkat, buat jaringan yang efisien!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Advanced Memory Game -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-brain text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Memory Matrix</h3>
+                        <p class="text-gray-600">Kenali berbagai perangkat jaringan sambil melatih daya ingat</p>
+                    </div>
+                    <div id="memoryGame" class="grid grid-cols-4 gap-2 mb-6 min-h-[200px]">
+                        <!-- Memory cards will be generated here -->
+                    </div>
+                    <div class="text-center">
+                        <div class="mb-4 space-y-2">
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Level: <span id="memoryLevel" class="font-bold primary-blue">1</span></span>
+                                <span>Skor: <span id="memoryScore" class="font-bold text-green-600">0</span></span>
+                            </div>
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Waktu: <span id="memoryTime" class="font-bold text-yellow-600">0s</span></span>
+                                <span>Combo: <span id="memoryCombo" class="font-bold text-purple-600">x1</span></span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 justify-center">
+                            <button id="memoryButton" onclick="startMemoryGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                                Mulai Matrix
+                            </button>
+                            <button onclick="toggleMemoryEducation()" class="bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors">
+                                📚 Info
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Memory Education Panel -->
+                    <div id="memoryEducation" class="mt-4 bg-gray-100 p-4 rounded-lg text-sm hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-blue-600">🎓 Pelajaran Perangkat Jaringan</h4>
+                            <button onclick="toggleMemoryEducation()" class="text-gray-500 hover:text-gray-700">✕</button>
+                        </div>
+                        <div id="memoryEducationContent">
+                            <p class="text-gray-600 mb-2">Cocokkan kartu untuk mempelajari perangkat jaringan!</p>
+                            <p class="text-xs text-gray-500">Setiap match akan menampilkan informasi detail tentang perangkat tersebut.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Quiz Game -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-graduation-cap text-5xl primary-blue mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tech Challenge</h3>
+                        <p class="text-gray-600">Uji pengetahuan teknologi jaringan melalui kuis interaktif</p>
+                    </div>
+                    <div id="quizContainer" class="mb-6 min-h-[200px]">
+                        <div id="quizQuestion" class="text-lg font-semibold text-gray-800 mb-4 text-center min-h-[60px] flex items-center justify-center">
+                            Klik "Mulai Challenge" untuk memulai
                         </div>
                         <div id="quizOptions" class="space-y-2">
                             <!-- Quiz options will be generated here -->
                         </div>
+                        <div id="quizTimer" class="w-full bg-gray-200 rounded-full h-2 mt-4 hidden">
+                            <div id="quizTimerBar" class="bg-blue-600 h-2 rounded-full transition-all duration-1000"></div>
+                        </div>
                     </div>
                     <div class="text-center">
-                        <div class="mb-4">
-                            <span class="text-sm text-gray-600">Skor: </span>
-                            <span id="quizScore" class="font-bold primary-blue">0/0</span>
+                        <div class="mb-4 space-y-2">
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Level: <span id="quizLevel" class="font-bold primary-blue">1</span></span>
+                                <span>Skor: <span id="quizScore" class="font-bold text-green-600">0</span></span>
+                            </div>
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Streak: <span id="quizStreak" class="font-bold text-purple-600">0</span></span>
+                                <span>Bonus: <span id="quizBonus" class="font-bold text-yellow-600">x1</span></span>
+                            </div>
                         </div>
                         <button id="quizButton" onclick="startQuiz()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
-                            Mulai Quiz
+                            Mulai Challenge
                         </button>
                     </div>
                 </div>
 
-                <!-- Snake Game -->
+                <!-- Advanced Snake Game -->
                 <div class="bg-white rounded-2xl shadow-xl p-8 card-hover fade-in">
                     <div class="text-center mb-6">
                         <i class="fas fa-gamepad text-5xl primary-blue mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Network Snake</h3>
-                        <p class="text-gray-600">Kumpulkan perangkat jaringan</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Data Snake</h3>
+                        <p class="text-gray-600">Simulasi alur data dalam jaringan sambil menghindari ancaman keamanan</p>
                     </div>
                     <div class="flex justify-center mb-4">
-                        <canvas id="snakeCanvas" width="300" height="300" class="border-2 border-gray-300 rounded-lg bg-gray-100"></canvas>
+                        <canvas id="snakeCanvas" width="300" height="300" class="border-2 border-gray-300 rounded-lg bg-gradient-to-br from-blue-900 to-purple-900"></canvas>
                     </div>
                     <div class="text-center">
-                        <div class="mb-4">
-                            <span class="text-sm text-gray-600">Skor: </span>
-                            <span id="snakeScore" class="font-bold primary-blue">0</span>
+                        <div class="mb-4 space-y-2">
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Skor: <span id="snakeScore" class="font-bold primary-blue">0</span></span>
+                                <span>Level: <span id="snakeLevel" class="font-bold text-green-600">1</span></span>
+                            </div>
+                            <div class="flex justify-center space-x-4 text-sm">
+                                <span>Speed: <span id="snakeSpeed" class="font-bold text-yellow-600">1x</span></span>
+                                <span>Lives: <span id="snakeLives" class="font-bold text-red-600">3</span></span>
+                            </div>
                         </div>
-                        <button id="snakeButton" onclick="startSnakeGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
-                            Mulai Game
-                        </button>
-                        <p class="text-xs text-gray-500 mt-2">Gunakan tombol panah untuk bergerak</p>
+                        <div class="flex space-x-2 justify-center">
+                            <button id="snakeButton" onclick="startSnakeGame()" class="bg-primary-blue text-white px-6 py-2 rounded-full font-semibold hover-primary-blue transition-colors">
+                                Mulai Snake
+                            </button>
+                            <button onclick="toggleSnakeEducation()" class="bg-purple-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-purple-700 transition-colors">
+                                📚 Info
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">WASD atau Arrow Keys • 🟢=Data 🔴=Virus 🟡=Power-up</p>
+                    </div>
+                    <!-- Snake Education Panel -->
+                    <div id="snakeEducation" class="mt-4 bg-gray-100 p-4 rounded-lg text-sm hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-purple-600">🎓 Konsep Alur Data Jaringan</h4>
+                            <button onclick="toggleSnakeEducation()" class="text-gray-500 hover:text-gray-700">✕</button>
+                        </div>
+                        <div id="snakeEducationContent">
+                            <p class="text-gray-600 mb-2">Game ini mensimulasikan alur data dalam jaringan!</p>
+                            <div class="text-xs text-gray-600 space-y-1">
+                                <p><strong>🟢 Data Packet:</strong> Informasi yang mengalir dalam jaringan</p>
+                                <p><strong>🔴 Malware:</strong> Ancaman yang harus dihindari</p>
+                                <p><strong>🟡 Enhancement:</strong> Upgrade performa jaringan</p>
+                                <p><strong>🐍 Snake:</strong> Jalur data yang semakin kompleks</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -823,36 +975,883 @@
             startSlideshow(type);
         }
 
-        // Mini Games Functionality
+        // Advanced Games Functionality
         
-        // Memory Game Variables
+        // Tower Defense Game Variables
+        let towerCanvas, towerCtx;
+        let towerGame = {
+            active: false,
+            hp: 100,
+            money: 500,
+            wave: 1,
+            score: 0,
+            towers: [],
+            enemies: [],
+            projectiles: [],
+            selectedTowerType: null,
+            enemySpawnTimer: 0,
+            waveTimer: 0,
+            gameLoop: null,
+            showEducation: false
+        };
+        
+        const towerTypes = {
+            firewall: { 
+                cost: 100, 
+                damage: 25, 
+                range: 80, 
+                speed: 1000, 
+                color: '#ef4444',
+                name: 'Firewall',
+                description: 'Sistem keamanan yang memfilter lalu lintas jaringan berdasarkan aturan keamanan yang telah ditentukan',
+                realWorld: 'Firewall melindungi jaringan dari akses tidak sah dengan memblokir port dan protokol tertentu'
+            },
+            antivirus: { 
+                cost: 150, 
+                damage: 40, 
+                range: 60, 
+                speed: 800, 
+                color: '#22c55e',
+                name: 'Antivirus',
+                description: 'Software yang mendeteksi, mencegah, dan menghapus malware dari sistem komputer',
+                realWorld: 'Antivirus bekerja dengan mengenali signature virus dan behavior analysis untuk melindungi sistem'
+            },
+            ids: { 
+                cost: 200, 
+                damage: 60, 
+                range: 100, 
+                speed: 1200, 
+                color: '#8b5cf6',
+                name: 'IDS (Intrusion Detection System)',
+                description: 'Sistem yang memantau aktivitas jaringan untuk mendeteksi aktivitas mencurigakan atau serangan',
+                realWorld: 'IDS menganalisis pola lalu lintas jaringan dan memberikan alert ketika mendeteksi anomali'
+            }
+        };
+        
+        const enemyEducation = {
+            malware: {
+                name: 'Malware',
+                description: 'Software berbahaya yang dirancang untuk merusak atau mengakses sistem tanpa izin',
+                types: 'Virus, Worm, Trojan, Ransomware, Spyware'
+            },
+            ddos: {
+                name: 'DDoS Attack',
+                description: 'Serangan yang membanjiri server dengan traffic berlebihan hingga tidak dapat melayani user normal',
+                prevention: 'Rate limiting, Load balancing, Traffic filtering'
+            },
+            phishing: {
+                name: 'Phishing',
+                description: 'Teknik penipuan untuk mencuri informasi sensitif dengan menyamar sebagai entitas terpercaya',
+                prevention: 'Email filtering, User education, Multi-factor authentication'
+            }
+        };
+        
+        function startTowerGame() {
+            towerCanvas = document.getElementById('towerCanvas');
+            towerCtx = towerCanvas.getContext('2d');
+            
+            // Reset game state
+            towerGame = {
+                active: true,
+                hp: 100,
+                money: 500,
+                wave: 1,
+                score: 0,
+                towers: [],
+                enemies: [],
+                projectiles: [],
+                selectedTowerType: null,
+                enemySpawnTimer: 0,
+                waveTimer: 0,
+                gameLoop: null
+            };
+            
+            updateTowerUI();
+            
+            // Add click listener for tower placement
+            towerCanvas.onclick = placeTower;
+            
+            // Start game loop
+            towerGame.gameLoop = setInterval(updateTowerGame, 50);
+            
+            document.getElementById('towerButton').textContent = 'Stop Defense';
+            document.getElementById('towerButton').onclick = stopTowerGame;
+        }
+        
+        function stopTowerGame() {
+            towerGame.active = false;
+            clearInterval(towerGame.gameLoop);
+            towerCanvas.onclick = null;
+            document.getElementById('towerButton').textContent = 'Mulai Defense';
+            document.getElementById('towerButton').onclick = startTowerGame;
+        }
+        
+        function buyTower(type) {
+            if (towerGame.money >= towerTypes[type].cost) {
+                towerGame.selectedTowerType = type;
+                showTowerEducation(type);
+                showNotification(`${towerTypes[type].name} dipilih! Klik di canvas untuk menempatkan.`, 'info');
+            } else {
+                showNotification('Credits tidak cukup!', 'error');
+            }
+        }
+        
+        function toggleTowerEducation() {
+            const panel = document.getElementById('towerEducation');
+            panel.classList.toggle('hidden');
+            towerGame.showEducation = !panel.classList.contains('hidden');
+        }
+        
+        function showTowerEducation(type) {
+            const tower = towerTypes[type];
+            const content = document.getElementById('towerEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-yellow-400 mb-1">${tower.name}</h5>
+                    <p class="text-blue-300 text-xs mb-2">${tower.description}</p>
+                    <p class="text-green-300 text-xs mb-2"><strong>Cara Kerja:</strong> ${tower.realWorld}</p>
+                    <div class="text-xs text-gray-300">
+                        <p><strong>Cost:</strong> ${tower.cost} credits</p>
+                        <p><strong>Damage:</strong> ${tower.damage}</p>
+                        <p><strong>Range:</strong> ${tower.range}px</p>
+                    </div>
+                </div>
+                <div class="text-xs text-gray-400 border-t border-gray-600 pt-2">
+                    <p><strong>💡 Tips:</strong> ${getSecurityTip(type)}</p>
+                </div>
+            `;
+            document.getElementById('towerEducation').classList.remove('hidden');
+        }
+        
+        function getSecurityTip(type) {
+            const tips = {
+                firewall: 'Tempatkan di pintu masuk jaringan untuk filtering maksimal',
+                antivirus: 'Efektif melawan malware dengan update signature terbaru',
+                ids: 'Monitor semua aktivitas untuk deteksi dini serangan'
+            };
+            return tips[type] || 'Kombinasikan berbagai defense untuk keamanan optimal';
+        }
+        
+        function placeTower(event) {
+            if (!towerGame.selectedTowerType) return;
+            
+            const rect = towerCanvas.getBoundingClientRect();
+            const x = (event.clientX - rect.left) * (towerCanvas.width / rect.width);
+            const y = (event.clientY - rect.top) * (towerCanvas.height / rect.height);
+            
+            const towerType = towerTypes[towerGame.selectedTowerType];
+            
+            // Check if position is valid (not too close to other towers)
+            const tooClose = towerGame.towers.some(tower => 
+                Math.sqrt((tower.x - x) ** 2 + (tower.y - y) ** 2) < 40
+            );
+            
+            if (!tooClose && x > 50 && x < towerCanvas.width - 100) {
+                towerGame.towers.push({
+                    x, y,
+                    type: towerGame.selectedTowerType,
+                    ...towerType,
+                    lastShot: 0
+                });
+                
+                towerGame.money -= towerType.cost;
+                towerGame.selectedTowerType = null;
+                updateTowerUI();
+                showNotification('Tower ditempatkan!', 'success');
+            }
+        }
+        
+        function updateTowerGame() {
+            if (!towerGame.active) return;
+            
+            // Spawn enemies
+            towerGame.enemySpawnTimer++;
+            if (towerGame.enemySpawnTimer > 60 - (towerGame.wave * 5)) {
+                spawnEnemy();
+                towerGame.enemySpawnTimer = 0;
+            }
+            
+            // Update enemies
+            towerGame.enemies.forEach((enemy, index) => {
+                enemy.x += enemy.speed;
+                
+                // Check if enemy reached the end
+                if (enemy.x > towerCanvas.width - 50) {
+                    towerGame.hp -= enemy.damage;
+                    towerGame.enemies.splice(index, 1);
+                    
+                    if (towerGame.hp <= 0) {
+                        gameOverTower();
+                        return;
+                    }
+                }
+            });
+            
+            // Tower shooting
+            towerGame.towers.forEach(tower => {
+                const now = Date.now();
+                if (now - tower.lastShot > tower.speed) {
+                    const target = findNearestEnemy(tower);
+                    if (target) {
+                        shootProjectile(tower, target);
+                        tower.lastShot = now;
+                    }
+                }
+            });
+            
+            // Update projectiles
+            towerGame.projectiles.forEach((projectile, pIndex) => {
+                const dx = projectile.targetX - projectile.x;
+                const dy = projectile.targetY - projectile.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 5) {
+                    // Hit target
+                    const enemy = towerGame.enemies.find(e => 
+                        Math.abs(e.x - projectile.targetX) < 15 && 
+                        Math.abs(e.y - projectile.targetY) < 15
+                    );
+                    
+                    if (enemy) {
+                        enemy.hp -= projectile.damage;
+                        if (enemy.hp <= 0) {
+                            towerGame.score += enemy.reward;
+                            towerGame.money += enemy.reward;
+                            towerGame.enemies.splice(towerGame.enemies.indexOf(enemy), 1);
+                        }
+                    }
+                    
+                    towerGame.projectiles.splice(pIndex, 1);
+                } else {
+                    projectile.x += (dx / distance) * 8;
+                    projectile.y += (dy / distance) * 8;
+                }
+            });
+            
+            // Wave management
+            towerGame.waveTimer++;
+            if (towerGame.waveTimer > 1200 && towerGame.enemies.length === 0) {
+                towerGame.wave++;
+                towerGame.waveTimer = 0;
+                towerGame.money += 100;
+                showNotification(`Wave ${towerGame.wave} dimulai!`, 'info');
+            }
+            
+            drawTowerGame();
+            updateTowerUI();
+        }
+        
+        function spawnEnemy() {
+            const enemyTypes = [
+                { hp: 50 + (towerGame.wave * 10), speed: 1, damage: 5, reward: 10, color: '#ef4444', size: 8 },
+                { hp: 100 + (towerGame.wave * 15), speed: 0.5, damage: 10, reward: 20, color: '#f97316', size: 12 },
+                { hp: 30 + (towerGame.wave * 5), speed: 2, damage: 3, reward: 15, color: '#eab308', size: 6 }
+            ];
+            
+            const type = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+            towerGame.enemies.push({
+                x: 0,
+                y: 150 + (Math.random() - 0.5) * 100,
+                ...type
+            });
+        }
+        
+        function findNearestEnemy(tower) {
+            let nearest = null;
+            let minDistance = tower.range;
+            
+            towerGame.enemies.forEach(enemy => {
+                const distance = Math.sqrt((enemy.x - tower.x) ** 2 + (enemy.y - tower.y) ** 2);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearest = enemy;
+                }
+            });
+            
+            return nearest;
+        }
+        
+        function shootProjectile(tower, target) {
+            towerGame.projectiles.push({
+                x: tower.x,
+                y: tower.y,
+                targetX: target.x,
+                targetY: target.y,
+                damage: tower.damage,
+                color: tower.color
+            });
+        }
+        
+        function drawTowerGame() {
+            // Clear canvas
+            towerCtx.fillStyle = '#f0f9ff';
+            towerCtx.fillRect(0, 0, towerCanvas.width, towerCanvas.height);
+            
+            // Draw path
+            towerCtx.fillStyle = '#94a3b8';
+            towerCtx.fillRect(0, 100, towerCanvas.width, 200);
+            
+            // Draw server (target)
+            towerCtx.fillStyle = '#1e40af';
+            towerCtx.fillRect(towerCanvas.width - 40, 150, 30, 100);
+            towerCtx.fillStyle = '#ffffff';
+            towerCtx.font = '20px Arial';
+            towerCtx.fillText('🖥️', towerCanvas.width - 35, 210);
+            
+            // Draw towers
+            towerGame.towers.forEach(tower => {
+                towerCtx.fillStyle = tower.color;
+                towerCtx.beginPath();
+                towerCtx.arc(tower.x, tower.y, 15, 0, Math.PI * 2);
+                towerCtx.fill();
+                
+                // Draw range when selected
+                if (towerGame.selectedTowerType) {
+                    towerCtx.strokeStyle = tower.color + '40';
+                    towerCtx.beginPath();
+                    towerCtx.arc(tower.x, tower.y, tower.range, 0, Math.PI * 2);
+                    towerCtx.stroke();
+                }
+            });
+            
+            // Draw enemies
+            towerGame.enemies.forEach(enemy => {
+                towerCtx.fillStyle = enemy.color;
+                towerCtx.beginPath();
+                towerCtx.arc(enemy.x, enemy.y, enemy.size, 0, Math.PI * 2);
+                towerCtx.fill();
+                
+                // Health bar
+                towerCtx.fillStyle = '#ef4444';
+                towerCtx.fillRect(enemy.x - 10, enemy.y - 15, 20, 3);
+                towerCtx.fillStyle = '#22c55e';
+                towerCtx.fillRect(enemy.x - 10, enemy.y - 15, 20 * (enemy.hp / (50 + towerGame.wave * 10)), 3);
+            });
+            
+            // Draw projectiles
+            towerGame.projectiles.forEach(projectile => {
+                towerCtx.fillStyle = projectile.color;
+                towerCtx.beginPath();
+                towerCtx.arc(projectile.x, projectile.y, 3, 0, Math.PI * 2);
+                towerCtx.fill();
+            });
+        }
+        
+        function updateTowerUI() {
+            document.getElementById('towerHP').textContent = towerGame.hp;
+            document.getElementById('towerMoney').textContent = towerGame.money;
+            document.getElementById('towerWave').textContent = towerGame.wave;
+            document.getElementById('towerScore').textContent = towerGame.score;
+        }
+        
+        function gameOverTower() {
+            towerGame.active = false;
+            clearInterval(towerGame.gameLoop);
+            showNotification(`Game Over! Server diserang! Skor akhir: ${towerGame.score}`, 'error');
+            stopTowerGame();
+        }
+        
+        // Network Puzzle Game Variables
+        let puzzleCanvas, puzzleCtx;
+        let puzzleGame = {
+            active: false,
+            level: 1,
+            time: 60,
+            connections: 0,
+            requiredConnections: 5,
+            devices: [],
+            connections: [],
+            dragging: null,
+            gameLoop: null,
+            timer: null,
+            showEducation: false
+        };
+        
+        const deviceEducation = {
+            router: {
+                name: 'Router',
+                description: 'Perangkat yang menghubungkan berbagai jaringan dan menentukan jalur terbaik untuk data',
+                function: 'Routing, NAT, DHCP, Firewall',
+                realWorld: 'Router di rumah menghubungkan perangkat lokal ke internet melalui ISP'
+            },
+            switch: {
+                name: 'Switch',
+                description: 'Perangkat yang menghubungkan perangkat dalam satu jaringan lokal (LAN)',
+                function: 'MAC Address Learning, Frame Forwarding, VLAN',
+                realWorld: 'Switch di kantor menghubungkan semua komputer dalam satu gedung'
+            },
+            computer: {
+                name: 'Computer/PC',
+                description: 'Perangkat endpoint yang menggunakan layanan jaringan',
+                function: 'Client applications, IP configuration, Network protocols',
+                realWorld: 'Komputer kerja yang terhubung ke jaringan kantor untuk akses internet dan file sharing'
+            },
+            server: {
+                name: 'Server',
+                description: 'Komputer yang menyediakan layanan dan sumber daya untuk perangkat lain',
+                function: 'Web server, File server, Database server, Email server',
+                realWorld: 'Server perusahaan yang menyimpan data dan aplikasi untuk diakses karyawan'
+            },
+            accesspoint: {
+                name: 'Access Point',
+                description: 'Perangkat yang menyediakan akses wireless ke jaringan kabel',
+                function: 'WiFi broadcasting, Wireless security, Bridge mode',
+                realWorld: 'WiFi router di rumah atau hotspot di kafe untuk akses internet nirkabel'
+            }
+        };
+        
+        const topologyEducation = {
+            star: {
+                name: 'Topologi Star',
+                description: 'Semua perangkat terhubung ke satu titik pusat (hub/switch)',
+                advantages: 'Mudah troubleshoot, Failure isolation, Easy to expand',
+                disadvantages: 'Single point of failure pada hub, Butuh banyak kabel'
+            },
+            bus: {
+                name: 'Topologi Bus',
+                description: 'Semua perangkat terhubung ke satu kabel utama (backbone)',
+                advantages: 'Hemat kabel, Mudah implementasi untuk jaringan kecil',
+                disadvantages: 'Collision domain besar, Sulit troubleshoot, Bandwidth terbagi'
+            },
+            ring: {
+                name: 'Topologi Ring',
+                description: 'Perangkat terhubung membentuk lingkaran tertutup',
+                advantages: 'No collision, Equal access, Predictable performance',
+                disadvantages: 'Single point of failure, Sulit troubleshoot, Expansion kompleks'
+            }
+        };
+        
+        function startPuzzleGame() {
+            puzzleCanvas = document.getElementById('puzzleCanvas');
+            puzzleCtx = puzzleCanvas.getContext('2d');
+            
+            // Reset game
+            puzzleGame = {
+                active: true,
+                level: 1,
+                time: 60,
+                connections: 0,
+                requiredConnections: 5,
+                devices: [],
+                connectionLines: [],
+                dragging: null,
+                gameLoop: null,
+                timer: null
+            };
+            
+            generatePuzzleLevel();
+            
+            // Add event listeners
+            puzzleCanvas.onmousedown = startDrag;
+            puzzleCanvas.onmousemove = updateDrag;
+            puzzleCanvas.onmouseup = endDrag;
+            
+            // Start timer
+            puzzleGame.timer = setInterval(() => {
+                puzzleGame.time--;
+                updatePuzzleUI();
+                
+                if (puzzleGame.time <= 0) {
+                    gameOverPuzzle();
+                }
+            }, 1000);
+            
+            // Start game loop
+            puzzleGame.gameLoop = setInterval(drawPuzzleGame, 60);
+            
+            document.getElementById('puzzleButton').textContent = 'Stop Building';
+            document.getElementById('puzzleButton').onclick = stopPuzzleGame;
+        }
+        
+        function stopPuzzleGame() {
+            puzzleGame.active = false;
+            clearInterval(puzzleGame.gameLoop);
+            clearInterval(puzzleGame.timer);
+            puzzleCanvas.onmousedown = null;
+            puzzleCanvas.onmousemove = null;
+            puzzleCanvas.onmouseup = null;
+            document.getElementById('puzzleButton').textContent = 'Mulai Building';
+            document.getElementById('puzzleButton').onclick = startPuzzleGame;
+        }
+        
+        function generatePuzzleLevel() {
+            const levelConfigs = [
+                // Level 1: Basic Star Topology
+                {
+                    devices: [
+                        { x: 250, y: 200, type: 'router', connected: false, id: 0 },
+                        { x: 150, y: 100, type: 'computer', connected: false, id: 1 },
+                        { x: 350, y: 100, type: 'computer', connected: false, id: 2 },
+                        { x: 150, y: 300, type: 'computer', connected: false, id: 3 },
+                        { x: 350, y: 300, type: 'server', connected: false, id: 4 }
+                    ],
+                    task: 'Buat topologi STAR: Hubungkan semua perangkat ke router pusat',
+                    required: 4,
+                    education: 'Topologi Star adalah yang paling umum digunakan karena mudah dikelola dan troubleshoot'
+                },
+                // Level 2: Router + Switch
+                {
+                    devices: [
+                        { x: 100, y: 200, type: 'router', connected: false, id: 0 },
+                        { x: 250, y: 200, type: 'switch', connected: false, id: 1 },
+                        { x: 400, y: 150, type: 'computer', connected: false, id: 2 },
+                        { x: 400, y: 200, type: 'computer', connected: false, id: 3 },
+                        { x: 400, y: 250, type: 'server', connected: false, id: 4 }
+                    ],
+                    task: 'Hubungkan router ke switch, lalu switch ke semua perangkat',
+                    required: 4,
+                    education: 'Switch menghubungkan perangkat dalam LAN, Router menghubungkan ke jaringan lain'
+                },
+                // Level 3: Complex Network
+                {
+                    devices: [
+                        { x: 50, y: 200, type: 'router', connected: false, id: 0 },
+                        { x: 200, y: 100, type: 'switch', connected: false, id: 1 },
+                        { x: 200, y: 300, type: 'accesspoint', connected: false, id: 2 },
+                        { x: 350, y: 80, type: 'computer', connected: false, id: 3 },
+                        { x: 350, y: 120, type: 'computer', connected: false, id: 4 },
+                        { x: 350, y: 280, type: 'computer', connected: false, id: 5 },
+                        { x: 350, y: 320, type: 'server', connected: false, id: 6 }
+                    ],
+                    task: 'Buat jaringan hybrid: Router→Switch/AP→Perangkat',
+                    required: 6,
+                    education: 'Jaringan modern menggunakan kombinasi kabel dan wireless untuk fleksibilitas maksimal'
+                }
+            ];
+            
+            const config = levelConfigs[(puzzleGame.level - 1) % levelConfigs.length];
+            puzzleGame.devices = config.devices;
+            puzzleGame.requiredConnections = config.required;
+            
+            document.getElementById('puzzleTask').textContent = config.task;
+            
+            if (puzzleGame.showEducation) {
+                showPuzzleLevelEducation(config.education);
+            }
+            
+            updatePuzzleUI();
+        }
+        
+        function togglePuzzleEducation() {
+            const panel = document.getElementById('puzzleEducation');
+            panel.classList.toggle('hidden');
+            puzzleGame.showEducation = !panel.classList.contains('hidden');
+        }
+        
+        function showDeviceEducation(device) {
+            const info = deviceEducation[device.type];
+            if (!info) return;
+            
+            const content = document.getElementById('puzzleEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-yellow-400 mb-1">${info.name}</h5>
+                    <p class="text-blue-300 text-xs mb-2">${info.description}</p>
+                    <p class="text-green-300 text-xs mb-2"><strong>Fungsi:</strong> ${info.function}</p>
+                    <p class="text-purple-300 text-xs">${info.realWorld}</p>
+                </div>
+                <div class="text-xs text-gray-400 border-t border-gray-600 pt-2">
+                    <p><strong>💡 Tips:</strong> ${getNetworkTip(device.type)}</p>
+                </div>
+            `;
+            document.getElementById('puzzleEducation').classList.remove('hidden');
+        }
+        
+        function showPuzzleLevelEducation(education) {
+            const content = document.getElementById('puzzleEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-yellow-400 mb-1">Level ${puzzleGame.level} - Konsep Jaringan</h5>
+                    <p class="text-blue-300 text-xs mb-2">${education}</p>
+                </div>
+                <div class="text-xs text-gray-300 space-y-1">
+                    <p><strong>📡 Router:</strong> Gateway antar jaringan</p>
+                    <p><strong>🔄 Switch:</strong> Penghubung dalam LAN</p>
+                    <p><strong>📶 Access Point:</strong> Akses wireless</p>
+                    <p><strong>💻 Computer:</strong> Endpoint user</p>
+                    <p><strong>🖥️ Server:</strong> Penyedia layanan</p>
+                </div>
+            `;
+        }
+        
+        function getNetworkTip(deviceType) {
+            const tips = {
+                router: 'Tempatkan di pusat jaringan untuk routing optimal',
+                switch: 'Gunakan untuk menghubungkan banyak perangkat dalam satu segmen',
+                computer: 'Konfigurasi IP yang benar penting untuk konektivitas',
+                server: 'Butuh koneksi stabil dan bandwidth tinggi',
+                accesspoint: 'Posisi strategis untuk coverage WiFi maksimal'
+            };
+            return tips[deviceType] || 'Setiap perangkat punya peran penting dalam jaringan';
+        }
+        
+        function startDrag(event) {
+            const rect = puzzleCanvas.getBoundingClientRect();
+            const x = (event.clientX - rect.left) * (puzzleCanvas.width / rect.width);
+            const y = (event.clientY - rect.top) * (puzzleCanvas.height / rect.height);
+            
+            const device = puzzleGame.devices.find(d => 
+                Math.sqrt((d.x - x) ** 2 + (d.y - y) ** 2) < 25
+            );
+            
+            if (device) {
+                // Show education on click (before drag)
+                showDeviceEducation(device);
+                puzzleGame.dragging = { device, startX: x, startY: y };
+            }
+        }
+        
+        function updateDrag(event) {
+            if (!puzzleGame.dragging) return;
+            
+            const rect = puzzleCanvas.getBoundingClientRect();
+            const x = (event.clientX - rect.left) * (puzzleCanvas.width / rect.width);
+            const y = (event.clientY - rect.top) * (puzzleCanvas.height / rect.height);
+            
+            puzzleGame.dragging.currentX = x;
+            puzzleGame.dragging.currentY = y;
+        }
+        
+        function endDrag(event) {
+            if (!puzzleGame.dragging) return;
+            
+            const rect = puzzleCanvas.getBoundingClientRect();
+            const x = (event.clientX - rect.left) * (puzzleCanvas.width / rect.width);
+            const y = (event.clientY - rect.top) * (puzzleCanvas.height / rect.height);
+            
+            const targetDevice = puzzleGame.devices.find(d => 
+                d !== puzzleGame.dragging.device &&
+                Math.sqrt((d.x - x) ** 2 + (d.y - y) ** 2) < 25
+            );
+            
+            if (targetDevice) {
+                // Create connection
+                const connection = {
+                    from: puzzleGame.dragging.device.id,
+                    to: targetDevice.id
+                };
+                
+                // Check if connection already exists
+                const exists = puzzleGame.connectionLines.some(c => 
+                    (c.from === connection.from && c.to === connection.to) ||
+                    (c.from === connection.to && c.to === connection.from)
+                );
+                
+                if (!exists) {
+                    puzzleGame.connectionLines.push(connection);
+                    puzzleGame.connections++;
+                    
+                    if (puzzleGame.connections >= puzzleGame.requiredConnections) {
+                        levelCompletePuzzle();
+                    }
+                }
+            }
+            
+            puzzleGame.dragging = null;
+            updatePuzzleUI();
+        }
+        
+        function drawPuzzleGame() {
+            // Clear canvas
+            puzzleCtx.fillStyle = '#f9fafb';
+            puzzleCtx.fillRect(0, 0, puzzleCanvas.width, puzzleCanvas.height);
+            
+            // Draw connections
+            puzzleGame.connectionLines.forEach(conn => {
+                const fromDevice = puzzleGame.devices.find(d => d.id === conn.from);
+                const toDevice = puzzleGame.devices.find(d => d.id === conn.to);
+                
+                puzzleCtx.strokeStyle = '#0A66C2';
+                puzzleCtx.lineWidth = 3;
+                puzzleCtx.beginPath();
+                puzzleCtx.moveTo(fromDevice.x, fromDevice.y);
+                puzzleCtx.lineTo(toDevice.x, toDevice.y);
+                puzzleCtx.stroke();
+            });
+            
+            // Draw drag line
+            if (puzzleGame.dragging && puzzleGame.dragging.currentX) {
+                puzzleCtx.strokeStyle = '#94a3b8';
+                puzzleCtx.lineWidth = 2;
+                puzzleCtx.setLineDash([5, 5]);
+                puzzleCtx.beginPath();
+                puzzleCtx.moveTo(puzzleGame.dragging.device.x, puzzleGame.dragging.device.y);
+                puzzleCtx.lineTo(puzzleGame.dragging.currentX, puzzleGame.dragging.currentY);
+                puzzleCtx.stroke();
+                puzzleCtx.setLineDash([]);
+            }
+            
+            // Draw devices
+            puzzleGame.devices.forEach(device => {
+                const colors = {
+                    router: '#ef4444',
+                    computer: '#3b82f6',
+                    server: '#22c55e'
+                };
+                
+                puzzleCtx.fillStyle = colors[device.type];
+                puzzleCtx.beginPath();
+                puzzleCtx.arc(device.x, device.y, 20, 0, Math.PI * 2);
+                puzzleCtx.fill();
+                
+                // Device icon
+                puzzleCtx.fillStyle = '#ffffff';
+                puzzleCtx.font = '16px Arial';
+                puzzleCtx.textAlign = 'center';
+                const icons = { router: '📡', computer: '💻', server: '🖥️' };
+                puzzleCtx.fillText(icons[device.type], device.x, device.y + 5);
+            });
+        }
+        
+        function updatePuzzleUI() {
+            document.getElementById('puzzleLevel').textContent = puzzleGame.level;
+            document.getElementById('puzzleTime').textContent = puzzleGame.time;
+            document.getElementById('puzzleConnections').textContent = `${puzzleGame.connections}/${puzzleGame.requiredConnections}`;
+        }
+        
+        function levelCompletePuzzle() {
+            puzzleGame.level++;
+            puzzleGame.time += 30;
+            puzzleGame.connections = 0;
+            puzzleGame.connectionLines = [];
+            generatePuzzleLevel();
+            showNotification(`Level ${puzzleGame.level} selesai! Lanjut ke level berikutnya!`, 'success');
+        }
+        
+        function gameOverPuzzle() {
+            stopPuzzleGame();
+            showNotification(`Waktu habis! Level terakhir: ${puzzleGame.level}`, 'error');
+        }
+        
+        // Advanced Memory Game Variables
         let memoryCards = [];
         let flippedCards = [];
         let memoryScore = 0;
         let memoryTime = 0;
+        let memoryLevel = 1;
+        let memoryCombo = 1;
         let memoryTimer = null;
         let memoryGameActive = false;
+        let memoryShowEducation = false;
         
-        const networkIcons = ['🖥️', '🖨️', '📡', '🔌', '💾', '⌨️', '🖱️', '📱'];
+        const networkIcons = ['🖥️', '🖨️', '📡', '🔌', '💾', '⌨️', '🖱️', '📱', '🔒', '🌐', '📊', '⚡'];
+        
+        const memoryEducation = {
+            '🖥️': {
+                name: 'Computer/PC',
+                description: 'Perangkat komputasi utama yang digunakan untuk berbagai aplikasi',
+                specs: 'CPU, RAM, Storage, Network Interface Card (NIC)',
+                networking: 'Terhubung ke jaringan melalui Ethernet atau WiFi untuk akses internet dan sharing resources'
+            },
+            '🖨️': {
+                name: 'Network Printer',
+                description: 'Printer yang dapat diakses melalui jaringan oleh multiple users',
+                specs: 'Print server, IP address, Network protocols (IPP, LPR)',
+                networking: 'Menggunakan protokol printing seperti IPP untuk menerima job dari komputer di jaringan'
+            },
+            '📡': {
+                name: 'Router/Access Point',
+                description: 'Perangkat yang menghubungkan jaringan lokal ke internet atau jaringan lain',
+                specs: 'CPU, RAM, Flash memory, Multiple network interfaces',
+                networking: 'Melakukan routing, NAT, DHCP, dan wireless access point untuk konektivitas jaringan'
+            },
+            '🔌': {
+                name: 'Network Cable/Port',
+                description: 'Media fisik untuk transmisi data dalam jaringan kabel',
+                specs: 'UTP Cat5e/Cat6, RJ45 connector, 100m max length',
+                networking: 'Menggunakan standar Ethernet untuk transmisi data dengan kecepatan hingga 1Gbps'
+            },
+            '💾': {
+                name: 'Network Storage (NAS)',
+                description: 'Perangkat penyimpanan yang dapat diakses melalui jaringan',
+                specs: 'Hard drives, RAID controller, Network interface',
+                networking: 'Menggunakan protokol SMB/CIFS, NFS, atau FTP untuk file sharing di jaringan'
+            },
+            '⌨️': {
+                name: 'Input Device',
+                description: 'Perangkat input yang terhubung ke komputer dalam jaringan',
+                specs: 'USB/PS2 interface, Wireless connectivity',
+                networking: 'Dapat menggunakan KVM over IP untuk remote access atau wireless untuk konektivitas'
+            },
+            '🖱️': {
+                name: 'Mouse/Pointing Device',
+                description: 'Perangkat pointing untuk navigasi interface komputer',
+                specs: 'Optical/laser sensor, USB/wireless interface',
+                networking: 'Wireless mouse menggunakan RF atau Bluetooth untuk koneksi tanpa kabel'
+            },
+            '📱': {
+                name: 'Mobile Device',
+                description: 'Smartphone atau tablet yang terhubung ke jaringan',
+                specs: 'WiFi, Cellular, Bluetooth, Mobile OS',
+                networking: 'Menggunakan WiFi untuk LAN access dan cellular untuk WAN/internet connectivity'
+            },
+            '🔒': {
+                name: 'Network Security',
+                description: 'Sistem keamanan untuk melindungi jaringan dari ancaman',
+                specs: 'Firewall, IDS/IPS, VPN, Authentication systems',
+                networking: 'Mengimplementasikan security policies, encryption, dan access control di jaringan'
+            },
+            '🌐': {
+                name: 'Internet/WAN',
+                description: 'Jaringan global yang menghubungkan jaringan lokal ke seluruh dunia',
+                specs: 'ISP connection, Public IP, DNS, Routing protocols',
+                networking: 'Menggunakan protokol TCP/IP, BGP, dan DNS untuk routing global dan name resolution'
+            },
+            '📊': {
+                name: 'Network Monitoring',
+                description: 'Sistem untuk memantau performa dan status jaringan',
+                specs: 'SNMP agents, Monitoring software, Alerting systems',
+                networking: 'Menggunakan SNMP, NetFlow, dan logging untuk monitoring traffic dan troubleshooting'
+            },
+            '⚡': {
+                name: 'Power over Ethernet (PoE)',
+                description: 'Teknologi untuk menyuplai daya melalui kabel Ethernet',
+                specs: 'PoE injector/switch, 48V DC, Up to 90W (PoE++)',
+                networking: 'Memungkinkan perangkat seperti IP camera dan access point mendapat daya dari switch'
+            }
+        };
         
         function startMemoryGame() {
             memoryScore = 0;
             memoryTime = 0;
+            memoryLevel = 1;
+            memoryCombo = 1;
             memoryGameActive = true;
             flippedCards = [];
             
-            // Create card pairs
-            const icons = [...networkIcons.slice(0, 8)];
+            generateMemoryLevel();
+            
+            // Start timer
+            memoryTimer = setInterval(() => {
+                memoryTime++;
+                updateMemoryUI();
+            }, 1000);
+            
+            document.getElementById('memoryButton').textContent = 'Stop Matrix';
+            document.getElementById('memoryButton').onclick = stopMemoryGame;
+        }
+        
+        function stopMemoryGame() {
+            memoryGameActive = false;
+            clearInterval(memoryTimer);
+            document.getElementById('memoryButton').textContent = 'Mulai Matrix';
+            document.getElementById('memoryButton').onclick = startMemoryGame;
+        }
+        
+        function generateMemoryLevel() {
+            const pairsCount = Math.min(6 + memoryLevel, 12);
+            const icons = [...networkIcons.slice(0, pairsCount)];
             const cardPairs = [...icons, ...icons];
             cardPairs.sort(() => Math.random() - 0.5);
             
             const gameContainer = document.getElementById('memoryGame');
             gameContainer.innerHTML = '';
+            gameContainer.className = `grid grid-cols-${Math.ceil(Math.sqrt(cardPairs.length))} gap-2 mb-6 min-h-[200px]`;
             memoryCards = [];
             
             cardPairs.forEach((icon, index) => {
                 const card = document.createElement('div');
-                card.className = 'bg-gray-200 rounded-lg h-16 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors text-2xl';
+                card.className = 'bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg h-16 flex items-center justify-center cursor-pointer hover:from-blue-200 hover:to-blue-300 transition-all duration-300 text-2xl shadow-lg transform hover:scale-105';
                 card.dataset.icon = icon;
                 card.dataset.index = index;
                 card.onclick = () => flipCard(index);
@@ -860,13 +1859,7 @@
                 memoryCards.push({ element: card, icon, flipped: false, matched: false });
             });
             
-            // Start timer
-            memoryTimer = setInterval(() => {
-                memoryTime++;
-                document.getElementById('memoryTime').textContent = memoryTime + 's';
-            }, 1000);
-            
-            updateMemoryScore();
+            updateMemoryUI();
         }
         
         function flipCard(index) {
@@ -874,30 +1867,40 @@
             
             memoryCards[index].flipped = true;
             memoryCards[index].element.textContent = memoryCards[index].icon;
-            memoryCards[index].element.classList.add('bg-blue-100');
+            memoryCards[index].element.classList.add('from-blue-100', 'to-blue-200', 'scale-110');
             flippedCards.push(index);
             
             if (flippedCards.length === 2) {
-                setTimeout(checkMatch, 800);
+                setTimeout(checkMemoryMatch, 800);
             }
         }
         
-        function checkMatch() {
+        function checkMemoryMatch() {
             const [first, second] = flippedCards;
             
             if (memoryCards[first].icon === memoryCards[second].icon) {
                 // Match found
                 memoryCards[first].matched = true;
                 memoryCards[second].matched = true;
-                memoryCards[first].element.classList.add('bg-green-200');
-                memoryCards[second].element.classList.add('bg-green-200');
-                memoryScore += 10;
+                memoryCards[first].element.classList.add('from-green-200', 'to-green-300');
+                memoryCards[second].element.classList.add('from-green-200', 'to-green-300');
                 
-                // Check if game is complete
+                const points = 10 * memoryCombo * memoryLevel;
+                memoryScore += points;
+                memoryCombo++;
+                
+                // Show device education
+                showMemoryDeviceEducation(memoryCards[first].icon);
+                showNotification(`+${points} points! Combo x${memoryCombo}`, 'success');
+                
+                // Check if level is complete
                 if (memoryCards.every(card => card.matched)) {
-                    clearInterval(memoryTimer);
-                    memoryGameActive = false;
-                    showNotification(`Selamat! Game selesai dalam ${memoryTime} detik dengan skor ${memoryScore}!`, 'success');
+                    memoryLevel++;
+                    memoryCombo = 1;
+                    setTimeout(() => {
+                        generateMemoryLevel();
+                        showNotification(`Level ${memoryLevel}! Lebih banyak kartu!`, 'info');
+                    }, 1000);
                 }
             } else {
                 // No match
@@ -905,63 +1908,533 @@
                 memoryCards[second].flipped = false;
                 memoryCards[first].element.textContent = '';
                 memoryCards[second].element.textContent = '';
-                memoryCards[first].element.classList.remove('bg-blue-100');
-                memoryCards[second].element.classList.remove('bg-blue-100');
+                memoryCards[first].element.classList.remove('from-blue-100', 'to-blue-200', 'scale-110');
+                memoryCards[second].element.classList.remove('from-blue-100', 'to-blue-200', 'scale-110');
+                memoryCombo = 1;
             }
             
             flippedCards = [];
-            updateMemoryScore();
+            updateMemoryUI();
         }
         
-        function updateMemoryScore() {
+        function toggleMemoryEducation() {
+            const panel = document.getElementById('memoryEducation');
+            panel.classList.toggle('hidden');
+            memoryShowEducation = !panel.classList.contains('hidden');
+        }
+        
+        function showMemoryDeviceEducation(icon) {
+            const device = memoryEducation[icon];
+            if (!device) return;
+            
+            const content = document.getElementById('memoryEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-blue-600 mb-1">${icon} ${device.name}</h5>
+                    <p class="text-gray-700 text-xs mb-2">${device.description}</p>
+                    <p class="text-green-600 text-xs mb-2"><strong>Spesifikasi:</strong> ${device.specs}</p>
+                    <p class="text-purple-600 text-xs">${device.networking}</p>
+                </div>
+                <div class="text-xs text-gray-500 border-t border-gray-300 pt-2">
+                    <p><strong>💡 Fungsi dalam Jaringan:</strong> ${getMemoryDeviceTip(icon)}</p>
+                </div>
+            `;
+            
+            // Auto show education panel
+            document.getElementById('memoryEducation').classList.remove('hidden');
+            memoryShowEducation = true;
+        }
+        
+        function getMemoryDeviceTip(icon) {
+            const tips = {
+                '🖥️': 'Endpoint utama yang menggunakan layanan jaringan untuk produktivitas',
+                '🖨️': 'Shared resource yang menghemat biaya dan meningkatkan efisiensi kantor',
+                '📡': 'Backbone jaringan yang mengatur traffic dan konektivitas',
+                '🔌': 'Media transmisi yang menentukan kecepatan dan reliabilitas jaringan',
+                '💾': 'Centralized storage untuk backup dan file sharing yang aman',
+                '⌨️': 'Interface input yang dapat di-remote melalui KVM over IP',
+                '🖱️': 'Pointing device dengan teknologi wireless untuk mobilitas',
+                '📱': 'Mobile endpoint dengan dual connectivity (WiFi + Cellular)',
+                '🔒': 'Layer pertahanan untuk melindungi aset digital perusahaan',
+                '🌐': 'Gateway ke dunia digital global melalui protokol internet',
+                '📊': 'Tools untuk visibility dan troubleshooting performa jaringan',
+                '⚡': 'Solusi power yang menyederhanakan instalasi perangkat jaringan'
+            };
+            return tips[icon] || 'Komponen penting dalam ekosistem jaringan modern';
+        }
+        
+        function updateMemoryUI() {
+            document.getElementById('memoryLevel').textContent = memoryLevel;
             document.getElementById('memoryScore').textContent = memoryScore;
+            document.getElementById('memoryTime').textContent = memoryTime + 's';
+            document.getElementById('memoryCombo').textContent = 'x' + memoryCombo;
         }
         
-        // Quiz Game Variables
+        // Advanced Quiz Game Variables - Comprehensive Networking Questions
         let quizQuestions = [
+            // LEVEL 1 - BASIC NETWORKING (Difficulty 1)
+            {
+                question: "Apa kepanjangan dari LAN?",
+                options: ["Local Area Network", "Large Area Network", "Limited Access Network", "Linear Access Network"],
+                correct: 0,
+                difficulty: 1
+            },
+            {
+                question: "Perangkat yang menghubungkan komputer dalam satu jaringan lokal adalah?",
+                options: ["Router", "Switch", "Modem", "Gateway"],
+                correct: 1,
+                difficulty: 1
+            },
+            {
+                question: "Apa fungsi utama dari router?",
+                options: ["Menghubungkan perangkat dalam LAN", "Menghubungkan jaringan yang berbeda", "Menyimpan data", "Mengamankan jaringan"],
+                correct: 1,
+                difficulty: 1
+            },
+            {
+                question: "Protokol yang digunakan untuk browsing web adalah?",
+                options: ["FTP", "SMTP", "HTTP", "SNMP"],
+                correct: 2,
+                difficulty: 1
+            },
+            {
+                question: "Port default untuk HTTP adalah?",
+                options: ["21", "25", "80", "443"],
+                correct: 2,
+                difficulty: 1
+            },
+            {
+                question: "Apa kepanjangan dari WiFi?",
+                options: ["Wireless Fidelity", "Wide Frequency", "Wireless Frequency", "Web Fidelity"],
+                correct: 0,
+                difficulty: 1
+            },
+            {
+                question: "Perangkat yang mengubah sinyal digital ke analog adalah?",
+                options: ["Switch", "Hub", "Modem", "Bridge"],
+                correct: 2,
+                difficulty: 1
+            },
+            {
+                question: "Apa kepanjangan dari ISP?",
+                options: ["Internet Service Provider", "Internal Service Protocol", "Internet Security Protocol", "Internal System Provider"],
+                correct: 0,
+                difficulty: 1
+            },
+            {
+                question: "Kabel yang paling umum digunakan untuk jaringan Ethernet adalah?",
+                options: ["Coaxial", "Fiber Optic", "UTP", "STP"],
+                correct: 2,
+                difficulty: 1
+            },
+            {
+                question: "Berapa jumlah layer dalam model OSI?",
+                options: ["5", "6", "7", "8"],
+                correct: 2,
+                difficulty: 1
+            },
+
+            // LEVEL 2 - INTERMEDIATE BASICS (Difficulty 2)
             {
                 question: "Apa kepanjangan dari VSAT?",
                 options: ["Very Small Aperture Terminal", "Virtual Satellite Access Terminal", "Video Streaming Access Terminal", "Voice Signal Access Terminal"],
-                correct: 0
+                correct: 0,
+                difficulty: 2
             },
             {
                 question: "Port default untuk SSH adalah?",
                 options: ["21", "22", "23", "80"],
-                correct: 1
-            },
-            {
-                question: "Perangkat yang berfungsi menghubungkan dua jaringan berbeda adalah?",
-                options: ["Switch", "Hub", "Router", "Bridge"],
-                correct: 2
+                correct: 1,
+                difficulty: 2
             },
             {
                 question: "Protokol yang digunakan untuk transfer file adalah?",
                 options: ["HTTP", "FTP", "SMTP", "DNS"],
-                correct: 1
+                correct: 1,
+                difficulty: 2
             },
             {
                 question: "IP Address 192.168.1.1 termasuk kelas?",
                 options: ["Kelas A", "Kelas B", "Kelas C", "Kelas D"],
-                correct: 2
+                correct: 2,
+                difficulty: 2
+            },
+            {
+                question: "Subnet mask untuk jaringan kelas C adalah?",
+                options: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"],
+                correct: 2,
+                difficulty: 2
+            },
+            {
+                question: "Protokol yang digunakan untuk email adalah?",
+                options: ["HTTP", "FTP", "SMTP", "SNMP"],
+                correct: 2,
+                difficulty: 2
+            },
+            {
+                question: "Apa fungsi dari DNS?",
+                options: ["Mengamankan jaringan", "Menerjemahkan domain ke IP", "Mengatur bandwidth", "Menyimpan data"],
+                correct: 1,
+                difficulty: 2
+            },
+            {
+                question: "Port default untuk HTTPS adalah?",
+                options: ["80", "443", "8080", "8443"],
+                correct: 1,
+                difficulty: 2
+            },
+            {
+                question: "Topologi jaringan yang berbentuk lingkaran adalah?",
+                options: ["Star", "Bus", "Ring", "Mesh"],
+                correct: 2,
+                difficulty: 2
+            },
+            {
+                question: "Protokol yang digunakan untuk mendapatkan IP otomatis adalah?",
+                options: ["DNS", "DHCP", "ARP", "ICMP"],
+                correct: 1,
+                difficulty: 2
+            },
+
+            // LEVEL 3 - INTERMEDIATE ADVANCED (Difficulty 3)
+            {
+                question: "Berapa maksimal host dalam subnet /24?",
+                options: ["254", "255", "256", "253"],
+                correct: 0,
+                difficulty: 3
+            },
+            {
+                question: "Protokol yang digunakan untuk sinkronisasi waktu adalah?",
+                options: ["SNMP", "NTP", "DHCP", "DNS"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "Dalam OSI Layer, TCP berada di layer?",
+                options: ["Layer 3", "Layer 4", "Layer 5", "Layer 6"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "VLAN berfungsi untuk?",
+                options: ["Membagi jaringan secara fisik", "Membagi jaringan secara logis", "Mengamankan jaringan", "Mempercepat jaringan"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "Protokol routing yang menggunakan hop count adalah?",
+                options: ["OSPF", "RIP", "BGP", "EIGRP"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "Berapa range port untuk Well Known Ports?",
+                options: ["0-1023", "1024-49151", "49152-65535", "0-65535"],
+                correct: 0,
+                difficulty: 3
+            },
+            {
+                question: "NAT berfungsi untuk?",
+                options: ["Mengamankan jaringan", "Menerjemahkan IP private ke public", "Mempercepat koneksi", "Membagi bandwidth"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "Protokol yang digunakan untuk monitoring jaringan adalah?",
+                options: ["SMTP", "SNMP", "HTTP", "FTP"],
+                correct: 1,
+                difficulty: 3
+            },
+            {
+                question: "STP (Spanning Tree Protocol) berfungsi untuk?",
+                options: ["Mencegah loop pada switch", "Mengamankan jaringan", "Mempercepat transfer data", "Membagi VLAN"],
+                correct: 0,
+                difficulty: 3
+            },
+            {
+                question: "Berapa maksimal panjang kabel UTP Cat5e?",
+                options: ["90 meter", "100 meter", "150 meter", "200 meter"],
+                correct: 1,
+                difficulty: 3
+            },
+
+            // LEVEL 4 - ADVANCED (Difficulty 4)
+            {
+                question: "Teknologi yang digunakan untuk VPN adalah?",
+                options: ["IPSec", "SSL/TLS", "PPTP", "Semua benar"],
+                correct: 3,
+                difficulty: 4
+            },
+            {
+                question: "Algoritma routing yang digunakan OSPF adalah?",
+                options: ["Distance Vector", "Link State", "Path Vector", "Hybrid"],
+                correct: 1,
+                difficulty: 4
+            },
+            {
+                question: "Berapa jumlah host maksimal dalam subnet /22?",
+                options: ["1022", "1024", "510", "512"],
+                correct: 0,
+                difficulty: 4
+            },
+            {
+                question: "MPLS bekerja pada layer berapa dalam OSI?",
+                options: ["Layer 2", "Layer 2.5", "Layer 3", "Layer 4"],
+                correct: 1,
+                difficulty: 4
+            },
+            {
+                question: "Protokol yang digunakan untuk QoS adalah?",
+                options: ["DSCP", "CoS", "RSVP", "Semua benar"],
+                correct: 3,
+                difficulty: 4
+            },
+            {
+                question: "Dalam BGP, apa yang dimaksud dengan AS?",
+                options: ["Access Server", "Autonomous System", "Application Server", "Authentication System"],
+                correct: 1,
+                difficulty: 4
+            },
+            {
+                question: "HSRP (Hot Standby Router Protocol) dikembangkan oleh?",
+                options: ["Cisco", "Juniper", "HP", "Standard IEEE"],
+                correct: 0,
+                difficulty: 4
+            },
+            {
+                question: "Berapa TTL default untuk ping di Windows?",
+                options: ["64", "128", "255", "32"],
+                correct: 1,
+                difficulty: 4
+            },
+            {
+                question: "Protokol yang digunakan untuk load balancing adalah?",
+                options: ["VRRP", "GLBP", "HSRP", "Semua benar"],
+                correct: 3,
+                difficulty: 4
+            },
+            {
+                question: "Dalam OSPF, apa fungsi dari LSA Type 1?",
+                options: ["Router LSA", "Network LSA", "Summary LSA", "External LSA"],
+                correct: 0,
+                difficulty: 4
+            },
+
+            // LEVEL 5 - EXPERT (Difficulty 5)
+            {
+                question: "Dalam MPLS, apa yang dimaksud dengan PHP?",
+                options: ["Penultimate Hop Popping", "Primary Header Protocol", "Packet Header Processing", "Path Header Protocol"],
+                correct: 0,
+                difficulty: 5
+            },
+            {
+                question: "Berapa maksimal VLAN ID dalam 802.1Q?",
+                options: ["1024", "2048", "4094", "4096"],
+                correct: 2,
+                difficulty: 5
+            },
+            {
+                question: "Dalam BGP, apa yang dimaksud dengan MED?",
+                options: ["Multi-Exit Discriminator", "Maximum Entry Distance", "Multiple Entry Data", "Metric Entry Descriptor"],
+                correct: 0,
+                difficulty: 5
+            },
+            {
+                question: "Protokol yang digunakan untuk MPLS signaling adalah?",
+                options: ["LDP", "RSVP-TE", "BGP", "Semua benar"],
+                correct: 3,
+                difficulty: 5
+            },
+            {
+                question: "Dalam IPv6, berapa panjang address?",
+                options: ["64 bit", "96 bit", "128 bit", "256 bit"],
+                correct: 2,
+                difficulty: 5
+            },
+            {
+                question: "Apa yang dimaksud dengan ECMP?",
+                options: ["Equal Cost Multi Path", "Enhanced Cost Management Protocol", "Extended Configuration Management", "Ethernet Cost Multi Protocol"],
+                correct: 0,
+                difficulty: 5
+            },
+            {
+                question: "Dalam OSPF, berapa default hello interval?",
+                options: ["5 detik", "10 detik", "15 detik", "30 detik"],
+                correct: 1,
+                difficulty: 5
+            },
+            {
+                question: "Protokol yang digunakan untuk network automation adalah?",
+                options: ["NETCONF", "RESTCONF", "gNMI", "Semua benar"],
+                correct: 3,
+                difficulty: 5
+            },
+            {
+                question: "Dalam SDN, apa yang dimaksud dengan southbound API?",
+                options: ["Controller ke aplikasi", "Controller ke switch", "Switch ke host", "Aplikasi ke controller"],
+                correct: 1,
+                difficulty: 5
+            },
+            {
+                question: "Berapa maksimal MTU untuk Ethernet frame?",
+                options: ["1500 bytes", "1518 bytes", "9000 bytes", "Tergantung konfigurasi"],
+                correct: 3,
+                difficulty: 5
+            },
+
+            // SECURITY & WIRELESS (Mixed Difficulties)
+            {
+                question: "Enkripsi yang paling aman untuk WiFi adalah?",
+                options: ["WEP", "WPA", "WPA2", "WPA3"],
+                correct: 3,
+                difficulty: 3
+            },
+            {
+                question: "Port default untuk SNMP adalah?",
+                options: ["161", "162", "163", "160"],
+                correct: 0,
+                difficulty: 2
+            },
+            {
+                question: "Apa yang dimaksud dengan DoS attack?",
+                options: ["Denial of Service", "Distribution of Service", "Duplication of Service", "Detection of Service"],
+                correct: 0,
+                difficulty: 2
+            },
+            {
+                question: "Firewall bekerja pada layer berapa?",
+                options: ["Layer 2", "Layer 3", "Layer 4", "Layer 3 dan 4"],
+                correct: 3,
+                difficulty: 3
+            },
+            {
+                question: "Frekuensi WiFi 2.4 GHz memiliki berapa channel?",
+                options: ["11", "13", "14", "Tergantung negara"],
+                correct: 3,
+                difficulty: 3
+            },
+
+            // CABLING & PHYSICAL (Mixed Difficulties)
+            {
+                question: "Standar kabel UTP untuk Gigabit Ethernet adalah?",
+                options: ["Cat5", "Cat5e", "Cat6", "Cat5e atau Cat6"],
+                correct: 3,
+                difficulty: 2
+            },
+            {
+                question: "Berapa maksimal jarak fiber optic single mode?",
+                options: ["2 km", "10 km", "40 km", "Lebih dari 40 km"],
+                correct: 3,
+                difficulty: 4
+            },
+            {
+                question: "Konektor yang digunakan untuk fiber optic adalah?",
+                options: ["RJ45", "SC", "LC", "SC dan LC"],
+                correct: 3,
+                difficulty: 2
+            },
+            {
+                question: "PoE (Power over Ethernet) dapat memberikan daya maksimal?",
+                options: ["15.4W", "25.5W", "60W", "Tergantung standar"],
+                correct: 3,
+                difficulty: 3
+            },
+
+            // TROUBLESHOOTING & TOOLS (Mixed Difficulties)
+            {
+                question: "Command untuk melihat routing table di Windows adalah?",
+                options: ["ipconfig", "route print", "netstat", "tracert"],
+                correct: 1,
+                difficulty: 2
+            },
+            {
+                question: "Tool untuk menganalisa paket jaringan adalah?",
+                options: ["Ping", "Traceroute", "Wireshark", "Netstat"],
+                correct: 2,
+                difficulty: 2
+            },
+            {
+                question: "Apa yang ditunjukkan oleh ping dengan TTL expired?",
+                options: ["Destination unreachable", "Network loop", "Packet loss", "Routing loop"],
+                correct: 3,
+                difficulty: 3
+            },
+            {
+                question: "Command untuk flush DNS cache di Windows adalah?",
+                options: ["ipconfig /flushdns", "netsh flush dns", "dns /flush", "clear dns"],
+                correct: 0,
+                difficulty: 2
+            },
+
+            // MODERN NETWORKING (High Difficulty)
+            {
+                question: "Dalam cloud networking, apa yang dimaksud dengan VPC?",
+                options: ["Virtual Private Cloud", "Virtual Protocol Configuration", "Virtual Port Channel", "Virtual Processing Center"],
+                correct: 0,
+                difficulty: 4
+            },
+            {
+                question: "Container networking menggunakan teknologi?",
+                options: ["Bridge", "Overlay", "Host", "Semua benar"],
+                correct: 3,
+                difficulty: 5
+            },
+            {
+                question: "Dalam Kubernetes, apa fungsi dari CNI?",
+                options: ["Container Network Interface", "Cluster Network Integration", "Container Node Interface", "Cluster Node Integration"],
+                correct: 0,
+                difficulty: 5
+            },
+            {
+                question: "Edge computing mempengaruhi jaringan dengan cara?",
+                options: ["Mengurangi latency", "Mendekatkan processing ke user", "Mengurangi bandwidth usage", "Semua benar"],
+                correct: 3,
+                difficulty: 4
             }
         ];
         
         let currentQuiz = 0;
         let quizScore = 0;
+        let quizLevel = 1;
+        let quizStreak = 0;
+        let quizBonus = 1;
         let quizActive = false;
+        let quizTimeLeft = 15;
+        let quizTimer = null;
         
         function startQuiz() {
             currentQuiz = 0;
             quizScore = 0;
+            quizLevel = 1;
+            quizStreak = 0;
+            quizBonus = 1;
             quizActive = true;
-            document.getElementById('quizButton').textContent = 'Jawab';
+            
+            document.getElementById('quizButton').textContent = 'Stop Challenge';
+            document.getElementById('quizButton').onclick = stopQuiz;
+            
             showQuizQuestion();
         }
         
+        function stopQuiz() {
+            quizActive = false;
+            clearInterval(quizTimer);
+            document.getElementById('quizTimer').classList.add('hidden');
+            document.getElementById('quizQuestion').textContent = 'Klik "Mulai Challenge" untuk memulai';
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('quizButton').textContent = 'Mulai Challenge';
+            document.getElementById('quizButton').onclick = startQuiz;
+        }
+        
         function showQuizQuestion() {
+            if (!quizActive) return;
+            
             if (currentQuiz >= quizQuestions.length) {
-                endQuiz();
-                return;
+                // Level up
+                quizLevel++;
+                currentQuiz = 0;
+                quizBonus = Math.min(quizBonus + 0.5, 3);
+                showNotification(`Level ${quizLevel}! Bonus multiplier: x${quizBonus}`, 'success');
             }
             
             const question = quizQuestions[currentQuiz];
@@ -972,17 +2445,49 @@
             
             question.options.forEach((option, index) => {
                 const button = document.createElement('button');
-                button.className = 'w-full p-3 text-left bg-gray-100 hover:bg-blue-100 rounded-lg transition-colors';
+                button.className = 'w-full p-3 text-left bg-gradient-to-r from-gray-100 to-gray-200 hover:from-blue-100 hover:to-blue-200 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md';
                 button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
                 button.onclick = () => selectQuizAnswer(index);
                 optionsContainer.appendChild(button);
             });
             
-            updateQuizScore();
+            // Start timer
+            quizTimeLeft = Math.max(10 - quizLevel, 5);
+            document.getElementById('quizTimer').classList.remove('hidden');
+            updateQuizTimer();
+            
+            quizTimer = setInterval(() => {
+                quizTimeLeft--;
+                updateQuizTimer();
+                
+                if (quizTimeLeft <= 0) {
+                    selectQuizAnswer(-1); // Time's up
+                }
+            }, 1000);
+            
+            updateQuizUI();
+        }
+        
+        function updateQuizTimer() {
+            const timerBar = document.getElementById('quizTimerBar');
+            const maxTime = Math.max(10 - quizLevel, 5);
+            const percentage = (quizTimeLeft / maxTime) * 100;
+            timerBar.style.width = percentage + '%';
+            
+            if (percentage < 30) {
+                timerBar.className = 'bg-red-600 h-2 rounded-full transition-all duration-1000';
+            } else if (percentage < 60) {
+                timerBar.className = 'bg-yellow-600 h-2 rounded-full transition-all duration-1000';
+            } else {
+                timerBar.className = 'bg-blue-600 h-2 rounded-full transition-all duration-1000';
+            }
         }
         
         function selectQuizAnswer(selectedIndex) {
             if (!quizActive) return;
+            
+            clearInterval(quizTimer);
+            document.getElementById('quizTimer').classList.add('hidden');
             
             const question = quizQuestions[currentQuiz];
             const options = document.getElementById('quizOptions').children;
@@ -990,55 +2495,312 @@
             // Show correct/incorrect
             Array.from(options).forEach((option, index) => {
                 if (index === question.correct) {
-                    option.classList.add('bg-green-200');
+                    option.classList.add('from-green-200', 'to-green-300', 'scale-105');
                 } else if (index === selectedIndex && index !== question.correct) {
-                    option.classList.add('bg-red-200');
+                    option.classList.add('from-red-200', 'to-red-300');
                 }
                 option.onclick = null;
             });
             
+            // Show explanation
+            showQuizExplanation(question, selectedIndex);
+            
             if (selectedIndex === question.correct) {
-                quizScore++;
+                const points = (question.difficulty * 10 * quizBonus * (1 + quizStreak * 0.1)).toFixed(0);
+                quizScore += parseInt(points);
+                quizStreak++;
+                showNotification(`+${points} points! Streak: ${quizStreak}`, 'success');
+            } else {
+                quizStreak = 0;
+                quizBonus = Math.max(quizBonus - 0.2, 1);
+                showNotification(selectedIndex === -1 ? 'Waktu habis!' : 'Jawaban salah!', 'error');
             }
             
             currentQuiz++;
             setTimeout(() => {
-                if (currentQuiz < quizQuestions.length) {
-                    showQuizQuestion();
-                } else {
-                    endQuiz();
-                }
-            }, 1500);
+                showQuizQuestion();
+            }, 3000); // Longer delay to read explanation
         }
         
-        function endQuiz() {
-            quizActive = false;
-            document.getElementById('quizQuestion').textContent = `Quiz selesai! Skor akhir: ${quizScore}/${quizQuestions.length}`;
-            document.getElementById('quizOptions').innerHTML = '';
-            document.getElementById('quizButton').textContent = 'Mulai Quiz';
-            document.getElementById('quizButton').onclick = startQuiz;
+        function showQuizExplanation(question, selectedIndex) {
+            const explanationDiv = document.createElement('div');
+            explanationDiv.className = 'mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm';
             
-            const percentage = (quizScore / quizQuestions.length) * 100;
-            let message = '';
-            if (percentage >= 80) message = 'Excellent! Anda sangat paham teknologi jaringan!';
-            else if (percentage >= 60) message = 'Good job! Pengetahuan Anda cukup baik!';
-            else message = 'Keep learning! Masih ada ruang untuk berkembang!';
+            const isCorrect = selectedIndex === question.correct;
+            const correctAnswer = question.options[question.correct];
             
-            showNotification(message, 'success');
+            explanationDiv.innerHTML = `
+                <div class="flex items-start">
+                    <div class="mr-3 text-2xl">${isCorrect ? '✅' : '❌'}</div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-gray-800 mb-2">
+                            ${isCorrect ? 'Benar!' : 'Jawaban yang benar: ' + correctAnswer}
+                        </p>
+                        <p class="text-gray-700 mb-2">${getQuizExplanation(question, currentQuiz)}</p>
+                        <div class="text-xs text-gray-600 bg-white p-2 rounded border">
+                            <strong>💡 Penjelasan Teknis:</strong> ${getQuizTechnicalExplanation(question, currentQuiz)}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('quizOptions').appendChild(explanationDiv);
         }
         
-        function updateQuizScore() {
-            document.getElementById('quizScore').textContent = `${quizScore}/${quizQuestions.length}`;
+        function getQuizExplanation(question, questionIndex) {
+            const explanations = [
+                // Basic Level Explanations
+                'LAN (Local Area Network) adalah jaringan komputer dalam area terbatas seperti rumah, kantor, atau gedung.',
+                'Switch menghubungkan perangkat dalam satu jaringan lokal dan menggunakan MAC address untuk forwarding frame.',
+                'Router berfungsi menghubungkan jaringan yang berbeda dan menentukan jalur terbaik untuk pengiriman data.',
+                'HTTP (HyperText Transfer Protocol) adalah protokol untuk transfer halaman web dari server ke browser.',
+                'Port 80 adalah port default untuk HTTP, sedangkan port 443 untuk HTTPS (HTTP Secure).',
+                'WiFi adalah teknologi jaringan nirkabel yang memungkinkan perangkat terhubung tanpa kabel.',
+                'Modem (Modulator-Demodulator) mengubah sinyal digital menjadi analog dan sebaliknya untuk transmisi data.',
+                'ISP (Internet Service Provider) adalah perusahaan yang menyediakan akses internet kepada pelanggan.',
+                'UTP (Unshielded Twisted Pair) adalah jenis kabel yang paling umum digunakan untuk jaringan Ethernet.',
+                'Model OSI memiliki 7 layer: Physical, Data Link, Network, Transport, Session, Presentation, Application.',
+                
+                // Intermediate Basic Explanations
+                'VSAT (Very Small Aperture Terminal) adalah teknologi komunikasi satelit untuk area remote.',
+                'SSH (Secure Shell) menggunakan port 22 untuk remote access yang aman ke server.',
+                'FTP (File Transfer Protocol) digunakan untuk transfer file antara client dan server.',
+                'IP Address 192.168.x.x termasuk kelas C yang digunakan untuk jaringan private kecil.',
+                'Subnet mask 255.255.255.0 (/24) memberikan 254 host address dalam satu subnet.',
+                'SMTP (Simple Mail Transfer Protocol) digunakan untuk mengirim email antar server.',
+                'DNS (Domain Name System) menerjemahkan nama domain menjadi IP address.',
+                'HTTPS menggunakan port 443 dan mengenkripsi komunikasi dengan SSL/TLS.',
+                'Topologi Ring menghubungkan perangkat dalam bentuk lingkaran tertutup.',
+                'DHCP (Dynamic Host Configuration Protocol) memberikan IP address secara otomatis.',
+                
+                // Intermediate Advanced Explanations
+                'Subnet /24 memiliki 24 bit untuk network dan 8 bit untuk host, memberikan 254 host address.',
+                'NTP (Network Time Protocol) menyinkronkan waktu antar perangkat dalam jaringan.',
+                'TCP berada di Transport Layer (Layer 4) dan menyediakan reliable connection.',
+                'VLAN (Virtual LAN) membagi jaringan secara logis tanpa perubahan fisik.',
+                'RIP (Routing Information Protocol) menggunakan hop count sebagai metric routing.',
+                'Well Known Ports (0-1023) adalah port yang reserved untuk service standar.',
+                'NAT (Network Address Translation) mengubah IP private menjadi public untuk akses internet.',
+                'SNMP (Simple Network Management Protocol) digunakan untuk monitoring perangkat jaringan.',
+                'STP (Spanning Tree Protocol) mencegah loop pada jaringan yang memiliki redundant path.',
+                'Kabel UTP Cat5e maksimal 100 meter untuk menjaga kualitas sinyal.',
+                
+                // Advanced Explanations
+                'VPN menggunakan berbagai teknologi seperti IPSec, SSL/TLS, dan PPTP untuk koneksi aman.',
+                'OSPF menggunakan algoritma Link State yang lebih efisien daripada Distance Vector.',
+                'Subnet /22 memiliki 22 bit network, menyisakan 10 bit untuk host (1022 host).',
+                'MPLS bekerja di Layer 2.5, antara Data Link dan Network Layer.',
+                'QoS menggunakan DSCP, CoS, dan RSVP untuk mengatur prioritas traffic.',
+                'AS (Autonomous System) adalah kumpulan jaringan dengan kebijakan routing yang sama.',
+                'HSRP adalah protokol Cisco untuk redundansi gateway dengan virtual IP.',
+                'Windows menggunakan TTL 128 untuk ping, berbeda dengan Linux yang menggunakan 64.',
+                'VRRP, GLBP, dan HSRP adalah protokol untuk load balancing dan redundansi.',
+                'LSA Type 1 (Router LSA) berisi informasi tentang router dan link-nya dalam area.',
+                
+                // Expert Level Explanations
+                'PHP (Penultimate Hop Popping) menghapus MPLS label di router sebelum destination.',
+                'VLAN ID dalam 802.1Q menggunakan 12 bit, memberikan range 1-4094 (0 dan 4095 reserved).',
+                'MED (Multi-Exit Discriminator) adalah atribut BGP untuk mempengaruhi inbound traffic.',
+                'MPLS menggunakan LDP untuk label distribution dan RSVP-TE untuk traffic engineering.',
+                'IPv6 menggunakan 128 bit address, memberikan ruang address yang sangat besar.',
+                'ECMP (Equal Cost Multi Path) memungkinkan load balancing pada multiple path dengan cost sama.',
+                'OSPF hello interval default adalah 10 detik pada broadcast network.',
+                'NETCONF, RESTCONF, dan gNMI adalah protokol modern untuk network automation.',
+                'Southbound API menghubungkan SDN controller dengan network device (switch).',
+                'MTU Ethernet standar 1500 bytes, tapi bisa lebih besar dengan jumbo frame.',
+                
+                // Security & Wireless
+                'WPA3 adalah standar keamanan WiFi terbaru dengan enkripsi yang lebih kuat.',
+                'SNMP menggunakan port 161 untuk query dan port 162 untuk trap.',
+                'DoS (Denial of Service) attack membuat layanan tidak tersedia untuk user normal.',
+                'Firewall dapat bekerja di Layer 3 (Network) dan Layer 4 (Transport).',
+                'WiFi 2.4 GHz memiliki 11-14 channel tergantung regulasi negara.',
+                
+                // Cabling & Physical
+                'Cat5e dan Cat6 mendukung Gigabit Ethernet dengan performa yang baik.',
+                'Fiber optic single mode dapat mencapai jarak puluhan kilometer.',
+                'SC dan LC adalah konektor fiber optic yang umum digunakan.',
+                'PoE+ (25.5W), PoE++ (60W), dan UPoE (90W) memberikan daya berbeda.',
+                
+                // Troubleshooting & Tools
+                '"route print" menampilkan routing table di Windows command prompt.',
+                'Wireshark adalah network protocol analyzer untuk capture dan analisis paket.',
+                'TTL expired menunjukkan kemungkinan routing loop dalam jaringan.',
+                '"ipconfig /flushdns" menghapus DNS cache di Windows.',
+                
+                // Modern Networking
+                'VPC (Virtual Private Cloud) adalah jaringan virtual terisolasi di cloud.',
+                'Container networking menggunakan bridge, overlay, dan host networking.',
+                'CNI (Container Network Interface) adalah standar untuk container networking.',
+                'Edge computing mendekatkan processing ke user untuk mengurangi latency.'
+            ];
+            
+            return explanations[questionIndex] || 'Konsep penting dalam teknologi jaringan modern.';
         }
         
-        // Snake Game Variables
+        function getQuizTechnicalExplanation(question, questionIndex) {
+            const technicalExplanations = [
+                // Basic Level Technical
+                'LAN menggunakan teknologi Ethernet dengan switch sebagai central device untuk komunikasi antar host.',
+                'Switch mempelajari MAC address dan membuat CAM table untuk efficient frame forwarding.',
+                'Router menggunakan routing table dan algoritma routing untuk menentukan next hop terbaik.',
+                'HTTP bekerja di Application Layer dengan request-response model menggunakan TCP port 80.',
+                'Port number mengidentifikasi aplikasi/service yang berjalan di suatu host dalam komunikasi network.',
+                'WiFi menggunakan frekuensi radio 2.4GHz dan 5GHz dengan protokol 802.11 untuk wireless communication.',
+                'Modem melakukan modulasi digital-to-analog untuk transmisi melalui medium analog seperti telephone line.',
+                'ISP menyediakan konektivitas internet melalui berbagai teknologi seperti DSL, cable, fiber, atau wireless.',
+                'UTP menggunakan twisted pair untuk mengurangi electromagnetic interference dalam transmisi data.',
+                'OSI Model adalah framework teoritis untuk memahami komunikasi network dalam 7 layer terpisah.',
+                
+                // Intermediate Basic Technical
+                'VSAT menggunakan satelit geostasioner untuk komunikasi two-way dengan terminal kecil di ground.',
+                'SSH menggunakan public key cryptography dan symmetric encryption untuk secure remote access.',
+                'FTP menggunakan dua koneksi: control connection (port 21) dan data connection (port 20).',
+                'Class C network menggunakan 24 bit untuk network portion dan 8 bit untuk host portion.',
+                'Subnet mask menggunakan binary AND operation dengan IP address untuk menentukan network portion.',
+                'SMTP menggunakan store-and-forward mechanism untuk reliable email delivery antar mail server.',
+                'DNS menggunakan hierarchical distributed database dengan caching untuk efficient name resolution.',
+                'HTTPS menggunakan TLS/SSL encryption untuk melindungi data dalam transit dari eavesdropping.',
+                'Ring topology menggunakan token passing atau similar mechanism untuk media access control.',
+                'DHCP menggunakan DORA process (Discover, Offer, Request, Acknowledge) untuk IP assignment.',
+                
+                // Intermediate Advanced Technical
+                'Subnetting menggunakan CIDR notation untuk efficient IP address allocation dan routing.',
+                'NTP menggunakan hierarchical stratum system dengan atomic clock sebagai primary time source.',
+                'TCP menyediakan reliable, ordered, error-checked delivery menggunakan sequence number dan acknowledgment.',
+                'VLAN menggunakan 802.1Q tagging untuk logical segmentation dalam single physical network.',
+                'RIP menggunakan Bellman-Ford algorithm dengan maximum hop count 15 untuk loop prevention.',
+                'IANA mengatur port allocation: 0-1023 (system), 1024-49151 (user), 49152-65535 (dynamic).',
+                'NAT menggunakan translation table untuk mapping private IP ke public IP dengan port multiplexing.',
+                'SNMP menggunakan MIB (Management Information Base) untuk standardized network device monitoring.',
+                'STP menggunakan BPDU (Bridge Protocol Data Unit) untuk detecting dan blocking redundant path.',
+                'Ethernet standard membatasi cable length untuk menjaga signal integrity dan collision detection.',
+                
+                // Advanced Technical
+                'VPN menggunakan tunneling protocol untuk encapsulate private data dalam public network packet.',
+                'OSPF menggunakan Dijkstra algorithm untuk calculating shortest path tree dalam link state database.',
+                'CIDR notation /22 berarti 22 bit pertama untuk network, sisanya (10 bit) untuk host addressing.',
+                'MPLS menggunakan label switching untuk faster packet forwarding tanpa IP lookup di setiap hop.',
+                'QoS menggunakan traffic classification, marking, queuing, dan shaping untuk service differentiation.',
+                'BGP menggunakan path vector algorithm dengan AS_PATH attribute untuk inter-domain routing.',
+                'HSRP menggunakan virtual MAC address dan preemption mechanism untuk gateway redundancy.',
+                'TTL (Time To Live) decremented di setiap hop untuk preventing infinite loop dalam routing.',
+                'Load balancing protocol menggunakan health check dan algorithm (round-robin, least-connection) untuk traffic distribution.',
+                'OSPF LSA Type 1 berisi router ID, attached network, dan cost information untuk SPF calculation.',
+                
+                // Expert Technical
+                'MPLS PHP menghapus label di penultimate router untuk mengurangi processing overhead di egress router.',
+                '802.1Q menggunakan 4-byte VLAN tag dengan 12-bit VLAN ID field dalam Ethernet frame header.',
+                'BGP MED attribute mempengaruhi inbound traffic path selection dengan lower value preferred.',
+                'MPLS control plane menggunakan LDP untuk label binding dan RSVP-TE untuk explicit path setup.',
+                'IPv6 menggunakan 128-bit addressing dengan hierarchical structure untuk global uniqueness dan aggregation.',
+                'ECMP menggunakan hash algorithm pada packet header field untuk consistent load distribution.',
+                'OSPF hello/dead timer memastikan neighbor relationship dan fast convergence saat topology change.',
+                'Network automation menggunakan API dan data model (YANG) untuk programmable network management.',
+                'SDN southbound API (OpenFlow) memungkinkan centralized control plane untuk distributed forwarding plane.',
+                'Jumbo frame mengurangi packet processing overhead dengan larger payload per frame transmission.',
+                
+                // Security & Wireless Technical
+                'WPA3 menggunakan SAE (Simultaneous Authentication of Equals) untuk stronger password-based authentication.',
+                'SNMP v3 menambahkan authentication dan encryption untuk secure network management communication.',
+                'DDoS attack menggunakan botnet untuk generating massive traffic volume yang overwhelm target resource.',
+                'Stateful firewall melakukan connection tracking untuk allowing return traffic dari established connection.',
+                'WiFi channel planning menghindari interference dengan non-overlapping channel (1, 6, 11 pada 2.4GHz).',
+                
+                // Cabling & Physical Technical
+                'Gigabit Ethernet menggunakan 4-pair transmission dengan advanced encoding untuk higher data rate.',
+                'Single-mode fiber menggunakan laser light source dengan narrow core untuk long-distance transmission.',
+                'Fiber connector menggunakan precision alignment untuk minimal insertion loss dan back reflection.',
+                'PoE menggunakan unused pair atau phantom power untuk delivering DC power over Ethernet cable.',
+                
+                // Troubleshooting Technical
+                'Routing table berisi destination network, next hop, interface, dan metric untuk forwarding decision.',
+                'Packet capture menggunakan promiscuous mode untuk intercepting all network traffic pada interface.',
+                'Routing loop terjadi ketika packet circulate indefinitely karena inconsistent routing information.',
+                'DNS cache menyimpan resolved query untuk mengurangi lookup time dan network traffic.',
+                
+                // Modern Networking Technical
+                'Cloud VPC menggunakan software-defined networking untuk isolated virtual network dalam shared infrastructure.',
+                'Container networking menggunakan namespace isolation dan virtual interface untuk network segmentation.',
+                'Kubernetes CNI menggunakan plugin architecture untuk flexible container network implementation.',
+                'Edge computing menggunakan distributed architecture untuk reducing latency dan bandwidth consumption.'
+            ];
+            
+            return technicalExplanations[questionIndex] || 'Implementasi teknis yang penting untuk dipahami dalam networking.';
+        }
+        
+        function updateQuizUI() {
+            document.getElementById('quizLevel').textContent = quizLevel;
+            document.getElementById('quizScore').textContent = quizScore;
+            document.getElementById('quizStreak').textContent = quizStreak;
+            document.getElementById('quizBonus').textContent = 'x' + quizBonus.toFixed(1);
+        }
+        
+        // Advanced Snake Game Variables
         let snakeCanvas, snakeCtx;
         let snake = [{x: 150, y: 150}];
-        let food = {x: 0, y: 0};
+        let food = {x: 0, y: 0, type: 'data'};
+        let powerUps = [];
+        let viruses = [];
+        let particles = [];
         let dx = 0, dy = 0;
         let snakeScore = 0;
+        let snakeLevel = 1;
+        let snakeSpeed = 150;
+        let snakeLives = 3;
         let snakeGameActive = false;
         let snakeGameLoop = null;
+        let powerUpTimer = 0;
+        let virusTimer = 0;
+        let snakeShowEducation = false;
+        
+        const snakeEducation = {
+            data: {
+                name: 'Data Packet',
+                description: 'Unit informasi yang dikirim melalui jaringan dari source ke destination',
+                technical: 'Terdiri dari header (alamat, kontrol) dan payload (data aktual)',
+                realWorld: 'Seperti surat pos dengan alamat pengirim/penerima dan isi surat'
+            },
+            virus: {
+                name: 'Malware/Virus',
+                description: 'Program berbahaya yang dapat merusak sistem atau mencuri data',
+                technical: 'Self-replicating code yang menginfeksi file dan menyebar melalui jaringan',
+                realWorld: 'Seperti virus biologis yang menginfeksi dan merusak sel sehat'
+            },
+            powerUp: {
+                name: 'Network Enhancement',
+                description: 'Upgrade jaringan yang meningkatkan performa dan kemampuan',
+                technical: 'Bandwidth upgrade, QoS implementation, atau security enhancement',
+                realWorld: 'Seperti upgrade jalan raya untuk mengurangi kemacetan traffic'
+            }
+        };
+        
+        const networkConcepts = {
+            speed: {
+                name: 'Bandwidth & Throughput',
+                concept: 'Kapasitas maksimal dan kecepatan aktual transfer data dalam jaringan',
+                importance: 'Menentukan seberapa cepat data dapat dikirim dan diterima'
+            },
+            routing: {
+                name: 'Packet Routing',
+                concept: 'Proses menentukan jalur terbaik untuk mengirim data dari source ke destination',
+                importance: 'Memastikan data sampai ke tujuan dengan efisien dan reliable'
+            },
+            security: {
+                name: 'Network Security',
+                concept: 'Perlindungan jaringan dari ancaman dan akses tidak sah',
+                importance: 'Menjaga integritas, confidentiality, dan availability data'
+            }
+        };
+        
+        const snakeColors = {
+            head: '#00ff88',
+            body: '#0A66C2',
+            data: '#22c55e',
+            virus: '#ef4444',
+            powerUp: '#fbbf24',
+            background: 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%)'
+        };
         
         function startSnakeGame() {
             snakeCanvas = document.getElementById('snakeCanvas');
@@ -1055,22 +2817,30 @@
             dx = 0;
             dy = 0;
             snakeScore = 0;
+            snakeLevel = 1;
+            snakeSpeed = 150;
+            snakeLives = 3;
+            powerUps = [];
+            viruses = [];
+            particles = [];
+            powerUpTimer = 0;
+            virusTimer = 0;
             snakeGameActive = true;
             
             generateFood();
-            updateSnakeScore();
+            updateSnakeUI();
             drawSnake(); // Initial draw
             
-            document.getElementById('snakeButton').textContent = 'Stop Game';
+            document.getElementById('snakeButton').textContent = 'Stop Snake';
             document.getElementById('snakeButton').onclick = stopSnakeGame;
             
             // Game loop
             snakeGameLoop = setInterval(() => {
                 if (snakeGameActive) {
-                    updateSnake();
+                    updateSnakeGame();
                     drawSnake();
                 }
-            }, 150);
+            }, snakeSpeed);
             
             // Add keyboard controls
             document.addEventListener('keydown', handleSnakeKeyPress);
@@ -1079,7 +2849,7 @@
         function stopSnakeGame() {
             snakeGameActive = false;
             clearInterval(snakeGameLoop);
-            document.getElementById('snakeButton').textContent = 'Mulai Game';
+            document.getElementById('snakeButton').textContent = 'Mulai Snake';
             document.getElementById('snakeButton').onclick = startSnakeGame;
             document.removeEventListener('keydown', handleSnakeKeyPress);
         }
@@ -1087,16 +2857,17 @@
         function handleSnakeKeyPress(e) {
             if (!snakeGameActive) return;
             
-            const key = e.key;
+            const key = e.key.toLowerCase();
             e.preventDefault(); // Prevent page scrolling
             
-            if (key === 'ArrowUp' && dy === 0) { dx = 0; dy = -15; }
-            else if (key === 'ArrowDown' && dy === 0) { dx = 0; dy = 15; }
-            else if (key === 'ArrowLeft' && dx === 0) { dx = -15; dy = 0; }
-            else if (key === 'ArrowRight' && dx === 0) { dx = 15; dy = 0; }
+            // Arrow keys or WASD
+            if ((key === 'arrowup' || key === 'w') && dy === 0) { dx = 0; dy = -15; }
+            else if ((key === 'arrowdown' || key === 's') && dy === 0) { dx = 0; dy = 15; }
+            else if ((key === 'arrowleft' || key === 'a') && dx === 0) { dx = -15; dy = 0; }
+            else if ((key === 'arrowright' || key === 'd') && dx === 0) { dx = 15; dy = 0; }
         }
         
-        function updateSnake() {
+        function updateSnakeGame() {
             // Don't move if no direction is set
             if (dx === 0 && dy === 0) return;
             
@@ -1104,13 +2875,13 @@
             
             // Check wall collision
             if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 300) {
-                gameOver();
+                hitVirus();
                 return;
             }
             
             // Check self collision
             if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-                gameOver();
+                hitVirus();
                 return;
             }
             
@@ -1118,52 +2889,353 @@
             
             // Check food collision
             if (head.x === food.x && head.y === food.y) {
-                snakeScore += 10;
-                updateSnakeScore();
+                const points = 10 * snakeLevel;
+                snakeScore += points;
+                createParticles(food.x, food.y, '#22c55e');
+                showSnakeItemEducation('data');
+                showNotification(`+${points} Data Packet berhasil diterima!`, 'success');
+                
+                // Level up every 100 points
+                if (snakeScore > 0 && snakeScore % 100 === 0) {
+                    levelUpSnake();
+                }
+                
                 generateFood();
             } else {
                 snake.pop();
             }
-        }
-        
-        function drawSnake() {
-            // Clear canvas
-            snakeCtx.fillStyle = '#f3f4f6';
-            snakeCtx.fillRect(0, 0, 300, 300);
             
-            // Draw snake
-            snakeCtx.fillStyle = '#0A66C2';
-            snake.forEach(segment => {
-                snakeCtx.fillRect(segment.x, segment.y, 15, 15);
+            // Check virus collision
+            viruses.forEach((virus, index) => {
+                if (head.x === virus.x && head.y === virus.y) {
+                    viruses.splice(index, 1);
+                    hitVirus();
+                }
             });
             
-            // Draw food
-            snakeCtx.fillStyle = '#ef4444';
-            snakeCtx.fillRect(food.x, food.y, 15, 15);
+            // Check power-up collision
+            powerUps.forEach((powerUp, index) => {
+                if (head.x === powerUp.x && head.y === powerUp.y) {
+                    powerUps.splice(index, 1);
+                    collectPowerUp(powerUp);
+                }
+            });
+            
+            // Spawn power-ups and viruses
+            powerUpTimer++;
+            virusTimer++;
+            
+            if (powerUpTimer > 300) { // Every 15 seconds at 50ms intervals
+                spawnPowerUp();
+                powerUpTimer = 0;
+            }
+            
+            if (virusTimer > 200 - (snakeLevel * 20)) { // More frequent as level increases
+                spawnVirus();
+                virusTimer = 0;
+            }
+            
+            // Update particles
+            particles.forEach((particle, index) => {
+                particle.life--;
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.vy += 0.1; // Gravity
+                
+                if (particle.life <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+            
+            updateSnakeUI();
         }
         
-        function generateFood() {
-            food.x = Math.floor(Math.random() * 20) * 15;
-            food.y = Math.floor(Math.random() * 20) * 15;
+        function levelUpSnake() {
+            snakeLevel++;
+            snakeSpeed = Math.max(snakeSpeed - 10, 80); // Increase speed
             
-            // Make sure food doesn't spawn on snake
-            while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
-                food.x = Math.floor(Math.random() * 20) * 15;
-                food.y = Math.floor(Math.random() * 20) * 15;
+            // Restart game loop with new speed
+            clearInterval(snakeGameLoop);
+            snakeGameLoop = setInterval(() => {
+                if (snakeGameActive) {
+                    updateSnakeGame();
+                    drawSnake();
+                }
+            }, snakeSpeed);
+            
+            createParticles(snake[0].x, snake[0].y, '#fbbf24');
+            showNotification(`Level ${snakeLevel}! Speed increased!`, 'success');
+        }
+        
+        function hitVirus() {
+            snakeLives--;
+            createParticles(snake[0].x, snake[0].y, '#ef4444');
+            showSnakeItemEducation('virus');
+            
+            if (snakeLives <= 0) {
+                gameOverSnake();
+            } else {
+                // Reset position
+                snake = [{x: 150, y: 150}];
+                dx = 0;
+                dy = 0;
+                showNotification(`Malware terdeteksi! Sistem restart. ${snakeLives} lives remaining`, 'error');
             }
         }
         
-        function gameOver() {
-            snakeGameActive = false;
-            clearInterval(snakeGameLoop);
-            document.getElementById('snakeButton').textContent = 'Mulai Game';
-            document.getElementById('snakeButton').onclick = startSnakeGame;
-            document.removeEventListener('keydown', handleSnakeKeyPress);
-            showNotification(`Game Over! Skor akhir: ${snakeScore}`, 'info');
+        function spawnPowerUp() {
+            let x, y;
+            do {
+                x = Math.floor(Math.random() * 20) * 15;
+                y = Math.floor(Math.random() * 20) * 15;
+            } while (
+                snake.some(segment => segment.x === x && segment.y === y) ||
+                (x === food.x && y === food.y) ||
+                viruses.some(virus => virus.x === x && virus.y === y)
+            );
+            
+            const types = ['speed', 'points', 'life'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            powerUps.push({ x, y, type, timer: 0 });
         }
         
-        function updateSnakeScore() {
+        function spawnVirus() {
+            if (viruses.length >= snakeLevel) return; // Limit virus count
+            
+            let x, y;
+            do {
+                x = Math.floor(Math.random() * 20) * 15;
+                y = Math.floor(Math.random() * 20) * 15;
+            } while (
+                snake.some(segment => segment.x === x && segment.y === y) ||
+                (x === food.x && y === food.y) ||
+                powerUps.some(powerUp => powerUp.x === x && powerUp.y === y)
+            );
+            
+            viruses.push({ x, y, timer: 0 });
+        }
+        
+        function collectPowerUp(powerUp) {
+            createParticles(powerUp.x, powerUp.y, '#fbbf24');
+            
+            switch (powerUp.type) {
+                case 'speed':
+                    snakeSpeed = Math.max(snakeSpeed - 20, 60);
+                    clearInterval(snakeGameLoop);
+                    snakeGameLoop = setInterval(() => {
+                        if (snakeGameActive) {
+                            updateSnakeGame();
+                            drawSnake();
+                        }
+                    }, snakeSpeed);
+                    showSnakeEducation('speed');
+                    showNotification('Bandwidth Upgrade! Kecepatan meningkat!', 'success');
+                    break;
+                case 'points':
+                    snakeScore += 50;
+                    showSnakeEducation('routing');
+                    showNotification('+50 Efficient Routing Bonus!', 'success');
+                    break;
+                case 'life':
+                    snakeLives = Math.min(snakeLives + 1, 5);
+                    showSnakeEducation('security');
+                    showNotification('Security Enhancement! Extra Protection!', 'success');
+                    break;
+            }
+        }
+        
+        function toggleSnakeEducation() {
+            const panel = document.getElementById('snakeEducation');
+            panel.classList.toggle('hidden');
+            snakeShowEducation = !panel.classList.contains('hidden');
+        }
+        
+        function showSnakeEducation(conceptType) {
+            const concept = networkConcepts[conceptType];
+            if (!concept) return;
+            
+            const content = document.getElementById('snakeEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-purple-600 mb-1">🚀 ${concept.name}</h5>
+                    <p class="text-gray-700 text-xs mb-2">${concept.concept}</p>
+                    <p class="text-blue-600 text-xs mb-2"><strong>Pentingnya:</strong> ${concept.importance}</p>
+                </div>
+                <div class="text-xs text-gray-500 border-t border-gray-300 pt-2">
+                    <p><strong>💡 Dalam Game:</strong> ${getSnakeGameTip(conceptType)}</p>
+                </div>
+            `;
+            
+            // Auto show education panel
+            document.getElementById('snakeEducation').classList.remove('hidden');
+            snakeShowEducation = true;
+        }
+        
+        function showSnakeItemEducation(itemType) {
+            const item = snakeEducation[itemType];
+            if (!item) return;
+            
+            const content = document.getElementById('snakeEducationContent');
+            content.innerHTML = `
+                <div class="mb-3">
+                    <h5 class="font-bold text-purple-600 mb-1">📦 ${item.name}</h5>
+                    <p class="text-gray-700 text-xs mb-2">${item.description}</p>
+                    <p class="text-green-600 text-xs mb-2"><strong>Teknis:</strong> ${item.technical}</p>
+                    <p class="text-orange-600 text-xs">${item.realWorld}</p>
+                </div>
+                <div class="text-xs text-gray-500 border-t border-gray-300 pt-2">
+                    <p><strong>💡 Analogi:</strong> ${getSnakeItemTip(itemType)}</p>
+                </div>
+            `;
+            
+            document.getElementById('snakeEducation').classList.remove('hidden');
+            snakeShowEducation = true;
+        }
+        
+        function getSnakeGameTip(conceptType) {
+            const tips = {
+                speed: 'Snake bergerak lebih cepat = throughput jaringan meningkat',
+                routing: 'Mengumpulkan data efisien = routing algorithm yang optimal',
+                security: 'Extra life = redundancy dan backup system untuk reliability'
+            };
+            return tips[conceptType] || 'Setiap elemen game merepresentasikan konsep jaringan nyata';
+        }
+        
+        function getSnakeItemTip(itemType) {
+            const tips = {
+                data: 'Snake yang memanjang seperti data yang terakumulasi dalam buffer',
+                virus: 'Menghindari virus seperti firewall memblokir traffic berbahaya',
+                powerUp: 'Upgrade jaringan meningkatkan performa seperti power-up dalam game'
+            };
+            return tips[itemType] || 'Simulasi sederhana dari kompleksitas jaringan komputer';
+        }
+        
+        function createParticles(x, y, color) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x: x + 7,
+                    y: y + 7,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.5) * 4 - 2,
+                    life: 30,
+                    color: color
+                });
+            }
+        }
+        
+        function drawSnake() {
+            // Create gradient background
+            const gradient = snakeCtx.createLinearGradient(0, 0, 300, 300);
+            gradient.addColorStop(0, '#1e3a8a');
+            gradient.addColorStop(1, '#7c3aed');
+            snakeCtx.fillStyle = gradient;
+            snakeCtx.fillRect(0, 0, 300, 300);
+            
+            // Draw grid
+            snakeCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            snakeCtx.lineWidth = 1;
+            for (let i = 0; i <= 300; i += 15) {
+                snakeCtx.beginPath();
+                snakeCtx.moveTo(i, 0);
+                snakeCtx.lineTo(i, 300);
+                snakeCtx.stroke();
+                snakeCtx.beginPath();
+                snakeCtx.moveTo(0, i);
+                snakeCtx.lineTo(300, i);
+                snakeCtx.stroke();
+            }
+            
+            // Draw snake with glow effect
+            snake.forEach((segment, index) => {
+                // Glow effect
+                snakeCtx.shadowColor = index === 0 ? '#00ff88' : '#0A66C2';
+                snakeCtx.shadowBlur = 10;
+                
+                snakeCtx.fillStyle = index === 0 ? '#00ff88' : '#0A66C2';
+                snakeCtx.fillRect(segment.x + 1, segment.y + 1, 13, 13);
+                
+                // Inner highlight
+                snakeCtx.fillStyle = index === 0 ? '#88ffcc' : '#4A90E2';
+                snakeCtx.fillRect(segment.x + 3, segment.y + 3, 9, 9);
+                
+                snakeCtx.shadowBlur = 0;
+            });
+            
+            // Draw food with pulsing effect
+            const pulse = Math.sin(Date.now() * 0.01) * 0.3 + 0.7;
+            snakeCtx.shadowColor = '#22c55e';
+            snakeCtx.shadowBlur = 15 * pulse;
+            snakeCtx.fillStyle = '#22c55e';
+            snakeCtx.fillRect(food.x, food.y, 15, 15);
+            snakeCtx.fillStyle = '#88ff88';
+            snakeCtx.fillRect(food.x + 2, food.y + 2, 11, 11);
+            snakeCtx.shadowBlur = 0;
+            
+            // Draw viruses with danger effect
+            viruses.forEach(virus => {
+                virus.timer++;
+                const danger = Math.sin(virus.timer * 0.2) * 0.5 + 0.5;
+                
+                snakeCtx.shadowColor = '#ef4444';
+                snakeCtx.shadowBlur = 20 * danger;
+                snakeCtx.fillStyle = '#ef4444';
+                snakeCtx.fillRect(virus.x, virus.y, 15, 15);
+                snakeCtx.fillStyle = '#ff8888';
+                snakeCtx.fillRect(virus.x + 2, virus.y + 2, 11, 11);
+                snakeCtx.shadowBlur = 0;
+            });
+            
+            // Draw power-ups with sparkle effect
+            powerUps.forEach(powerUp => {
+                powerUp.timer++;
+                const sparkle = Math.sin(powerUp.timer * 0.3) * 0.4 + 0.6;
+                
+                snakeCtx.shadowColor = '#fbbf24';
+                snakeCtx.shadowBlur = 15 * sparkle;
+                snakeCtx.fillStyle = '#fbbf24';
+                snakeCtx.fillRect(powerUp.x, powerUp.y, 15, 15);
+                snakeCtx.fillStyle = '#fff888';
+                snakeCtx.fillRect(powerUp.x + 2, powerUp.y + 2, 11, 11);
+                snakeCtx.shadowBlur = 0;
+            });
+            
+            // Draw particles
+            particles.forEach(particle => {
+                const alpha = particle.life / 30;
+                snakeCtx.fillStyle = particle.color + Math.floor(alpha * 255).toString(16).padStart(2, '0');
+                snakeCtx.fillRect(particle.x - 1, particle.y - 1, 3, 3);
+            });
+        }
+        
+        function generateFood() {
+            do {
+                food.x = Math.floor(Math.random() * 20) * 15;
+                food.y = Math.floor(Math.random() * 20) * 15;
+            } while (
+                snake.some(segment => segment.x === food.x && segment.y === food.y) ||
+                viruses.some(virus => virus.x === food.x && virus.y === food.y) ||
+                powerUps.some(powerUp => powerUp.x === food.x && powerUp.y === food.y)
+            );
+        }
+        
+        function gameOverSnake() {
+            snakeGameActive = false;
+            clearInterval(snakeGameLoop);
+            document.getElementById('snakeButton').textContent = 'Mulai Snake';
+            document.getElementById('snakeButton').onclick = startSnakeGame;
+            document.removeEventListener('keydown', handleSnakeKeyPress);
+            
+            // Final score calculation
+            const finalScore = snakeScore + (snakeLevel * 50);
+            showNotification(`Game Over! Final Score: ${finalScore} (Level ${snakeLevel})`, 'info');
+        }
+        
+        function updateSnakeUI() {
             document.getElementById('snakeScore').textContent = snakeScore;
+            document.getElementById('snakeLevel').textContent = snakeLevel;
+            document.getElementById('snakeSpeed').textContent = Math.round((200 - snakeSpeed) / 20) + 'x';
+            document.getElementById('snakeLives').textContent = snakeLives;
         }
 
         // Show video upload info
@@ -1345,5 +3417,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e715ec561bf8e8',t:'MTc2MDQ0NTAwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e7587d73ab409b',t:'MTc2MDQ0NzcyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
